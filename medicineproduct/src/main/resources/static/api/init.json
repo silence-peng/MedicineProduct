@@ -1,256 +1,269 @@
 {
-  "homeInfo": {
-    "title": "首页",
-    "href": "page/index.html"
-  },
-  "logoInfo": {
-    "title": "LAYUI MINI",
-    "image": "images/logo.png",
-    "href": ""
-  },
-  "menuInfo": [
-    {
-      "title": "系统管理",
-      "icon": "fa fa-address-book",
-      "href": "",
-      "target": "_self",
-      "child": [
-        {
-          "title": "角色管理",
-          "href": "",
-          "icon": "fa fa-user-secret",
-          "target": "_self"
-        },
-        {
-          "title": "员工管理",
-          "href": "page/menu.html",
-          "icon": "fa fa-users",
-          "target": "_self"
-        },
-        {
-          "title": "赋权",
-          "href": "page/setting.html",
-          "icon": "fa fa-sliders",
-          "target": "_self"
-        }
-      ]
-    },
-    {
-      "title": "备件管理",
-      "icon": "fa fa-lemon-o",
-      "href": "",
-      "target": "_self",
-      "child": [
-        {
-          "title": "备件类型",
-          "href": "page/icon.html",
-          "icon": "fa fa-dot-circle-o",
-          "target": "_self"
-        },
-        {
-          "title": "仓库管理",
-          "href": "page/icon-picker.html",
-          "icon": "fa fa-archive",
-          "target": "_self"
-        },
-        {
-          "title": "备件管理",
-          "href": "page/color-select.html",
-          "icon": "fa fa-archive",
-          "target": "_self"
-        }
-      ]
-    },
-    {
-      "title": "产品管理",
-      "icon": "fa fa-slideshare",
-      "href": "",
-      "target": "_self",
-      "child": [
-        {
-          "title": "产品bom单",
-          "href": "",
-          "icon": "fa fa-file",
-          "target": ""
-        },
-        {
-          "title": "产品管理",
-          "href": "page/error.html",
-          "icon": "fa fa-puzzle-piece",
-          "target": "_self"
-        }
-      ]
-    },
-    {
-      "title": "库存管理",
-      "icon": "fa fa-slideshare",
-      "href": "",
-      "target": "_self",
-      "child": [
-        {
-          "title": "产品库存",
-          "href": "",
-          "icon": "fa fa-meetup",
-          "target": ""
-        },
-        {
-          "title": "备件库存",
-          "href": "page/error.html",
-          "icon": "fa fa-superpowers",
-          "target": "_self"
-        }
-      ]
-    },
-    {
-      "title": "订单管理",
-      "icon": "fa fa-slideshare",
-      "href": "",
-      "target": "_self",
-      "child": [
-        {
-          "title": "销售单",
-          "href": "",
-          "icon": "fa fa-file-o",
-          "target": ""
-        },
-        {
-          "title": "单据查询",
-          "href": "page/error.html",
-          "icon": "fa fa-file-text",
-          "target": "_self"
-        }
-      ]
-    },
-    {
-      "title": "售后管理",
-      "icon": "fa fa-slideshare",
-      "href": "",
-      "target": "_self",
-      "child": [
-        {
-          "title": "安装",
-          "href": "",
-          "icon": "fa fa-meetup",
-          "target": "",
-          "child": [
-           {
-              "title": "安装派单",
-              "href": "",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
+	"homeInfo": {
+		"title": "首页",
+		"href": "page/index.html"
+	},
+	"logoInfo": {
+		"title": "LAYUI MINI",
+		"image": "images/logo.png",
+		"href": ""
+	},
+	"menuInfo": [{
+		"title": "系统&售后",
+		"icon": "fa ",
+		"href": "",
+		"target": "_self",
+		"child": [{
+				"title": "系统管理",
+				"icon": "fa fa-address-book",
+				"href": "",
+				"target": "_self",
+				"child": [{
+					"title": "系统管理",
+					"icon": "fa fa-address-book",
+					"href": "",
+					"target": "_self",
+					"child": [{
+							"title": "角色管理",
+							"href": "",
+							"icon": "fa fa-user-secret",
+							"target": "_self"
+						},
+						{
+							"title": "员工管理",
+							"href": "page/menu.html",
+							"icon": "fa fa-users",
+							"target": "_self"
+						},
+						{
+							"title": "赋权",
+							"href": "page/setting.html",
+							"icon": "fa fa-sliders",
+							"target": "_self"
+						}
+					]
+				}]
+			},
 			{
-              "title": "安装记录",
-              "href": "",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
+				"title": "售后管理",
+				"icon": "fa fa-slideshare",
+				"href": "",
+				"target": "_self",
+				"child": [{
+						"title": "安装",
+						"href": "",
+						"icon": "fa fa-meetup",
+						"target": "",
+						"child": [{
+								"title": "安装派单",
+								"href": "",
+								"icon": "fa fa-tachometer",
+								"target": "_self"
+							},
+							{
+								"title": "安装记录",
+								"href": "",
+								"icon": "fa fa-tachometer",
+								"target": "_self"
+							},
+							{
+								"title": "安装费用",
+								"href": "",
+								"icon": "fa fa-tachometer",
+								"target": "_self"
+							},
+							{
+								"title": "安装回访",
+								"href": "",
+								"icon": "fa fa-tachometer",
+								"target": "_self"
+							}
+						]
+
+					},
+					{
+						"title": "保养",
+						"href": "",
+						"icon": "fa fa-superpowers",
+						"target": "_self",
+						"child": [{
+								"title": "保养派单",
+								"href": "",
+								"icon": "fa fa-tachometer",
+								"target": "_self"
+							},
+							{
+								"title": "保养记录",
+								"href": "",
+								"icon": "fa fa-tachometer",
+								"target": "_self"
+							},
+							{
+								"title": "保养费用",
+								"href": "",
+								"icon": "fa fa-tachometer",
+								"target": "_self"
+							},
+							{
+								"title": "保养回访",
+								"href": "",
+								"icon": "fa fa-tachometer",
+								"target": "_self"
+							}
+						]
+					},
+					{
+						"title": "维修",
+						"href": "page/error.html",
+						"icon": "fa fa-superpowers",
+						"target": "_self",
+						"child": [{
+								"title": "维修派单",
+								"href": "",
+								"icon": "fa fa-tachometer",
+								"target": "_self"
+							},
+							{
+								"title": "维修记录",
+								"href": "",
+								"icon": "fa fa-tachometer",
+								"target": "_self"
+							},
+							{
+								"title": "维修费用",
+								"href": "",
+								"icon": "fa fa-tachometer",
+								"target": "_self"
+							},
+							{
+								"title": "维修回访",
+								"href": "",
+								"icon": "fa fa-tachometer",
+								"target": "_self"
+							}
+						]
+					}
+				]
+			},
 			{
-              "title": "安装费用",
-              "href": "",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-			{
-			   "title": "安装回访",
-			   "href": "",
-			   "icon": "fa fa-tachometer",
-			   "target": "_self"
-			 }
-          ]
-         
-        },
-        {
-          "title": "保养",
-          "href": "",
-          "icon": "fa fa-superpowers",
-          "target": "_self",
-          "child": [
-           {
-              "title": "保养派单",
-              "href": "",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-			{
-			   "title": "保养记录",
-			   "href": "",
-			   "icon": "fa fa-tachometer",
-			   "target": "_self"
-			 },
-			 {
-              "title": "保养费用",
-              "href": "",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-			{
-			   "title": "保养回访",
-			   "href": "",
-			   "icon": "fa fa-tachometer",
-			   "target": "_self"
-			 }
-          ]
-        },
-        {
-          "title": "维修",
-          "href": "page/error.html",
-          "icon": "fa fa-superpowers",
-          "target": "_self",
-          "child": [
-           {
-              "title": "维修派单",
-              "href": "",
-              "icon": "fa fa-tachometer",
-              "target": "_self"
-            },
-			{
-			   "title": "维修记录",
-			   "href": "",
-			   "icon": "fa fa-tachometer",
-			   "target": "_self"
-			 },
-			 {
-			    "title": "维修费用",
-			    "href": "",
-			    "icon": "fa fa-tachometer",
-			    "target": "_self"
-			  },
-			   {
-			      "title": "维修回访",
+				"title": "统计分析",
+				"icon": "fa fa-line-chart",
+				"href": "",
+				"target": "_self",
+				"child": [{
+						"title": "故障分析统计",
+						"href": "",
+						"icon": "fa fa-bar-chart",
+						"target": "_self"
+					},
+					{
+						"title": "区域故障分析统计",
+						"href": "",
+						"icon": "fa fa-area-chart",
+						"target": "_self"
+					},
+					{
+						"title": "费用查询",
+						"href": "page/setting.html",
+						"icon": "fa fa-jpy",
+						"target": "_self"
+					}
+				]
+			}
+		]
+	}, {
+		"title": "管理",
+		"icon": "fa ",
+		"href": "",
+		"target": "_self",
+		"child": [
+			    {
+			      "title": "备件管理",
+			      "icon": "fa fa-lemon-o",
 			      "href": "",
-			      "icon": "fa fa-tachometer",
-			      "target": "_self"
+			      "target": "_self",
+			      "child": [
+			        {
+			          "title": "备件类型",
+			          "href": "page/icon.html",
+			          "icon": "fa fa-dot-circle-o",
+			          "target": "_self"
+			        },
+			        {
+			          "title": "仓库管理",
+			          "href": "page/icon-picker.html",
+			          "icon": "fa fa-archive",
+			          "target": "_self"
+			        },
+			        {
+			          "title": "备件管理",
+			          "href": "page/color-select.html",
+			          "icon": "fa fa-archive",
+			          "target": "_self"
+			        }
+			      ]
+			    },
+			    {
+			      "title": "产品管理",
+			      "icon": "fa fa-slideshare",
+			      "href": "",
+			      "target": "_self",
+			      "child": [
+			        {
+			          "title": "产品bom单",
+			          "href": "",
+			          "icon": "fa fa-file",
+			          "target": ""
+			        },
+			        {
+			          "title": "产品管理",
+			          "href": "page/error.html",
+			          "icon": "fa fa-puzzle-piece",
+			          "target": "_self"
+			        }
+			      ]
+			    },
+			    {
+			      "title": "库存管理",
+			      "icon": "fa fa-slideshare",
+			      "href": "",
+			      "target": "_self",
+			      "child": [
+			        {
+			          "title": "产品库存",
+			          "href": "",
+			          "icon": "fa fa-meetup",
+			          "target": ""
+			        },
+			        {
+			          "title": "备件库存",
+			          "href": "page/error.html",
+			          "icon": "fa fa-superpowers",
+			          "target": "_self"
+			        }
+			      ]
+			    },
+			    {
+			      "title": "订单管理",
+			      "icon": "fa fa-slideshare",
+			      "href": "",
+			      "target": "_self",
+			      "child": [
+			        {
+			          "title": "销售单",
+			          "href": "",
+			          "icon": "fa fa-file-o",
+			          "target": ""
+			        },
+			        {
+			          "title": "单据查询",
+			          "href": "page/error.html",
+			          "icon": "fa fa-file-text",
+			          "target": "_self"
+			        }
+			      ]
 			    }
-          ]
-        }
-      ]
-    }, 
-	{
-      "title": "统计分析",
-      "icon": "fa fa-line-chart",
-      "href": "",
-      "target": "_self",
-      "child": [
-        {
-          "title": "故障分析统计",
-          "href": "",
-          "icon": "fa fa-bar-chart",
-          "target": "_self"
-        },
-        {
-          "title": "区域故障分析统计",
-          "href": "",
-          "icon": "fa fa-area-chart",
-          "target": "_self"
-        },
-        {
-          "title": "费用查询",
-          "href": "page/setting.html",
-          "icon": "fa fa-jpy",
-          "target": "_self"
-        }
-      ]
-    }
-  ]
+		]
+	}]
+
 }
