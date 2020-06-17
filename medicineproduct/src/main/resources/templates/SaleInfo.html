@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/common.css" media="all">
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+</head>
+<body>
+<div class="layui-fluid" style="padding: 30px">
+    <div class="layui-row btnArr">
+        <button type="button"  class="layui-btn layui-btn-normal" data-type="add">新增</button>
+        <button type="button" class="layui-btn layui-btn-normal" data-type="upd">修改</button>
+        <button type="button" class="layui-btn layui-btn-danger" data-type="del">删除</button>
+        <button type="button" class="layui-btn layui-btn-normal" data-type="export">导入</button>
+    </div>
+    <br>
+    <blockquote class="layui-elem-quote">
+        搜索条件
+    </blockquote>
+    <form class="layui-form" id="data">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-xs4">订单日期</div>
+            <div class="layui-col-xs2">订单编号</div>
+            <div class="layui-col-xs2">产品编号</div>
+            <div class="layui-col-xs2">销售编号</div>
+        </div>
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-xs4">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline" style="width: 40%" >
+                        <input type="text" name="orderDate" id="orderDate" lay-verify="startDate"
+                               placeholder="开始日期" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid">-</div>
+                    <div class="layui-input-inline" style="width: 40%">
+                        <input type="text"  name="cretedate" id="cretedate" lay-verify="startDate"
+                               placeholder="结束日期" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs2"><input type="text" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" class="layui-input"></div>
+            <div>
+                <input type="button" value="查找" style="height: 36px" class="layui-btn layui-btn-normal"/>
+            </div>
+            <div class="layui-row">
+                <table class="layui-table" id="saleInfo"></table>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script src="lib/layui-v2.5.5/layui.js"></script>
+<script src="js/order-manage/saleInfo.js"></script>
+</html>
