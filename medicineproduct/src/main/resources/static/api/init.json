@@ -19,11 +19,6 @@
 				"href": "",
 				"target": "_self",
 				"child": [{
-					"title": "系统管理",
-					"icon": "fa fa-address-book",
-					"href": "",
-					"target": "_self",
-					"child": [{
 							"title": "角色管理",
 							"href": "",
 							"icon": "fa fa-user-secret",
@@ -40,9 +35,7 @@
 							"href": "page/setting.html",
 							"icon": "fa fa-sliders",
 							"target": "_self"
-						}
-					]
-				}]
+						}]
 			},
 			{
 				"title": "售后管理",
