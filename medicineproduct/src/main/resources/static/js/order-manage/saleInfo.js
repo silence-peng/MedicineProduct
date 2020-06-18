@@ -51,10 +51,10 @@ layui.use(['jquery','form','table'],function () {
         ,export: function(){ //验证是否全选
             layer.open({
                 type: 2,
-                area: [600 + 'px', 400 + 'px'],
+                area: [900 + 'px', 600 + 'px'],
                 fix: false, //不固定
-                width:600,
-                height:400,
+                width:900,
+                height:600,
                 maxmin: true,
                 shadeClose: true,
                 shade: 0.4,

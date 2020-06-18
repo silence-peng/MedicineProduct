@@ -41,49 +41,6 @@
 </div>
 </body>
 <script src="lib/layui-v2.5.5/layui.js"></script>
-<script>
-    layui.use(['jquery','form','table','upload'],function () {
-        var $=layui.jquery
-            ,form=layui.form
-            ,upload = layui.upload
-            ,table=layui.table;
-        table.render(
-            {
-                elem: '#saleInfo'
-                ,url:'/demo/table/user/'
-                ,cellMinWidth: 100 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-                ,cols: [[
-                    {field:'id', width:80, title: 'ID', sort: true}
-                    ,{field:'username', width:80, title: '用户名'}
-                    ,{field:'sex', width:80, title: '性别', sort: true}
-                    ,{field:'city', width:80, title: '城市'}
-                    ,{field:'sign', title: '签名', width: '30%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                    ,{field:'experience', title: '积分', sort: true}
-                    ,{field:'score', title: '评分', sort: true}
-                    ,{field:'classify', title: '职业'}
-                    ,{field:'wealth', width:137, title: '财富', sort: true}
-                ]]
-            }
-        );
-        upload.render({ //允许上传的文件后缀
-            elem: '#templateFile'
-            ,url: 'upload' //改成您自己的上传接口
-            ,accept: 'file' //普通文件
-            ,exts: 'xlsx|xls' //只允许上传压缩文件
-            ,before: function(obj) {
+<script src="js/order-manage/exportSaleInfo.js"></script>
 
-            }
-            ,data: {
-
-            },done: function(res){
-                if (res.code===1){
-                    layer.msg('上传成功!');
-                }else{
-                    layer.msg('上传失败!');
-                }
-            }
-        });
-
-    });
-</script>
 </html>
