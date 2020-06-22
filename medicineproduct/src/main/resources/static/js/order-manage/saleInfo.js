@@ -28,7 +28,11 @@ layui.use(['jquery','form','table'],function () {
                 ,{field:'salesVolumes', title: '销售产品数', sort: true}
                 ,{field:'orderStatus', title: '订单状态'}
                 ,{field:'orderBom', title: '订单BOM单',templet:function (res) {
-                        // for (var i)
+                        var str="";
+                        for (var i=0;i<res.list.length;i++){
+                            str+=res.list[i].productCode+"  ";
+                        }
+                        return str;
                     }}
             ]],
         done:function (res,curr,count) {
