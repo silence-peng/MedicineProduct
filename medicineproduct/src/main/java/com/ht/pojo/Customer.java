@@ -30,5 +30,4 @@ public class Customer implements Serializable{
     private String paymentAccountNo;//付款账号
     private String therealaddress;//真实地址
     private String networkaddress;//网络地址
-
 }

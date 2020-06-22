@@ -1,7 +1,7 @@
 {
 	"homeInfo": {
 		"title": "首页",
-		"href": "page/index.html"
+		"href": "/404.html"
 	},
 	"logoInfo": {
 		"title": "LAYUI MINI",
