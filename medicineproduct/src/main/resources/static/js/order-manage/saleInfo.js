@@ -7,7 +7,8 @@ layui.use(['jquery','form','table'],function () {
             ,url:'/loadSaleInfoTable'
             ,cellMinWidth: 100 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,cols: [[
-                {field:'oid',  title: '订单ID'}
+                {type:'checkbox'}
+                ,{field:'oid',  title: '订单ID'}
                 ,{field:'salesman',  title: '销售员',templet:function (res) {
                         return res.staff.sname;
                     }}
@@ -30,7 +31,7 @@ layui.use(['jquery','form','table'],function () {
                 ,{field:'orderBom', title: '订单BOM单',templet:function (res) {
                         var str="";
                         for (var i=0;i<res.list.length;i++){
-                            str+=res.list[i].productCode+"  ";
+                            str+="<a href=''>"+res.list[i].productCode+"</a>"+",";
                         }
                         return str;
                     }}
