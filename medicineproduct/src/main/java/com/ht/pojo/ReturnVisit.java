@@ -2,10 +2,12 @@ package com.ht.pojo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +28,8 @@ public class ReturnVisit implements Serializable{
     private  Integer wayOfReturnVisit;//
     private  String describe;//
     private  Integer returnVisitPersonnel;//外键 员工表
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date returnVisitDate;//
     private  Integer returnVisitType;//1安装，2保养，3，维修
 

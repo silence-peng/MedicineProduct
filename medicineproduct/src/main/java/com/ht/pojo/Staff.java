@@ -2,10 +2,12 @@ package com.ht.pojo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +28,8 @@ public class Staff implements Serializable{
     private String phoneNumber;//手机号码
     private Integer sex;//0男 1女
     private String email;//邮箱号码
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthday;//出生日期
     private String residentialAddress;//居住地址
     private Integer role;//角色

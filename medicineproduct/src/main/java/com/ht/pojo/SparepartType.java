@@ -21,4 +21,5 @@ public class SparepartType implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer sid;//备件类型ID
     private String sparepartType;//备件类型
+    private String specifications;//备件规格
 }

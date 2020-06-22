@@ -2,24 +2,43 @@ layui.use(['jquery','form','table'],function () {
     var $=layui.jquery
         ,form=layui.form
         ,table=layui.table;
-    table.render(
-        {
+    table.render({
             elem: '#saleInfo'
-            ,url:'/demo/table/user/'
+            ,url:'/loadSaleInfoTable'
             ,cellMinWidth: 100 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,cols: [[
-                {field:'id', width:80, title: 'ID', sort: true}
-                ,{field:'username', width:80, title: '用户名'}
-                ,{field:'sex', width:80, title: '性别', sort: true}
-                ,{field:'city', width:80, title: '城市'}
-                ,{field:'sign', title: '签名', width: '30%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                ,{field:'experience', title: '积分', sort: true}
-                ,{field:'score', title: '评分', sort: true}
-                ,{field:'classify', title: '职业'}
-                ,{field:'wealth', width:137, title: '财富', sort: true}
-            ]]
+                {field:'oid',  title: '订单ID'}
+                ,{field:'salesman',  title: '销售员',templet:function (res) {
+                        return res.staff.sname;
+                    }}
+                ,{field:'totalSalesPrice',  title: '销售总价', sort: true}
+                ,{field:'saleDate',  title: '销售日期'}
+                ,{field:'customerName', title: '客户',templet:function (res) {
+                    return res.customer.customerName;
+                }}
+                ,{field:'corporateName', title: '公司名称',templet:function (res) {
+                    return res.customer.corporateName;
+                }}
+                ,{field:'customerAddress', title: '公司详细地址',templet:function (res) {
+                    return res.customer.customerAddress;
+                }}
+                ,{field:'customerPhone', title: '联系电话',templet:function (res) {
+                    return res.customer.customerPhone;
+                }}
+                ,{field:'salesVolumes', title: '销售产品数', sort: true}
+                ,{field:'orderStatus', title: '订单状态'}
+                ,{field:'orderBom', title: '订单BOM单',templet:function (res) {
+                        var str="";
+                        for (var i=0;i<res.list.length;i++){
+                            str+=res.list[i].productCode+"  ";
+                        }
+                        return str;
+                    }}
+            ]],
+        done:function (res,curr,count) {
+            console.log(res)
         }
-    );
+        });
     var $ = layui.$, active = {
         add: function(){ //获取选中数据
             layer.open({
