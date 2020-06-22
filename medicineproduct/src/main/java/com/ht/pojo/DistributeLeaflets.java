@@ -2,10 +2,12 @@ package com.ht.pojo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +27,11 @@ public class DistributeLeaflets implements Serializable{
     private  Integer oid;//外键 对应订单表
     private  Integer type;//1安装，2保养，3，维修
     private  Integer status;//已接收，待接收，已完成
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createDate;//派单日期
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private  Date endDate;//截止日期
 
 

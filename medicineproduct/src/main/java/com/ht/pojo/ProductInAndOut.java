@@ -2,10 +2,12 @@ package com.ht.pojo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +26,8 @@ public class    ProductInAndOut implements Serializable{
     private  Integer operator;//外键 员工表
     private  Integer operationType;//0出库 1入库
     private  Integer inAndOutQuantity;//出入库数量
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date inOutDate;//出入库日期
     private  Integer inPrice;//入库金额
 
