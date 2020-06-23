@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.mapper.businessMapper.InstallationDispatchMapper">
+
+    <resultMap id="distributeleaflets" type="Distributeleaflets">
+        <id column="did" property="did"></id>
+        <result column="sid" property="sid"></result>
+        <result column="cid" property="cid"></result>
+        <result column="oid" property="oid"></result>
+        <result column="type" property="type"></result>
+        <result column="status" property="status"></result>
+        <result column="createDate" property="createDate"></result>
+        <result column="endDate" property="endDate"></result>
+        <association property="customer" javaType="Customer" resultMap="customer"></association>
+        <association property="staff" javaType="Staff" resultMap="staff"></association>
+    </resultMap>
+
+    <resultMap id="customer" type="Customer">
+    <id column="cid" property="cid"></id>
+    <result column="customer_name" property="customerName"></result>
+    <result column="customer_phone" property="customerPhone"></result>
+    <result column="customer_address" property="customerAddress"></result>
+    <result column="corporate_aame" property="corporateName"></result>
+    <result column="signing_date" property="signingDate"></result>
+    <result column="customer_status" property="customerStatus"></result>
+    <result column="remarks" property="remarks"></result>
+    <result column="payment_accountNo" property="paymentAccountNo"></result>
+    <result column="therealaddress" property="therealaddress"></result>
+    <result column="networkaddress" property="networkaddress"></result>
+</resultMap>
+
+    <resultMap id="staff" type="Staff">
+        <id column="sid" property="sid"></id>
+        <result column="sname" property="sname"></result>
+        <result column="account_number" property="accountNumber"></result>
+        <result column="password" property="password"></result>
+        <result column="phone_number" property="phoneNumber"></result>
+        <result column="sex" property="sex"></result>
+        <result column="email" property="email"></result>
+        <result column="birthday" property="birthday"></result>
+        <result column="residential_address" property="residentialAddress"></result>
+        <result column="role" property="role"></result>
+        <result column="state" property="state"></result>
+        <result column="creation_time" property="creationTime"></result>
+
+    </resultMap>
+
+    <!--根据地址查询安装派单-->
+    <select id="findByAddress" resultMap="distributeleaflets">
+        SELECT * FROM `distribute_leaflets` d,`customer` c,staff s WHERE d.cid=c.cid and d.sid=s.sid
+        <if test="therealaddress!=null and therealaddress!=''">
+            AND c.therealaddress=#{therealaddress}
+        </if>
+    </select>
+</mapper>
