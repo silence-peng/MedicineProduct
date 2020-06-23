@@ -34,5 +34,8 @@ public class DistributeLeaflets implements Serializable{
     @JsonFormat(pattern = "yyyy-MM-dd")
     private  Date endDate;//截止日期
 
+    private Customer customer;
+    private Staff staff;
+
 
 }
