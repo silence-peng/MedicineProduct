@@ -2,7 +2,7 @@ package com.ht.web.py;
 
 import com.ht.pojo.Order;
 import com.ht.pojo.SaleInfo;
-import com.ht.service.businessService.SaleInfoManageService;
+import com.ht.service.businessService.py.SaleInfoManageService;
 import com.ht.service.dataService.CustomerService;
 import com.ht.service.dataService.StaffService;
 import com.ht.util.ResultMap;
@@ -53,5 +53,9 @@ public class SaleInfoManageController {
     @RequestMapping("/loadStaffInfo")
     public Object loadStaffInfo(){
         return  staffService.getAll();
+    }
+    @RequestMapping("/getSaleInfoById")
+    public SaleInfo getSaleInfoById(Integer id){
+        return  saleInfoManageService.getSaleInfoById(id);
     }
 }

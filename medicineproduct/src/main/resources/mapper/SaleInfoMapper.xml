@@ -18,10 +18,15 @@
     <select id="getSaleInfoCount" resultType="Integer">
         select count(1) from `order`
     </select>
+    <select id="getSaleInfoById" resultMap="orderObj">
+        SELECT * FROM `order` o,customer c,staff s,order_detail od,product p WHERE o.oid=#{id}  AND o.`cid`=c.`cid`AND o.`salesman`=s.`sid` AND od.`oid`=o.`oid`AND od.`pid`=p.`pid`
+    </select>
     <resultMap id="orderObj" type="SaleInfo">
         <id column="oid" property="oid"/>
         <result column="total_sales_price" property="totalSalesPrice"/>
         <result column="sale_date" property="saleDate"/>
+        <result column="salesman" property="salesman"/>
+        <result column="cid" property="cid"/>
         <result column="sale_volumes" property="saleVolumes"/>
         <result column="order_status" property="orderStatus"/>
         <association property="staff">
@@ -38,6 +43,15 @@
             <id column="pid"/>
             <result column="product_code" property="productCode"/>
             <result column="product_name" property="productName"/>
+            <result column="warehousing_date" property="warehousingDate"/>
+            <result column="BOMSingle_name" property="BOMSingleName"/>
+            <result column="presale_price" property="presalePrice"/>
+            <result column="warehouse" property="warehouse"/>
+            <result column="state" property="state"/>
+            <result column="product_type" property="productType"/>
+            <result column="air_output_power" property="airOutputPower"/>
+            <result column="oxygen_output_power" property="oxygenOutputPower"/>
+            <result column="vacuum_output_power" property="vacuumOutputPower"/>
         </collection>
     </resultMap>
 </mapper>

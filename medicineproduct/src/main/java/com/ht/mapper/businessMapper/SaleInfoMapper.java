@@ -10,5 +10,5 @@ import java.util.List;
 public interface SaleInfoMapper {
     List<SaleInfo> getSaleInfo(@Param("page")Integer page,@Param("limit")Integer limit);
     Integer getSaleInfoCount();
-
+    SaleInfo getSaleInfoById(Integer id);
 }

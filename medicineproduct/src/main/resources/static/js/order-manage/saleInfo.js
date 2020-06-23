@@ -5,6 +5,7 @@ layui.use(['jquery','form','table'],function () {
     table.render({
             elem: '#saleInfo'
             ,url:'/loadSaleInfoTable'
+            ,id:"saleInfo"
             ,cellMinWidth: 100 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,cols: [[
                 {type:'checkbox'}
@@ -61,12 +62,28 @@ layui.use(['jquery','form','table'],function () {
             });
         }
         ,upd: function(){ //获取选中数目
-            var checkStatus = table.checkStatus('idTest')
+            var checkStatus = table.checkStatus('saleInfo')
                 ,data = checkStatus.data;
-            layer.msg('选中了：'+ data.length + ' 个');
+            console.log(data)
+            layer.open({
+                type: 2,
+                area: [900 + 'px', 600 + 'px'],
+                fix: false, //不固定
+                width:900,
+                height:600,
+                maxmin: true,
+                shadeClose: true,
+                shade: 0.4,
+                title: "修改销售单",
+                content: "updSaleInfo?id="+data[0].oid,
+                success:function () {
+
+                },end:function () {
+                }
+            });
         }
         ,del: function(){ //验证是否全选
-            var checkStatus = table.checkStatus('idTest');
+            var checkStatus = table.checkStatus('saleInfo');
             layer.msg(checkStatus.isAll ? '全选': '未全选')
         }
         ,export: function(){ //验证是否全选

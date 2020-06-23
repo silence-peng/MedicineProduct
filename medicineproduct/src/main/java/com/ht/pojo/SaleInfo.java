@@ -1,10 +1,7 @@
 package com.ht.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ht.pojo.Customer;
-import com.ht.pojo.Order;
-import com.ht.pojo.Product;
-import com.ht.pojo.Staff;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
