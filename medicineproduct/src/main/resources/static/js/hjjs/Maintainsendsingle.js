@@ -6,10 +6,10 @@ layui.use(['laydate', 'jquery','table'], function() {
 	    elem: '#test'
 	    ,url:'/demo/table/user/'
 	    ,cols: [[
-	      {field:'id',title: '序号'}
-	      ,{field:'username',title: '保养地址'}
-	      ,{field:'sex',title: '保养人'}
-	      ,{field:'classify',title: '保养时间'}
+	      {field:'id',title: '派单序号'}
+	      ,{field:'username',title: '员工'}
+	      ,{field:'sex',title: '客户'}
+	      ,{field:'classify',title: '截止完成日期'}
 	     ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}
 	    ]]
 	    ,page: true
