@@ -3,6 +3,8 @@ package com.ht.web.py;
 import com.ht.pojo.Order;
 import com.ht.pojo.SaleInfo;
 import com.ht.service.businessService.SaleInfoManageService;
+import com.ht.service.dataService.CustomerService;
+import com.ht.service.dataService.StaffService;
 import com.ht.util.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,10 @@ import java.util.Map;
 public class SaleInfoManageController {
     @Autowired
     private SaleInfoManageService saleInfoManageService;
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private StaffService staffService;
     @PostMapping("base/upload")
     public Object upload(@RequestParam("file") MultipartFile file) throws IOException {
         int code=0;
@@ -39,5 +45,13 @@ public class SaleInfoManageController {
     @RequestMapping("/loadSaleInfoTable")
     public ResultMap<List<SaleInfo>> loadSaleInfoTable(Integer page, Integer limit, String startDate, String endDate, Order order){
         return  saleInfoManageService.getSaleInfo(page, limit);
+    }
+    @RequestMapping("/loadCustomerInfo")
+    public Object loadCustomerInfo(){
+        return  customerService.getAll();
+    }
+    @RequestMapping("/loadStaffInfo")
+    public Object loadStaffInfo(){
+        return  staffService.getAll();
     }
 }

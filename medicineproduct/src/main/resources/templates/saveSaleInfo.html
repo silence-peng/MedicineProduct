@@ -16,13 +16,63 @@
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
 </head>
 <body>
-    <div class="layui-fluid" style="padding: 30px">
-        <form action="" class="layui-form" id="data">
+    <div class="layui-fluid " style="padding: 30px">
+          <form action="" class="layui-form" id="data">
             <div class="layui-row btnArr">
                 <input type="button" value="保存" class="layui-btn layui-btn-normal">
-                <input type="button" value="修改" class="layui-btn layui-btn-normal">
+                <input type="reset" value="重置" class="layui-btn layui-btn-danger">
             </div>
+            <br>
+            <div class="layui-row layui-col-space10">
+                <div class="layui-col-xs2" style="color: red">客户</div>
+                <div class="layui-col-xs2" style="color: red">销售员</div>
+            </div>
+            <div class="layui-row layui-col-space10">
+                <div class="layui-col-xs2">
+                    <select name="city" required lay-verify="" lay-search></select>
+                </div>
+                <div class="layui-col-xs2">
+                    <select name="city" required lay-verify="" lay-search></select>
+                </div>
+            </div>
+            <br>
+   
+
+            <blockquote class="layui-elem-quote">
+                订单详情
+                    <button style="margin-left:92%" id="addTable" type="submit" lay-submit="" lay-filter="demo1" class="layui-btn add layui-icon-addition layui-icon layui-btn-sm layui-btn-danger" ></button>
+            </blockquote>
+
+            <div class="layui-row layui-col-space10">
+                <div class="layui-col-xs2">产品类型</div>
+                <div class="layui-col-xs2">产品</div>
+                <div class="layui-col-xs2">仓库</div>
+
+            </div>
+            <div class="layui-row layui-col-space10">
+                <div class="layui-col-xs2"><select name="type" required id="type" class="layui-select">
+                    <option></option>
+                    <option value="0">测试数据1</option><option value="1">测试数据2</option></select></div>
+                <div class="layui-col-xs2"><div id="product" class="xm-select-demo"></div></div>
+                <div class="layui-col-xs2"><select name="warehouse" required id="warehouse" class="layui-select"><option></option><option value="0">测试数据1</option><option value="1">测试数据2</option></select></div>
+            </div>
+            <div class="layui-row layui-col-space10">
+                <div class="layui-col-xs2">库存</div>
+                <div class="layui-col-xs2">预售价格</div>
+                <div class="layui-col-xs2">销售价格</div>
+            </div>
+            <div class="layui-row layui-col-space10">
+                <div class="layui-col-xs2"><input type="text" value="34" name="stockNum" id="stockNum" class="layui-input layui-disabled" disabled></div>
+                <div class="layui-col-xs2"><input type="text" value="1000" name="presalePrice" id="presalePrice" class="layui-input layui-disabled" disabled></div>
+                <div class="layui-col-xs2"><input type="number" name="totalSalesPrice" id="totalSalesPrice" class="layui-input"></div>
+            </div>
+            <table class="layui-table" id="productInfo"></table>
         </form>
     </div>
+
 </body>
+
+<script src="lib/layui-v2.5.5/layui.js"></script>
+<script src="lib/layui-v2.5.5/lay/modules/xm-select.js"></script>
+<script src="js/order-manage/saveSaleInfo.js"></script>
 </html>

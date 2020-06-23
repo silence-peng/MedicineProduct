@@ -31,14 +31,15 @@ layui.use(['jquery','form','table'],function () {
                 ,{field:'orderBom', title: '订单BOM单',templet:function (res) {
                         var str="";
                         for (var i=0;i<res.list.length;i++){
-                            str+="<a href=''>"+res.list[i].productCode+"</a>"+",";
+                            str+="<a href=''>"+res.list[i].productCode+"</a>"+" ";
                         }
                         return str;
                     }}
             ]],
         done:function (res,curr,count) {
             console.log(res)
-        }
+        },
+        page:true
         });
     var $ = layui.$, active = {
         add: function(){ //获取选中数据
