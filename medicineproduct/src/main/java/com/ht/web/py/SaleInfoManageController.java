@@ -1,8 +1,12 @@
 package com.ht.web.py;
 
+import com.ht.pojo.Order;
+import com.ht.pojo.SaleInfo;
 import com.ht.service.businessService.SaleInfoManageService;
+import com.ht.util.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,5 +35,9 @@ public class SaleInfoManageController {
         map.put("msg", msg);
         map.put("data", list);
         return map;
+    }
+    @RequestMapping("/loadSaleInfoTable")
+    public ResultMap<List<SaleInfo>> loadSaleInfoTable(Integer page, Integer limit, String startDate, String endDate, Order order){
+        return  saleInfoManageService.getSaleInfo(page, limit);
     }
 }

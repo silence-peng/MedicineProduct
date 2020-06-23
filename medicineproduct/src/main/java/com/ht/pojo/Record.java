@@ -2,10 +2,12 @@ package com.ht.pojo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +26,8 @@ public class Record implements Serializable{
     private Integer cid;//外键 对应 客户表
     private String takePhotosBeforeMaintenance;//维修前拍照
     private String takePhotosAfterMaintenance;//维修后拍照
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date repairDate;//维修日期
     private String repairAssessment;//维修评估
     private Integer whetherTheRepairIsSuccessful;//0成功 1失败
