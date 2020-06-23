@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+		<link rel="stylesheet" href="css/layuimini.css" media="all">
+		<style type="text/css">
+			.btn-bgcolor {
+				background-color: #286ED6;
+				width: 70px;
+				margin-left: 20px;
+			}
+			.btn-bgcolor1 {
+				background-color: #b0b0b0;
+				color: #000000;
+				width: 70px;
+			}
+		</style>
+	</head>
+	<body>
+	<div style="margin-left: 20px;">
+			<h2>录入回访记录</h2>
+			<br />
+			<form class="layui-form layui-form-pane" action="">
+				<div class="layui-inline" style="!important;">
+					<div class="layui-inline">
+						<div class="layui-form-item">
+							回访类型
+						</div>
+					<div class="layui-inline">
+						<div class="layui-input-inline">
+							<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					</div>
+					<div class="layui-inline" style="margin-left: 10px;">
+						<div class="layui-form-item">
+								回访客户名称			
+						</div>
+						<div class="layui-inline">
+							<div class="layui-input-inline">
+								<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item" style="margin-top: 10px;">
+					安装地址
+				</div>
+				<div class="layui-inline">
+					<div class="layui-input-inline">
+						<input type="tel" name="phone" style="width: 385px;"  lay-verify="required|phone" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<br/>
+				<br/>
+		<div class="layui-inline">
+			<div class="layui-form-item">
+				费用
+			</div>
+		<div class="layui-inline">
+			<div class="layui-input-inline">
+				<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		</div>
+		<div class="layui-inline" style="margin-left: 10px;">
+			<div class="layui-form-item">
+					录入时间	
+			</div>
+			<div class="layui-inline">
+		<div class="layui-input-inline">
+		  <input type="text" class="layui-input" id="test" placeholder="yyyy-MM-dd">
+		</div>
+			</div>
+		
+			</div>
+	        <br/>
+			<br/>
+			<div class="layui-form-item">
+				用户名
+			</div>
+		<div class="layui-inline">
+			<div class="layui-input-inline">
+				<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<br/>
+		<br/>	
+		<div class="layui-form-item">
+			<button type="button" id="fahuo" class="layui-btn layui-btn-sm  btn-bgcolor">保存</button>
+			<button type="button" id="fahuo" class="layui-btn layui-btn-sm btn-bgcolor1">重置</button>
+		</div>
+				</form>
+							</div>
+	</body>
+	<script src="../layui/layui.js"></script>
+	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+	<script>
+	layui.use(['upload','laydate'], function(){
+	  var $ = layui.jquery
+	  ,laydate = layui.laydate
+	  ,upload = layui.upload;
+	    laydate.render({
+	      elem: '#test'
+	    });
+		});
+	
+</html>
