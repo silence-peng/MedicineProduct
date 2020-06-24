@@ -13,7 +13,6 @@ import java.util.List;
 
 @Service
 public class SaleInfoManageService {
-
     public List<TestPojo> readFile(MultipartFile file){
         List<TestPojo> list=XlsxImporTexportTemplate.importData(file, 1, TestPojo.class);
         return list;
