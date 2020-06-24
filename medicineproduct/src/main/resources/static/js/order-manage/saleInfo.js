@@ -64,7 +64,6 @@ layui.use(['jquery','form','table'],function () {
         ,upd: function(){ //获取选中数目
             var checkStatus = table.checkStatus('saleInfo')
                 ,data = checkStatus.data;
-            console.log(data)
             layer.open({
                 type: 2,
                 area: [900 + 'px', 600 + 'px'],
