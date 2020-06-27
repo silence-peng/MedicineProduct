@@ -20,6 +20,9 @@ body{
 .layui-input{
     height: 36px;
 }
+.layui-disabled{
+    border-color: rgba(220, 20, 60, 0.47);
+}
 .layui-elem-quote{
     padding: 10px 15px;
     line-height: 18px;

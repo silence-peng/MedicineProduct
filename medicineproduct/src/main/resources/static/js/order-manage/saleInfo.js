@@ -37,9 +37,7 @@ layui.use(['jquery','form','table'],function () {
                         return str;
                     }}
             ]],
-        done:function (res,curr,count) {
-            console.log(res)
-        },
+
         page:true
         });
     var $ = layui.$, active = {
@@ -51,7 +49,6 @@ layui.use(['jquery','form','table'],function () {
                 width:600,
                 height:400,
                 maxmin: true,
-                shadeClose: true,
                 shade: 0.4,
                 title: "添加销售单",
                 content: "saveSaleInfo",
@@ -71,7 +68,6 @@ layui.use(['jquery','form','table'],function () {
                 width:900,
                 height:600,
                 maxmin: true,
-                shadeClose: true,
                 shade: 0.4,
                 title: "修改销售单",
                 content: "updSaleInfo?id="+data[0].oid,

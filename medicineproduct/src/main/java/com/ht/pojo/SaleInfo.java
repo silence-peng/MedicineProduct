@@ -21,6 +21,15 @@ public class SaleInfo implements Serializable {
     private Customer customer;
     private Staff staff;
     private List<Product> list;
+    private List<OrderDetail> orderDetails;
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
 
     public String getOid() {
         return oid;

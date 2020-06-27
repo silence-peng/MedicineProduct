@@ -1,9 +1,11 @@
 package com.ht.web.py;
 
 import com.ht.pojo.Order;
+import com.ht.pojo.Product;
 import com.ht.pojo.SaleInfo;
 import com.ht.service.businessService.py.SaleInfoManageService;
 import com.ht.service.dataService.CustomerService;
+import com.ht.service.dataService.ProductService;
 import com.ht.service.dataService.StaffService;
 import com.ht.util.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import java.util.Map;
 public class SaleInfoManageController {
     @Autowired
     private SaleInfoManageService saleInfoManageService;
+
     @Autowired
     private CustomerService customerService;
     @Autowired
@@ -57,5 +60,8 @@ public class SaleInfoManageController {
     @RequestMapping("/getSaleInfoById")
     public SaleInfo getSaleInfoById(Integer id){
         return  saleInfoManageService.getSaleInfoById(id);
+    }    @RequestMapping("/loadProductInfo")
+    public ResultMap<List<Product>> loadProductInfo(Integer page, Integer limit){
+        return  saleInfoManageService.HandleProductInfo(page, limit);
     }
 }

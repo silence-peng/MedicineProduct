@@ -27,7 +27,7 @@
         <result column="sale_date" property="saleDate"/>
         <result column="salesman" property="salesman"/>
         <result column="cid" property="cid"/>
-        <result column="sale_volumes" property="saleVolumes"/>
+        <result column="sales_volumes" property="salesVolumes"/>
         <result column="order_status" property="orderStatus"/>
         <association property="staff">
             <id property="sid" column="sid"/>
@@ -40,7 +40,7 @@
             <result column="customer_phone" property="customerPhone"/>
         </association>
         <collection property="list" ofType="Product">
-            <id column="pid"/>
+            <id column="pid" property="pid"/>
             <result column="product_code" property="productCode"/>
             <result column="product_name" property="productName"/>
             <result column="warehousing_date" property="warehousingDate"/>
@@ -52,6 +52,12 @@
             <result column="air_output_power" property="airOutputPower"/>
             <result column="oxygen_output_power" property="oxygenOutputPower"/>
             <result column="vacuum_output_power" property="vacuumOutputPower"/>
+        </collection>
+        <collection property="orderDetails" ofType="OrderDetail">
+            <id column="odid" property="odid"/>
+            <result column="oid" property="oid"/>
+            <result column="pid" property="pid"/>
+            <result column="total_sales_price" property="totalSalesPrice"/>
         </collection>
     </resultMap>
 </mapper>
