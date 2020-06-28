@@ -1,5 +1,7 @@
 package com.ht.service.dataService.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ht.mapper.dataMapper.RegionMapper;
 import com.ht.mapper.dataMapper.StaffMapper;
 import com.ht.pojo.Staff;
@@ -43,4 +45,5 @@ public class StaffServiceImpl implements StaffService{
     public Integer upd(Staff staff) {
         return staffMapper.updateByPrimaryKeySelective(staff);
     }
+
 }
