@@ -12,14 +12,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
+@Table(name = "saleinfo")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Accessors(chain = true)//链式写法
 public class Order implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer oid;//订单ID
     private Integer salesman;//外键 员工表
     private Float totalSalesPrice;//销售总价

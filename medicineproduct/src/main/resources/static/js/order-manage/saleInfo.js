@@ -55,6 +55,7 @@ layui.use(['jquery','form','table'],function () {
                 success:function () {
 
                 },end:function () {
+                    table.reload("saleInfo")
                 }
             });
         }
@@ -74,6 +75,7 @@ layui.use(['jquery','form','table'],function () {
                 success:function () {
 
                 },end:function () {
+                    table.reload("saleInfo")
                 }
             });
         }
@@ -96,6 +98,7 @@ layui.use(['jquery','form','table'],function () {
                 success:function () {
 
                 },end:function () {
+                    table.reload("saleInfo")
                 }
             });
         }

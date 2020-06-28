@@ -73,16 +73,15 @@ public class SaleInfoManageController {
                                @RequestParam("salesman") Integer salesman,
                                @RequestParam("cid") Integer cid,
                                @RequestParam("oid") Integer oid,
-                               @RequestParam("odid") List<Integer> odid,@RequestParam("salePrices") List<Integer> salePrices){
+                               @RequestParam("odid") List<Integer> odid,
+                               @RequestParam("pid") List<Integer> pid,
+                               @RequestParam("salePrices") List<Float> salePrices){
         Order order=new Order();
         order.setOid(oid);
         order.setSalesman(salesman);
         order.setTotalSalesPrice(totalSalesPrice);
         order.setSalesVolumes(salesVolumes);
         order.setCid(cid);
-        System.out.println(odid.toString());
-        System.out.println(salePrices.toString());
-        System.out.println(order);
-        return true;
+        return saleInfoManageService.updOrder(order, odid, salePrices,pid);
     }
 }

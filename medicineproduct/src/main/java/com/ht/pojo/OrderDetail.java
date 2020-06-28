@@ -18,7 +18,8 @@ import java.io.Serializable;
 @Accessors(chain = true)//链式写法
 public class OrderDetail implements Serializable{
     @Id
-    private String odid;//订单明细ID
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer odid;//订单明细ID
     private Integer oid;//外键 订单表
     private Integer pid;//外键 产品表
     private Float totalSalesPrice;//销售价格

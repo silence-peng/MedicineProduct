@@ -6,33 +6,31 @@ layui.use(['jquery','form','element','layer'],function () {
         layer=layui.layer;
     var url = location.search;
     var id = url.match(/\d/g).join("");
-    $("#staff").load('loadStaffInfo',function (res) {
-        var data=eval(res);
-        $.each(data,function (o,j) {
-            $("#staff").append("<option value='"+j.sid+"'>"+j.sname+"</option>")
-        });
-
-        form.render("select");
-    });
-    $("#customer").load('loadCustomerInfo',function (res) {
-        var data=eval(res);
-        $.each(data,function (o,j) {
-            $("#customer").append("<option value='"+j.cid+"'>"+j.customerName+"</option>")
-        });
-
-        form.render("select");
-    });
     $.post("getSaleInfoById",{id:id},function (res) {
         var data=eval(res);
         form.val("data",data);
-        // $("#staff").val(data.salesman);
-        // $("#customer").val(data.cid);
+        $("#staff").load('loadStaffInfo',function (res) {
+            var staffInfoData=eval(res);
+            $.each(staffInfoData,function (o,j) {
+                $("#staff").append("<option value='"+j.sid+"'>"+j.sname+"</option>")
+            });  $("#staff").val(data.salesman);
+            form.render("select");
+        });
+        $("#customer").load('loadCustomerInfo',function (res) {
+            var customerInfoData=eval(res);
+            $.each(customerInfoData,function (o,j) {
+                $("#customer").append("<option value='"+j.cid+"'>"+j.customerName+"</option>")
+            });
+            $("#customer").val(data.cid);
+            form.render("select");
+        });
         form.render("select");
         $.each(data.list,function (o,j) {
             // 0未使用
             // 1使用中
             // 2已维修
             // 3已损坏
+            console.log(j.state)
             var stateTxt=handleState(j.state);
             $(".orderBOM").append(
                 "<div class=\"layui-card-body\">\n" +
@@ -118,6 +116,7 @@ layui.use(['jquery','form','element','layer'],function () {
         var order={};
         var odid=[];
         var salePrices=[];
+        var pid=[];
 
         $.each($(".salePrice"),function (o,j) {
             if ($(this).val()===null || $(this).val()===""){
@@ -125,14 +124,20 @@ layui.use(['jquery','form','element','layer'],function () {
             }else{
                 odid.push($(".odid:eq("+o+")").val());
                 salePrices.push($(this).val());
+                pid.push($(".productId:eq("+o+")").val())
             }
         });
 
         if (flag){
             layer.confirm("确认要提交修改内容吗？",function () {
                 $.ajaxSettings.traditional = true;
-                $.post("updOrder",{salesVolumes:$("#salesVolumes").val(),totalSalesPrice:$("#totalSalesPrice").val(),salesman:$("#staff").val(),cid:$("#customer").val(),oid:id,odid:odid,salePrices:salePrices},function (res) {
-                    console.log(res)
+                $.post("updOrder",{salesVolumes:$("#salesVolumes").val(),totalSalesPrice:$("#totalSalesPrice").val(),salesman:$("#staff").val(),cid:$("#customer").val(),oid:id,odid:odid,salePrices:salePrices,pid:pid},function (res) {
+                    if (res){
+                        layer.alert("修改成功！即将离开当前页面",function () {
+                            var index=parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(index);
+                        })
+                    }
                 })
             })
         }else{
@@ -152,6 +157,8 @@ function handleState(state) {
         stateTxt="需要维修";
     }else if(state===3){
         stateTxt="已损坏";
+    }else if(state===4){
+        stateTxt="等待安装";
     }
     return stateTxt;
 }
@@ -231,6 +238,7 @@ function addOrderInfo(j) {
     "        </div>\n" +
     "    </div>\n" +
     "</div>");
+        initSaleInfo();
 }else {
     layer.alert("您已添加过改产品了，请选取其他产品进行添加！")
 }
