@@ -44,10 +44,10 @@ layui.use(['jquery','form','table'],function () {
         add: function(){ //获取选中数据
             layer.open({
                 type: 2,
-                area: [600 + 'px', 400 + 'px'],
+                area: [900 + 'px', 600 + 'px'],
                 fix: false, //不固定
-                width:600,
-                height:400,
+                width:900,
+                height:600,
                 maxmin: true,
                 shade: 0.4,
                 title: "添加销售单",
