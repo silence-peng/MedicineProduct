@@ -20,7 +20,7 @@ import java.io.Serializable;
 @Accessors(chain = true)//链式写法
 public class Order implements Serializable{
     @Id
-    private String oid;//订单ID
+    private Integer oid;//订单ID
     private Integer salesman;//外键 员工表
     private Float totalSalesPrice;//销售总价
     @DateTimeFormat(pattern = "yyyy-MM-dd")

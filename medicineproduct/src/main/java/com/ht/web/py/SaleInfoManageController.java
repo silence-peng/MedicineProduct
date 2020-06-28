@@ -1,6 +1,7 @@
 package com.ht.web.py;
 
 import com.ht.pojo.Order;
+import com.ht.pojo.OrderDetail;
 import com.ht.pojo.Product;
 import com.ht.pojo.SaleInfo;
 import com.ht.service.businessService.py.SaleInfoManageService;
@@ -60,8 +61,28 @@ public class SaleInfoManageController {
     @RequestMapping("/getSaleInfoById")
     public SaleInfo getSaleInfoById(Integer id){
         return  saleInfoManageService.getSaleInfoById(id);
-    }    @RequestMapping("/loadProductInfo")
+    }
+    @RequestMapping("/loadProductInfo")
     public ResultMap<List<Product>> loadProductInfo(Integer page, Integer limit){
         return  saleInfoManageService.HandleProductInfo(page, limit);
+    }
+    @RequestMapping("/updOrder")
+//    :id,
+    public boolean updSaleInfo(@RequestParam("salesVolumes") Integer salesVolumes,
+                               @RequestParam("totalSalesPrice") Float totalSalesPrice,
+                               @RequestParam("salesman") Integer salesman,
+                               @RequestParam("cid") Integer cid,
+                               @RequestParam("oid") Integer oid,
+                               @RequestParam("odid") List<Integer> odid,@RequestParam("salePrices") List<Integer> salePrices){
+        Order order=new Order();
+        order.setOid(oid);
+        order.setSalesman(salesman);
+        order.setTotalSalesPrice(totalSalesPrice);
+        order.setSalesVolumes(salesVolumes);
+        order.setCid(cid);
+        System.out.println(odid.toString());
+        System.out.println(salePrices.toString());
+        System.out.println(order);
+        return true;
     }
 }

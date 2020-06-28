@@ -27,6 +27,23 @@ public class SaleInfo implements Serializable {
         return orderDetails;
     }
 
+    @Override
+    public String toString() {
+        return "SaleInfo{" +
+                "oid='" + oid + '\'' +
+                ", salesman=" + salesman +
+                ", totalSalesPrice=" + totalSalesPrice +
+                ", saleDate=" + saleDate +
+                ", cid=" + cid +
+                ", salesVolumes=" + salesVolumes +
+                ", orderStatus=" + orderStatus +
+                ", customer=" + customer +
+                ", staff=" + staff +
+                ", list=" + list +
+                ", orderDetails=" + orderDetails +
+                '}';
+    }
+
     public void setOrderDetails(List<OrderDetail> orderDetails) {
         this.orderDetails = orderDetails;
     }

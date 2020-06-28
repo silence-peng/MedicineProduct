@@ -115,28 +115,26 @@ layui.use(['jquery','form','element','layer'],function () {
     });
     $(".commit").click(function () {
         var flag=true;
-        var saleInfo={};
-        var orderDetails=[];
-        saleInfo.sid=$("#staff").val();
-        saleInfo.cid=$("#customer").val();
-        saleInfo.salesVolumes=$("#salesVolumes").val();
-        saleInfo.totalSalesPrice=$("#totalSalesPrice").val();
+        var order={};
+        var odid=[];
+        var salePrices=[];
+
         $.each($(".salePrice"),function (o,j) {
             if ($(this).val()===null || $(this).val()===""){
                 flag=false;
             }else{
-                var orderDetail={};
-                orderDetail.totalSalesPrice=$(this).val();
-                orderDetail.pid=$(".productId:eq("+o+")").val();
-                orderDetail.odid=$(".odid:eq("+o+")").val();
-                orderDetail.oid=id;
-                orderDetails.push(orderDetail);
+                odid.push($(".odid:eq("+o+")").val());
+                salePrices.push($(this).val());
             }
         });
-        saleInfo.orderDetails=orderDetails;
-        console.log(saleInfo);
-        if (flag){
 
+        if (flag){
+            layer.confirm("确认要提交修改内容吗？",function () {
+                $.ajaxSettings.traditional = true;
+                $.post("updOrder",{salesVolumes:$("#salesVolumes").val(),totalSalesPrice:$("#totalSalesPrice").val(),salesman:$("#staff").val(),cid:$("#customer").val(),oid:id,odid:odid,salePrices:salePrices},function (res) {
+                    console.log(res)
+                })
+            })
         }else{
             layer.alert("销售价格不得为空！")
         }
@@ -176,7 +174,6 @@ function addOrderInfo(j) {
             flag=false;
         }
     });
-    console.log(flag)
     if (flag){
         var stateTxt=handleState(j.state);
         $(".orderBOM").append("<hr/>"+
@@ -205,7 +202,7 @@ function addOrderInfo(j) {
             "        <div class=\"layui-inline\">\n" +
             "            <lable class=\"layui-form-label\">销售价格($)</lable>\n" +
             "            <div class=\"layui-input-inline\">\n" +
-            "                <input type=\"text\" oninput=\"initSaleInfo()\" class=\"layui-input salePrice\">\n" +
+            "                <input type=\"text\" oninput=\"initSaleInfo()\" value='"+j.presalePrice+"' class=\"layui-input salePrice\">\n" +
             "            </div>\n" +
             "        </div>\n" +
             "    </div>\n" +
@@ -230,12 +227,12 @@ function addOrderInfo(j) {
             "            <div class=\"layui-input-inline\">\n" +
             "                <input type=\"text\"  value='"+stateTxt+"' disabled\n" +
             "   class=\"layui-input layui-disabled\"></div>\n" +
-            "            </div>\n" +
-            "        </div>\n" +
-            "    </div>\n" +
-            "</div>");
-    }else {
-        layer.alert("您已添加过改产品了，请选取其他产品进行添加！")
-    }
+               "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
+}else {
+    layer.alert("您已添加过改产品了，请选取其他产品进行添加！")
+}
 
 }
