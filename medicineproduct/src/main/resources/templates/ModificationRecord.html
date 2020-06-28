@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css"  media="all">
+		<title>修改安装记录</title>
+		<style type="text/css">
+							.btn-bgcolor {
+								background-color: #286ED6;
+								width: 70px;
+								margin-left: 160px;
+								margin-top: 10px;
+							}
+							.btn-bgcolor3 {
+		margin-top: 10px;
+								width: 70px;
+							}
+							.btn-bgcolor4{
+								margin-left: 90px;
+							}
+							.btn-bgcolor2{
+								margin-left:26px;
+							}
+							.btn-bgcolor5{
+								margin-left: 215px;
+							}
+							.btn-bgcolor6{
+								margin-left:40px;
+							}
+							.btn-bgcolor9{
+								background-color: #286ED6;
+								width: 90px;
+								
+								margin-left: 170px;
+								}
+								.btn-bgcolor8{
+									background-color: #286ED6;
+									width: 90px;
+									margin-left: 27px;
+								}
+								.btn-bgcolor10{
+									margin-top: -56px;
+									margin-left: 180px;
+									width: 320px;
+								}
+						</style>
+	</head>
+	<body>
+		<form class="layui-form" action="">
+			<br/>
+			<br/>
+		 <span class="btn-bgcolor2">用户名</span><span class="btn-bgcolor5">安装人员名称</span>
+		 <br/>
+		 	<br/>
+		         <div class="layui-input-inline btn-bgcolor2">
+		           <select name="modules" lay-verify="required" lay-search="">
+		             <option value="">直接选择或搜索选择</option>
+		             <option value="1">layer</option>
+		             <option value="2">form</option>
+		             <option value="3">layim</option>
+		   
+		           </select>
+		         </div>
+				 <div class="layui-input-inline  btn-bgcolor6">
+				     <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+				 </div>
+				 <br/>
+				 <br/>
+				 <span class="btn-bgcolor2">安装地址</span>
+				 <br/>
+				 	<br/>
+				 	
+				 <div class="layui-input-inline  btn-bgcolor2">
+				     <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+				 </div>
+				 <br/>
+				  <br/>
+				      <button type="button" class="layui-btn btn-bgcolor8 layui-btn-sm " id="test1">安装前拍照</button>
+					  <button type="button" class="layui-btn  btn-bgcolor9 layui-btn-sm " id="test2">安装后拍照</button>
+				 
+				    <br/>
+					<br/>
+				      <img class="layui-upload-img" width="200px" height="100px" id="demo1"   style="margin-left:26px ;">
+				 				  				   
+				      <img class="layui-upload-img"width="200px" height="100px" id="demo2" style="margin-left:61px ;">
+				    <br/>
+					 <br/>
+			<br/>
+				
+					
+					<span class="btn-bgcolor2">安装日期</span>
+					<br/>
+					<br/>
+					<div class="layui-input-inline">
+					        <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input  btn-bgcolor2">
+					      </div>
+					
+					<br/>
+						<br/>
+						<button type="button" id="fahuo" class="layui-btn layui-btn-sm  btn-bgcolor"  lay-event="getCheckData">保存</button>
+							<button type="reset"   class="layui-btn layui-btn-sm  layui-btn-primary btn-bgcolor3">重置</button>
+		</form>
+	</body>
+	<script type="text/javascript" src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="js/yuzhijie/ModificationRecord.js"></script>
+</html>

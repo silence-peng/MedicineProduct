@@ -13,7 +13,7 @@
 <!--        <if test="startDate !=null and endDate!=null">-->
 <!--            and o.`sale_date` &lt; #{startDate} and o.`sale_date`>#{endDate}-->
 <!--        </if>-->
-        limit #{page} , #{limit}
+            limit #{page} , #{limit}
     </select>
     <select id="getSaleInfoCount" resultType="Integer">
         select count(1) from `order`

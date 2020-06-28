@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.mapper.businessMapper.HeDistributeLeafletsmapper">
+    <!--根据客户查询保养信息-->
+    <select id="getdistributeleaflets" resultMap="hjdistributeLeaflets">
+        SELECT d.*,c.customer_name,s.sname FROM distribute_leaflets d, customer c,staff s WHERE d.`cid`=c.`cid` AND d.`type`=2 AND s.`sid`=d.`sid`
+        <if test="customer_name!=null and customer_name!=''">
+          AND  c.`customer_name`=#{customer_name}
+        </if>
+        limit #{page} , #{limit}
+    </select>
+    <select id="getdistributeleafletss" resultType="int">
+        SELECT count(*) FROM distribute_leaflets d, customer c,staff s WHERE d.`cid`=c.`cid` AND d.`type`=2 AND s.`sid`=d.`sid`
+        <if test="customer_name!=null and customer_name!=''">
+            AND  c.`customer_name`=#{customer_name}
+        </if>
+    </select>
+    <resultMap id="hjdistributeLeaflets" type="HjDistributeLeaflets">
+        <id column="did" property="did"></id>
+        <result property="sid" column="sid"/>
+        <result property="cid" column="cid"/>
+        <result property="oid" column="oid"/>
+        <result property="type" column="type"/>
+        <result property="status" column="status"/>
+        <result property="createDate" column="createDate"/>
+        <result property="endDate" column="endDate"/>
+        <association property="customer">
+            <id column="cid" property="cid"/>
+            <result column="customer_name" property="customerName"/>
+        </association>
+        <association property="staff">
+            <id column="sid" property="sid"/>
+            <result column="sname" property="sname"/>
+        </association>
+        </resultMap>
+</mapper>

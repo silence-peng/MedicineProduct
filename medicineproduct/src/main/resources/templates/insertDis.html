@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css"  media="all">
+		<title>新增安装派单</title>
+		<style type="text/css">
+					.btn-bgcolor {
+						background-color: #286ED6;
+						width: 70px;
+						margin-left: 160px;
+					}
+					.btn-bgcolor3 {
+
+						width: 70px;
+					}
+					.btn-bgcolor4{
+						margin-left: 90px;
+					}
+					.btn-bgcolor2{
+						margin-left:26px;
+					}
+					.btn-bgcolor5{
+						margin-left: 215px;
+					}
+					.btn-bgcolor6{
+						margin-left:50px;
+					}
+				</style>
+	</head>
+	<body>
+		<form class="layui-form" action="" id="form">
+		<br/>
+		<br/>
+		  <span class="btn-bgcolor2">安装人员</span><span class="btn-bgcolor5">联系电话号码</span>
+		  <br/>
+		  	<br/>
+		          <div class="layui-input-inline btn-bgcolor2">
+		            <select  id="sid" name=sid lay-verify="required" lay-search="">
+		              <option value="">直接选择或搜索选择</option>
+		            </select>
+		          </div>
+		
+		  	<div class="layui-input-inline  btn-bgcolor6">
+		  	    <input type="tel" name="" lay-verify="required|phone" autocomplete="off" class="layui-input">
+		  	</div>
+			<br/>
+			<br/>
+			<span class="btn-bgcolor2">安装地址</span>
+			<br/>
+				<br/>
+				
+			<div class="layui-input-inline  btn-bgcolor2">
+			    <input type="tel" name="" lay-verify="required" autocomplete="off" class="layui-input">
+			</div>
+			<br/>
+             <br/>
+			<button type="button"class="layui-btn layui-btn-sm  btn-bgcolor"  lay-event="getCheckData" lay-submit lay-filter="tij">保存</button>
+				<button type="reset"   class="layui-btn layui-btn-sm  layui-btn-primary btn-bgcolor3">重置</button>
+				</form>
+		
+	</body>
+	<script type="text/javascript" src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+
+	<script type="text/javascript" src="js/yuzhijie/insertDis.js"></script>
+</html>
