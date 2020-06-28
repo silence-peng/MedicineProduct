@@ -6,7 +6,7 @@
     <select id="getSaleInfo" resultMap="orderObj">
         SELECT o.oid,o.`total_sales_price`,o.`sale_date`,o.`sales_volumes`,o.`order_status`,
         s.sid,s.`sname`,c.`cid`,c.`customer_name`,c.`corporate_name`,c.`customer_address`,c.`customer_phone`,p.`pid`,p.`product_code`,p.`product_name`
-        FROM `order` o,staff s,customer c,order_detail od,product p WHERE o.`cid`=c.`cid` AND o.`salesman`=s.`sid` AND od.`oid`=o.`oid` AND p.`pid`=od.`pid`
+        FROM `saleinfo` o,staff s,customer c,order_detail od,product p WHERE o.`cid`=c.`cid` AND o.`salesman`=s.`sid` AND od.`oid`=o.`oid` AND p.`pid`=od.`pid`
 <!--        <if test="startDate !=null and endDate!=null">-->
 <!--            and o.`sale_date` &lt; #{startDate} and o.`sale_date`>#{endDate}-->
 <!--        </if>-->
@@ -16,13 +16,18 @@
         limit #{page} , #{limit}
     </select>
     <select id="getSaleInfoCount" resultType="Integer">
-        select count(1) from `order`
+        select count(1) from `saleinfo`
+    </select>
+    <select id="getSaleInfoById" resultMap="orderObj">
+        SELECT *,od.total_sales_price salePrice,p.state pstate FROM `saleinfo` o,customer c,staff s,order_detail od,product p WHERE o.oid=#{id}  AND o.`cid`=c.`cid`AND o.`salesman`=s.`sid` AND od.`oid`=o.`oid`AND od.`pid`=p.`pid`
     </select>
     <resultMap id="orderObj" type="SaleInfo">
         <id column="oid" property="oid"/>
         <result column="total_sales_price" property="totalSalesPrice"/>
         <result column="sale_date" property="saleDate"/>
-        <result column="sale_volumes" property="saleVolumes"/>
+        <result column="salesman" property="salesman"/>
+        <result column="cid" property="cid"/>
+        <result column="sales_volumes" property="salesVolumes"/>
         <result column="order_status" property="orderStatus"/>
         <association property="staff">
             <id property="sid" column="sid"/>
@@ -35,9 +40,24 @@
             <result column="customer_phone" property="customerPhone"/>
         </association>
         <collection property="list" ofType="Product">
-            <id column="pid"/>
+            <id column="pid" property="pid"/>
             <result column="product_code" property="productCode"/>
             <result column="product_name" property="productName"/>
+            <result column="warehousing_date" property="warehousingDate"/>
+            <result column="BOMSingle_name" property="BOMSingleName"/>
+            <result column="presale_price" property="presalePrice"/>
+            <result column="warehouse" property="warehouse"/>
+            <result column="pstate" property="state"/>
+            <result column="product_type" property="productType"/>
+            <result column="air_output_power" property="airOutputPower"/>
+            <result column="oxygen_output_power" property="oxygenOutputPower"/>
+            <result column="vacuum_output_power" property="vacuumOutputPower"/>
+        </collection>
+        <collection property="orderDetails" ofType="OrderDetail">
+            <id column="odid" property="odid"/>
+            <result column="oid" property="oid"/>
+            <result column="pid" property="pid"/>
+            <result column="salePrice" property="totalSalesPrice"/>
         </collection>
     </resultMap>
 </mapper>
