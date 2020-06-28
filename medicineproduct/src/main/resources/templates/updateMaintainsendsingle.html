@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+		<link rel="stylesheet" href="css/layuimini.css" media="all">
+		<style type="text/css">
+			.btn-bgcolor {
+				background-color: #286ED6;
+				width: 10%;
+				margin-left: 1%;
+			}
+			.btn-bgcolor1 {
+				background-color: #b0b0b0;
+				color: #000000;
+				width: 10%;
+			}
+		</style>
+	</head>
+	<body>
+<div style="margin-left: 2%;">
+		<h2>修改保养派单</h2>
+		<br />
+		<form class="layui-form layui-form-pane" action="">
+			<div class="layui-inline" style="!important;">
+				<div class="layui-inline">
+					<div class="layui-form-item">
+						保养人员
+					</div>
+					<div class="layui-inline">
+						<div class="layui-input-inline">
+							<select name="quiz1">
+								<option value="">请选择省</option>
+								<option value="浙江" selected="">浙江省</option>
+								<option value="你的工号">江西省</option>
+								<option value="你最喜欢的老师">福建省</option>
+							</select>	
+						</div>
+					</div>
+				</div>
+				<div class="layui-inline" style="margin-left: 10px;">
+					<div class="layui-form-item">
+							联系电话号码
+					</div>
+					<div class="layui-inline">
+						<div class="layui-input-inline">
+							<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item" style="margin-top: 10px;">
+				保养地址
+			</div>
+			<div class="layui-inline">
+				<div class="layui-input-inline">
+					<input type="tel" name="phone" style="width: 415px;" lay-verify="required|phone" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+            <br/>
+			<br/>
+              <div class="layui-form-item">
+                 <span class="layui-form-label" style="width: 25%; background-color: #FFFFFF; border: solid #FFFFFF;">是否保养成功</span>
+                  <div class="layui-input-block">
+                       <input type="radio" name="sex" value="已完成" title="已完成" checked="">
+                       <input type="radio" name="sex" value="未完成" title="未完成">
+                     </div>
+				 </div>
+				 <br/>
+			<div class="layui-form-item">
+				<button type="button" id="fahuo" class="layui-btn layui-btn-sm  btn-bgcolor">保存</button>
+				<button type="button" id="fahuo" class="layui-btn layui-btn-sm btn-bgcolor1">重置</button>
+			</div>
+		</form>
+		  </div>
+	</body>
+	<script src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+	<script>
+		layui.use(['form', 'layedit', 'laydate'], function() {
+			var form = layui.form,
+				layer = layui.layer,
+				layedit = layui.layedit,
+				laydate = layui.laydate;
+
+			//日期
+			laydate.render({
+				elem: '#date'
+			});
+			laydate.render({
+				elem: '#date1'
+			});
+
+			//创建一个编辑器
+			var editIndex = layedit.build('LAY_demo_editor');
+
+			//自定义验证规则
+			form.verify({
+				title: function(value) {
+					if (value.length < 5) {
+						return '标题至少得5个字符啊';
+					}
+				},
+				pass: [
+					/^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
+				],
+				content: function(value) {
+					layedit.sync(editIndex);
+				}
+			});
+
+			//监听指定开关
+			form.on('switch(switchTest)', function(data) {
+				layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+					offset: '6px'
+				});
+				layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+			});
+
+			//监听提交
+			form.on('submit(demo1)', function(data) {
+				layer.alert(JSON.stringify(data.field), {
+					title: '最终的提交信息'
+				})
+				return false;
+			});
+
+			//表单赋值
+			layui.$('#LAY-component-form-setval').on('click', function() {
+				form.val('example', {
+					"username": "贤心" // "name": "value"
+						,
+					"password": "123456",
+					"interest": 1,
+					"like[write]": true //复选框选中状态
+						,
+					"close": true //开关状态
+						,
+					"sex": "女",
+					"desc": "我爱 layui"
+				});
+			});
+
+			//表单取值
+			layui.$('#LAY-component-form-getval').on('click', function() {
+				var data = form.val('example');
+				alert(JSON.stringify(data));
+			});
+
+		});
+	</script>
+</html>

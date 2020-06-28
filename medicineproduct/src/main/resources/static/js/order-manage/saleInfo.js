@@ -5,6 +5,7 @@ layui.use(['jquery','form','table'],function () {
     table.render({
             elem: '#saleInfo'
             ,url:'/loadSaleInfoTable'
+            ,id:"saleInfo"
             ,cellMinWidth: 100 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,cols: [[
                 {type:'checkbox'}
@@ -31,41 +32,55 @@ layui.use(['jquery','form','table'],function () {
                 ,{field:'orderBom', title: '订单BOM单',templet:function (res) {
                         var str="";
                         for (var i=0;i<res.list.length;i++){
-                            str+="<a href=''>"+res.list[i].productCode+"</a>"+",";
+                            str+="<a href=''>"+res.list[i].productCode+"</a>"+" ";
                         }
                         return str;
                     }}
             ]],
-        done:function (res,curr,count) {
-            console.log(res)
-        }
+
+        page:true
         });
     var $ = layui.$, active = {
         add: function(){ //获取选中数据
             layer.open({
                 type: 2,
-                area: [600 + 'px', 400 + 'px'],
+                area: [900 + 'px', 600 + 'px'],
                 fix: false, //不固定
-                width:600,
-                height:400,
+                width:900,
+                height:600,
                 maxmin: true,
-                shadeClose: true,
                 shade: 0.4,
                 title: "添加销售单",
                 content: "saveSaleInfo",
                 success:function () {
 
                 },end:function () {
+                    table.reload("saleInfo")
                 }
             });
         }
         ,upd: function(){ //获取选中数目
-            var checkStatus = table.checkStatus('idTest')
+            var checkStatus = table.checkStatus('saleInfo')
                 ,data = checkStatus.data;
-            layer.msg('选中了：'+ data.length + ' 个');
+            layer.open({
+                type: 2,
+                area: [900 + 'px', 600 + 'px'],
+                fix: false, //不固定
+                width:900,
+                height:600,
+                maxmin: true,
+                shade: 0.4,
+                title: "修改销售单",
+                content: "updSaleInfo?id="+data[0].oid,
+                success:function () {
+
+                },end:function () {
+                    table.reload("saleInfo")
+                }
+            });
         }
         ,del: function(){ //验证是否全选
-            var checkStatus = table.checkStatus('idTest');
+            var checkStatus = table.checkStatus('saleInfo');
             layer.msg(checkStatus.isAll ? '全选': '未全选')
         }
         ,export: function(){ //验证是否全选
@@ -83,6 +98,7 @@ layui.use(['jquery','form','table'],function () {
                 success:function () {
 
                 },end:function () {
+                    table.reload("saleInfo")
                 }
             });
         }

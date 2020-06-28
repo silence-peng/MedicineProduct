@@ -1,7 +1,5 @@
 package com.ht.pojo;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,13 +14,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 @Accessors(chain = true)//链式写法
-public class OrderDetail implements Serializable{
+public class Department implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer odid;//订单明细ID
-    private Integer oid;//外键 订单表
-    private Integer pid;//外键 产品表
-    private Float totalSalesPrice;//销售价格
-
-
+    private Integer  did;//
+    private String danme;//
 }

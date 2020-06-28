@@ -27,7 +27,7 @@ public class Product implements Serializable{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date warehousingDate;//入库日期
-    private String BOMSingleName;//bom单名称
+    private String bomSingleName;//bom单名称
     private Float presalePrice;//预售价格
     private Integer warehouse;//外键
     private Integer state;//0未使用1使用中2已维修3已损坏
