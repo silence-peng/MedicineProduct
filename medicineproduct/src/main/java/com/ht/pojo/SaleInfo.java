@@ -1,10 +1,7 @@
 package com.ht.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ht.pojo.Customer;
-import com.ht.pojo.Order;
-import com.ht.pojo.Product;
-import com.ht.pojo.Staff;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -24,6 +21,32 @@ public class SaleInfo implements Serializable {
     private Customer customer;
     private Staff staff;
     private List<Product> list;
+    private List<OrderDetail> orderDetails;
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    @Override
+    public String toString() {
+        return "SaleInfo{" +
+                "oid='" + oid + '\'' +
+                ", salesman=" + salesman +
+                ", totalSalesPrice=" + totalSalesPrice +
+                ", saleDate=" + saleDate +
+                ", cid=" + cid +
+                ", salesVolumes=" + salesVolumes +
+                ", orderStatus=" + orderStatus +
+                ", customer=" + customer +
+                ", staff=" + staff +
+                ", list=" + list +
+                ", orderDetails=" + orderDetails +
+                '}';
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
 
     public String getOid() {
         return oid;

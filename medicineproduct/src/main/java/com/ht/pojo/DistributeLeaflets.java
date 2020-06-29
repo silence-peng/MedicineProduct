@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,6 +33,5 @@ public class DistributeLeaflets implements Serializable{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private  Date endDate;//截止日期
-    private Customer customer;
-    private Staff staff;
+
 }
