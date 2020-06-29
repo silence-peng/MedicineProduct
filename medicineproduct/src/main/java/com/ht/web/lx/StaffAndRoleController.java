@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class StaffController {
+public class StaffAndRoleController {
     //自定义sql
     @Autowired
     private StaffBusinessService staffBusinessService;
@@ -134,8 +134,10 @@ public class StaffController {
     @ResponseBody
     public String AddStaff(Staff staff)
     {
+        //状态默认为正常
+        staff.setState(1);
         //调用新增
-        Integer retn=staffService.add(staff);
+        Integer retn=staffBusinessService.AddStaff(staff);
         if(retn>=1)
         {
             //新增成功
@@ -186,6 +188,11 @@ public class StaffController {
         return  "no";
     };
 
+    /**
+     * 冻结，解冻
+     * @param sid
+     * @return
+     */
     @RequestMapping("FroZen")
     @ResponseBody
     private String FroZen(Integer sid)
