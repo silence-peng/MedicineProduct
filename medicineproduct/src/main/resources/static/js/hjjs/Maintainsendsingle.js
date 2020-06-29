@@ -53,6 +53,7 @@ layui.use(['laydate', 'jquery','table'], function() {
 	      layer.open({
 	          type: 2,
 	          content: 'addMaintainsendsingle.html', //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+	          title:"新增保养派单",
 	          area: ['700', '600px']
 	      });
 	  });
