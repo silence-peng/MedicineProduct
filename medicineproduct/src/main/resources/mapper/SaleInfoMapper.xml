@@ -18,9 +18,44 @@
     <select id="getSaleInfoCount" resultType="Integer">
         select count(1) from `saleinfo`
     </select>
-    <select id="getSaleInfoById" resultMap="orderObj">
+    <select id="getSaleInfoById" resultMap="orderObj" parameterType="SpecificationsDetail">
         SELECT *,od.total_sales_price salePrice,p.state pstate FROM `saleinfo` o,customer c,staff s,order_detail od,product p WHERE o.oid=#{id}  AND o.`cid`=c.`cid`AND o.`salesman`=s.`sid` AND od.`oid`=o.`oid`AND od.`pid`=p.`pid`
     </select>
+    <select id="getProductData" resultMap="Obj">
+        select * from product where state=0
+        <if test="oxygenMaxOutputPower!=0">
+            and oxygen_max_output_power &lt;=#{oxygenMaxOutputPower}
+        </if>
+        <if test="oxygenMinOutputPower!=0">
+            and oxygen_min_output_power >=#{oxygenMinOutputPower}
+        </if>
+        <if test="vacuumMaxOutputPower!=0">
+            and vacuum_max_output_power &lt;=#{vacuumMaxOutputPower}
+        </if>
+        <if test="vacuumMinOutputPower!=0">
+            and vacuum_min_output_power >=#{vacuumMinOutputPower}
+        </if>
+        <if test="airMaxOutputPower!=0">
+            and air_max_output_power &lt;=#{airMaxOutputPower}
+        </if>
+        <if test="airMinOutputPower!=0">
+            and air_min_output_power >=#{airMinOutputPower}
+        </if>
+    </select>
+    <resultMap id="Obj" type="Product">
+        <id column="pid" property="pid"/>
+        <result column="product_code" property="productCode"/>
+        <result column="product_name" property="productName"/>
+        <result column="warehousing_date" property="warehousingDate"/>
+        <result column="bom_single_name" property="bomSingleName"/>
+        <result column="presale_price" property="presalePrice"/>
+        <result column="warehouse" property="warehouse"/>
+        <result column="state" property="state"/>
+        <result column="product_type" property="productType"/>
+        <result column="air_output_power" property="airOutputPower"/>
+        <result column="vacuum_output_power" property="vacuumOutputPower"/>
+        <result column="oxygen_output_power" property="oxygenOutputPower"/>
+    </resultMap>
     <resultMap id="orderObj" type="SaleInfo">
         <id column="oid" property="oid"/>
         <result column="total_sales_price" property="totalSalesPrice"/>

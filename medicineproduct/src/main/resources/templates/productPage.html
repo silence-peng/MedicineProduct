@@ -15,11 +15,77 @@
     <link rel="stylesheet" href="css/common.css" media="all">
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <style>
+        .layui-colla-title {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .layui-table td, .layui-table th {
+            font-size: 12px;
+        }
+    </style>
 </head>
 <body>
 <div class="layui-fluid">
-    <table class="layui-table" id="productInfo" lay-filter="productInfo"></table>
-    <div style="color: red;text-align: center">请双击选择产品</div>
+    <form class="layui-form" id="data" lay-filter="data">
+        <div class="btnArr layui-row">
+            <button type="button" class="layui-btn layui-btn-normal" lay-filter="templateDownload">模板下载</button>
+            <button type="button" class="layui-btn layui-btn-normal">保存</button>
+            <button type="button" class="layui-btn layui-btn-normal" id="templateFile" lay-filter="export">导入</button>
+        </div>
+        <br>
+        <blockquote class="layui-elem-quote">
+            规格列表
+        </blockquote>
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-xs4">
+                <div class="layui-collapse">
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">规格参数</h2>
+                        <div class="layui-colla-content">
+                            <table class="layui-table" id="xslxExportInfo"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs8">
+                <div class="layui-collapse">
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">国家标准</h2>
+                        <div class="layui-colla-content">
+                            <input type="hidden" id="tableHelp">
+                            <table class="layui-table" id="nationalStandard"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="layui-row layui-col-space5">
+            <div class="layui-col-xs2">氧气最大输出率</div>
+            <div class="layui-col-xs2">氧气最小输出率</div>
+            <div class="layui-col-xs2">空气最大输出率</div>
+            <div class="layui-col-xs2">空气最小输出率</div>
+            <div class="layui-col-xs2">真空最大输出率</div>
+            <div class="layui-col-xs2">真空最小输出率</div>
+        </div>
+        <div class="layui-row layui-col-space5">
+            <div class="layui-col-xs2"><input type="text" name="oxygenMaxOutputPower" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" name="oxygenMinOutputPower" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" name="airMaxOutputPower" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" name="airMinOutputPower" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" name="vacuumMaxOutputPower" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" name="vacuumMinOutputPower" class="layui-input"></div>
+        </div>
+        <br>
+
+        <blockquote class="layui-elem-quote">
+            产品列表
+        </blockquote>
+        <table class="layui-table" id="productInfo" lay-filter="productInfo"></table>
+        <div style="color: red;text-align: center">请双击选择产品</div>
+    </form>
 </div>
 </body>
 <script src="lib/layui-v2.5.5/layui.js"></script>

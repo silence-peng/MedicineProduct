@@ -5,22 +5,20 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ht.mapper.businessMapper.SaleInfoMapper;
 import com.ht.pojo.*;
-import com.ht.service.dataService.OrderDetailService;
-import com.ht.service.dataService.OrderService;
-import com.ht.service.dataService.ProductService;
+import com.ht.service.dataService.*;
 import com.ht.util.ResultMap;
 import com.ht.util.XlsxImporTexportTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SaleInfoManageService {
-    public List<TestPojo> readFile(MultipartFile file){
-        List<TestPojo> list=XlsxImporTexportTemplate.importData(file, 1, TestPojo.class);
-        return list;
-    }
+
     @Autowired
     private SaleInfoMapper saleInfoMapper;
     @Autowired
@@ -29,6 +27,24 @@ public class SaleInfoManageService {
     private OrderService orderService;
     @Autowired
     private OrderDetailService orderDetailService;
+    @Autowired
+    private DepartmentService departmentService;
+
+    public List<XslxHelpPojo> readFile(MultipartFile file){
+        String str="";
+        List<Department> departments=departmentService.getAll();
+        List<XslxHelpPojo> list=XlsxImporTexportTemplate.importData(file, 1, XslxHelpPojo.class);
+        for (XslxHelpPojo pojo : list) {
+            for (Department d: departments) {
+                if (pojo.getDname().equals(d.getDname())){
+                    pojo.setDid(d.getDid());
+
+
+                }
+            }
+        }
+        return list;
+    }
     public ResultMap<List<SaleInfo>> getSaleInfo(Integer page, Integer limit){
         List<SaleInfo> list=saleInfoMapper.getSaleInfo(page-1, limit);
         Integer count=saleInfoMapper.getSaleInfoCount();
@@ -39,11 +55,16 @@ public class SaleInfoManageService {
     public SaleInfo getSaleInfoById(Integer id){
         return  saleInfoMapper.getSaleInfoById(id);
     }
-    public ResultMap<List<Product>> HandleProductInfo(Integer page,Integer limit){
+
+    public ResultMap<List<Product>> HandleProductInfo(Integer page,Integer limit,SpecificationsDetail specificationsDetail){
         PageHelper.startPage(page, limit);
         Product product=new Product();
         product.setState(0);
-        List<Product> list=productService.getData(product);
+        specificationsDetail.setSdid(page-1);
+        specificationsDetail.setSid(limit);
+        List<Product> list=saleInfoMapper.getProductData(specificationsDetail);
+
+
         PageInfo<Product> productPageInfo= new PageInfo<>(list);
         return new ResultMap<>("", productPageInfo.getList(), 0, productPageInfo.getTotal());
     }
@@ -65,7 +86,6 @@ public class SaleInfoManageService {
                 productService.upd(product);
             }
         }
-
         return orderService.upd(order)>0;
     }
 }

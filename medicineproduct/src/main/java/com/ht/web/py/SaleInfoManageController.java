@@ -1,13 +1,12 @@
 package com.ht.web.py;
 
-import com.ht.pojo.Order;
-import com.ht.pojo.OrderDetail;
-import com.ht.pojo.Product;
-import com.ht.pojo.SaleInfo;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.ht.mapper.dataMapper.DepartmentMapper;
+import com.ht.pojo.*;
 import com.ht.service.businessService.py.SaleInfoManageService;
-import com.ht.service.dataService.CustomerService;
-import com.ht.service.dataService.ProductService;
-import com.ht.service.dataService.StaffService;
+import com.ht.service.dataService.*;
+import com.ht.service.dataService.impl.DepartmentServiceImpl;
 import com.ht.util.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,11 +24,22 @@ import java.util.Map;
 public class SaleInfoManageController {
     @Autowired
     private SaleInfoManageService saleInfoManageService;
+    @Autowired
+    private NationalStandardService nationalStandardService;
+    @Autowired
+    private DepartmentService departmentService;
 
     @Autowired
     private CustomerService customerService;
     @Autowired
     private StaffService staffService;
+    @RequestMapping("/loadNationalStandard")
+    public Object loadNationalStandard(int page,int limit){
+        PageHelper.startPage(page,limit);
+        PageInfo<NationalStandard> pageInfo=new PageInfo<>(nationalStandardService.getAll());
+        return new ResultMap<List<NationalStandard>>("",pageInfo.getList(),0, pageInfo.getTotal());
+    }
+
     @PostMapping("base/upload")
     public Object upload(@RequestParam("file") MultipartFile file) throws IOException {
         int code=0;
@@ -50,9 +60,17 @@ public class SaleInfoManageController {
     public ResultMap<List<SaleInfo>> loadSaleInfoTable(Integer page, Integer limit, String startDate, String endDate, Order order){
         return  saleInfoManageService.getSaleInfo(page, limit);
     }
+    @RequestMapping("/loadNationalStandardList")
+    public Object loadNationalStandardList(){
+        return  nationalStandardService.getAll();
+    }
     @RequestMapping("/loadCustomerInfo")
     public Object loadCustomerInfo(){
         return  customerService.getAll();
+    }
+    @RequestMapping("/loadDepartment")
+    public Object loadDepartment(){
+        return  departmentService.getAll();
     }
     @RequestMapping("/loadStaffInfo")
     public Object loadStaffInfo(){
@@ -63,11 +81,11 @@ public class SaleInfoManageController {
         return  saleInfoManageService.getSaleInfoById(id);
     }
     @RequestMapping("/loadProductInfo")
-    public ResultMap<List<Product>> loadProductInfo(Integer page, Integer limit){
-        return  saleInfoManageService.HandleProductInfo(page, limit);
+    public ResultMap<List<Product>> loadProductInfo(Integer page, Integer limit,SpecificationsDetail data){
+        System.out.println(data);
+        return  saleInfoManageService.HandleProductInfo(page, limit,data);
     }
     @RequestMapping("/updOrder")
-//    :id,
     public boolean updSaleInfo(@RequestParam("salesVolumes") Integer salesVolumes,
                                @RequestParam("totalSalesPrice") Float totalSalesPrice,
                                @RequestParam("salesman") Integer salesman,

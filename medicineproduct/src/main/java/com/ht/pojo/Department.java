@@ -18,5 +18,5 @@ public class Department implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer  did;//
-    private String danme;//
+    private String dname;//
 }
