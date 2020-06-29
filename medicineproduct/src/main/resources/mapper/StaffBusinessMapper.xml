@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.mapper.businessMapper.StaffBusinessMapper">
+    <resultMap id="StaffMap" type="StaffAndRole">
+        <id property="sid" column="sid"/>
+        <result property="sname" column="sname"/>
+        <result property="accountNumber" column="account_number"/>
+        <result property="password" column="password"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="sex" column="sex"/>
+        <result property="email" column="email"/>
+        <result property="birthday" column="birthday"/>
+        <result property="residentialAddress" column="residential_address"/>
+        <result property="role" column="role"/>
+        <result property="state" column="state"/>
+        <result property="creationTime" column="creation_time"/>
+           <association property="roledata" javaType="Role">
+                <id property="rid" column="rid"/>
+                <result property="rname" column="rname"/>
+                <result property="rstate" column="rstate"/>
+           </association>
+    </resultMap>
+    <!--查询员工表，连接角色表-->
+    <select id="EmployeeConditionQuery" parameterType="StaffAndRole" resultMap="StaffMap">
+        SELECT * FROM `staff` sta,`role` rol WHERE sta.`role`=rol.`rid`
+        <if test="sname!=null and sname!=''">
+            AND sta.`sname`like concat('%',#{sname},'%')
+        </if>
+        <if test="accountNumber!=null and accountNumber!=''">
+            AND sta.`account_number`=#{accountNumber}
+        </if>
+        <if test="role!=null and role!=''">
+            AND sta.`role`=#{role}
+        </if>
+        <if test="state!=null and state!=''">
+            AND sta.`state`=#{state}
+        </if>
+    </select>
+
+</mapper>
