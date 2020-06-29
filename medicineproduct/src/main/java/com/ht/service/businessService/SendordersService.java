@@ -13,13 +13,14 @@ public class SendordersService {
     @Autowired
     private SendordersMapper sendordersMapper;
 
-    /***
-     *用于查询派单信息
-     * @param sid 根据操作员id查询
-     * @return 返回派单信息
+    /**
+     *
+     * @param sid  员工id
+     * @param Type  派单类型
+     * @return 派单信息
      */
-    public List<DistributeLeafletss> getDistributeleaflets(Integer sid){
-        return  sendordersMapper.getDistributeleaflets(sid);
+    public List<DistributeLeafletss> getDistributeleaflets(Integer sid,Integer Type){
+        return  sendordersMapper.getDistributeleaflets(sid,Type);
     }
 
     /**
@@ -27,7 +28,7 @@ public class SendordersService {
      * @param did 根据派单id查询下
      * @return 返回改派单详情
      */
-    public DistributeLeafletss getDistributeleafletsparticulars(@Param("did") Integer did){
-        return  sendordersMapper.getDistributeleafletsparticulars(did);
-    }
+//    public DistributeLeafletss getDistributeleafletsparticulars(@Param("did") Integer did){
+//        return  sendordersMapper.getDistributeleafletsparticulars(did);
+//    }
 }

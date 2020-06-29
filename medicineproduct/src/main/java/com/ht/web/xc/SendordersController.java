@@ -26,14 +26,15 @@ public class SendordersController {
     private DistributeLeafletsService distributeLeafletsService;
 
     /**
-     * 查询派单信息
+     *
+     * @param Type  派单类型
      * @return 派单信息
      */
     @RequestMapping("/getDistributeleaflets")
     @ResponseBody
-    public List<DistributeLeafletss> getDistributeleaflets(HttpSession session){
+    public List<DistributeLeafletss> getDistributeleaflets(HttpSession session,Integer Type){
         Integer sid= (Integer) session.getAttribute("sid");
-        List<DistributeLeafletss> list=sendordersService.getDistributeleaflets(sid);
+        List<DistributeLeafletss> list=sendordersService.getDistributeleaflets(sid,Type);
         return list;
     }
 
@@ -41,16 +42,16 @@ public class SendordersController {
      * 删除派单信息
      * @return 是否成功
      */
-    @RequestMapping("/delDistributeleaflets")
-    @ResponseBody
-    public String delDistributeleaflets(DistributeLeaflets distributeLeaflets){
-        int del =  distributeLeafletsService.del(distributeLeaflets);
-        if (del>0){
-            return "YES";
-        }else {
-            return "NO";
-        }
-    }
+//    @RequestMapping("/delDistributeleaflets")
+//    @ResponseBody
+//    public String delDistributeleaflets(DistributeLeaflets distributeLeaflets){
+//        int del =  distributeLeafletsService.del(distributeLeaflets);
+//        if (del>0){
+//            return "YES";
+//        }else {
+//            return "NO";
+//        }
+//    }
 
     /**
      * 修改派单信息
@@ -71,10 +72,11 @@ public class SendordersController {
      * @param did 根据派单id查询下
      * @return 返回改派单详情
      */
-    @ResponseBody
-    @RequestMapping("/getDistributeleafletsparticulars")
-     public  DistributeLeafletss getDistributeleafletsparticulars(Integer did){
-        DistributeLeafletss  distributeleafletsparticulars=  sendordersService.getDistributeleafletsparticulars(did);
-        return  distributeleafletsparticulars;
-     }
+//    @ResponseBody
+//    @RequestMapping("/getDistributeleafletsparticulars")
+//     public  DistributeLeafletss getDistributeleafletsparticulars(Integer did){
+//        DistributeLeafletss  distributeleafletsparticulars=  sendordersService.getDistributeleafletsparticulars(did);
+//        System.out.println(distributeleafletsparticulars);
+//        return  distributeleafletsparticulars;
+//     }
 }
