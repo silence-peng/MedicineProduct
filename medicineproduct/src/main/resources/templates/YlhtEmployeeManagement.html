@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>员工管理</title>
+		<link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+		<link rel="stylesheet" href="css/layuimini.css?v=2.0.4" media="all">
+		<link rel="stylesheet" href="css/themes/default.css" media="all">
+		<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+
+		<script src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+		<script src="js/lay-config.js?v=2.0.0" charset="utf-8"></script>
+		<!-- 重要js -->
+		<script src="lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="UTF-8"></script>
+		<!-- <script src="js/YlhtRoleManagement.js" charset="UTF-8"></script> -->
+	</head>
+
+	<style type="text/css">
+		.btn-bgcolor {
+			background-color: #286ED6;
+			width: 80px;
+		}
+
+		.btn-bgcolor2 {
+			background-color: #ff1c1f;
+			width: 80px;
+		}
+
+		.btn-bgcolor4 {
+			background-color: #00cc00;
+			width: 80px;
+		}
+
+		.btn-bgcolor3 {
+
+			width: 80px;
+		}
+	</style>
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<div class="layui-col-xs12">
+					<div class="layui-row">
+						<div class="layui-col-xs12">
+							<div class="layui-form-item">
+							</div>
+						</div>
+						<div class="layui-btn-container">
+							<button type="button" class="layui-btn layui-btn-sm  btn-bgcolor" id="add">新增员工</button>
+							<button type="button" class="layui-btn layui-btn-sm  btn-bgcolor" id="upe">修改</button>
+							<button type="button" class="layui-btn layui-btn-sm  btn-bgcolor" id="del">删除</button>
+							<button type="button" class="layui-btn layui-btn-sm  btn-bgcolor" id="modifystate">冻结/解冻</button>
+						</div>
+					</div>
+					<div class="layui-col-xs12">
+						<form class="layui-form">
+							<div class="layui-col-xs12">
+								<div class="layui-form-item">
+									<div class="layui-inline">
+										<div class="layui-inline">
+											<label class="layui-form-label">员工名称</label>
+											<div class="layui-input-inline">
+												<input name="sname" id="sname" type="text" class="layui-input" />
+											</div>
+										</div>
+									</div>
+									<div class="layui-inline">
+										<label class="layui-form-label">角色</label>
+										<div class="layui-input-inline">
+											<select name="RoleId" id="RoleId">
+
+											</select>
+										</div>
+									</div>
+									<div class="layui-inline">
+										<label class="layui-form-label">员工账号</label>
+										<div class="layui-input-inline">
+											<input name="accountNumber" id="accountNumber" type="text" class="layui-input" />
+										</div>
+									</div>
+									<div class="layui-inline">
+										<label class="layui-form-label">员工状态</label>
+										<div class="layui-input-inline">
+											<select id="state" name="state">
+												<option value="0">请选择</option>
+												<option value="1">正常</option>
+												<option value="2">已冻结</option>
+											</select>
+										</div>
+									</div>
+									<div class="layui-inline" style="margin-top: -5px;">
+										<input id="but_yes" type="button" class="layui-btn layui-btn-sm  btn-bgcolor" value="查询"/>
+										<input id="but_res" type="button" class="layui-btn layui-btn-sm  layui-btn-primary btn-bgcolor3 " value="重置" />
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-xs12">
+				<table class="layui-table" id="StaffList" lay-filter="StaffList"></table>
+			</div>
+		</div>
+		</div>
+	</body>
+	<script>
+		layui.use(['element', 'form', 'jquery', 'table', 'laydate','layer'], function() {
+			var $ = layui.jquery,
+				element = layui.element,
+				layer = layui.layer,
+				form = layui.form,
+				table = layui.table,
+				laydate = layui.laydate;
+
+
+			/**
+			 * 角色
+			 */
+			$("#RoleId").load("/RoleAll",function(result){
+				var role=eval("("+result+")");
+				$("#RoleId").append("<option value=''>请选择</option>")
+				$(role).each(function(){
+					$("#RoleId").append("<option value="+this.rid+">"+this.rname+"</option>")
+				})
+				form.render('select');
+			});
+
+
+
+			// 显示列表数据 
+			table.render({
+				elem: '#StaffList',
+				url: '/QueryEmployees',
+				method: 'post',
+				parseData: function(res) { //res 即为原始返回的数据
+					return {
+						"code": res.code, //解析接口状态
+						"msg": res.msg, //解析提示文本
+						"count": res.count, //解析数据长度
+						"data": res.data //解析数据列表
+					}
+				},
+				cols: [
+					[{
+					type:'radio'
+					},
+						{
+						field: 'sid',
+						title: '员工编号',
+						sort: true
+					}, {
+						field: 'state',
+						title: '员工状态',
+						templet: '#status'
+					}, {
+						field: 'sname',
+						title: '员工姓名'
+					}, {
+						field: 'accountNumber',
+						title: '员工账号'
+					}, {
+						field: 'sex',
+						title: '性别',
+						templet:"#sexs"
+					}, {
+						field: 'residentialAddress',
+						title: '现住地址'
+					}, {
+						field: 'phoneNumber',
+						title: '手机号码'
+					},{templet:'<div>{{d.roledata.rname}}</div>'
+						,title: '角色',
+					}, {
+						field: 'email',
+						title: '邮箱'
+					}, {
+						field: 'creationTime',
+						title: '创建时间',
+						templet: function(row) {
+							return createTime(row.creationTime);
+						}
+					}]
+				],
+				limit:3 ,
+				limits:[3,5,7,9],
+				page: true,
+				id: 'StaffTableReload'
+			});
+
+
+/*			 //头工具栏事件
+			  table.on('toolbar(StaffList)', function(obj){
+			    var checkStatus = table.checkStatus(obj.config.id);
+			    switch(obj.event){
+			      case 'add':
+			      	/!*新增员工子窗体*!/
+					  layer.open({
+						  type: 2,
+						  content: 'NewEmployees',
+						  area: ['700px', '500px'],
+						  title: '新增员工',
+						  success: function(layero, index) { //弹出层弹出后的回调函数
+							  /!*						var iframe = window['layui-layer-iframe' + index]; // 获取子页面的iframe
+                                                                      iframe.child(data.id); // 向子页面的全局函数child传参*!/
+						  },
+						  end: function() { //弹出层销毁后的事件
+							  table.reload("EmpTableReload"); //增加成功后刷新表格
+						  }
+					  })
+			    		  break;
+
+			      case 'upe':
+				 var data = checkStatus.data;
+				 if(data!=""){
+				 layer.alert("你确定要修改此员工嘛？",function () {
+					 /!*打开修改员工*!/
+					 layer.open({
+						 type: 2,
+						 content: 'GetUpdateEmployees?sid='+data[0].sid,
+						 area: ['700px', '500px'],
+						 title: '修改员工',
+						 success: function(layero, index) { //弹出层弹出后的回调函数
+							 /!*						var iframe = window['layui-layer-iframe' + index]; // 获取子页面的iframe
+                             iframe.child(data.id); // 向子页面的全局函数child传参*!/
+						 },
+						 end: function() { //弹出层销毁后的事件
+							 table.reload("EmpTableReload"); //增加成功后刷新表格
+						 }
+					 })
+				 })
+				 }else
+				 	{
+				 		layer.msg("请选择员工！");
+					}
+				 		 break;
+
+				  case 'del':
+					  var data = checkStatus.data;
+					  if(data!=""){
+
+					  }else
+					  {
+						  layer.msg("请选择员工！");
+					  }
+						break;
+
+					case 'modifystate':
+						var data = checkStatus.data;
+						if(data!=""){
+
+						}else
+						{
+							layer.msg("请选择员工！");
+						}
+						break;
+			  };
+			  });*/
+			//点击搜索按钮根据用户名称查询
+			$('#but_yes').on('click',
+				function() {
+					//执行重载
+					table.reload('StaffTableReload', {
+						page: {
+							curr: 1 //重新从第 1 页开始
+						}
+						//根据条件查询
+						,
+						where: {
+							sname:$("#sname").val(),
+							accountNumber:$("#accountNumber").val(),
+							roleid:$("#RoleId").val(),
+							state:$("#state").val()
+						}
+					});
+				});
+		});
+	</script>
+	<script>
+		layui.use(["table", "jquery", "layer", "form", "laypage"], function() {
+			var table = layui.table,
+				$ = layui.jquery,
+				layer = layui.layer,
+				form = layui.form,
+				util = layui.util;
+			//打开新增员工弹出层
+			$("#add").on("click", function() {
+				layer.open({
+					type: 2,
+					content: 'NewEmployees',
+					area: ['700px', '500px'],
+					title: '新增员工',
+					success: function(layero, index) { //弹出层弹出后的回调函数
+						/*						var iframe = window['layui-layer-iframe' + index]; // 获取子页面的iframe
+				                                                iframe.child(data.id); // 向子页面的全局函数child传参*/
+					},
+					end: function() { //弹出层销毁后的事件
+						table.reload("StaffTableReload"); //增加成功后刷新表格
+					}
+				})
+			});
+		  //打开修改员工弹出层
+			$("#upe").on("click", function() {
+                var checkStatus = table.checkStatus('StaffTableReload');
+                var ids =null;
+                $(checkStatus.data).each(function (i, o) {//o即为表格中一行的数据
+					ids=o.sid;
+                });
+				if (ids==null) {
+					layer.msg('请选择需要更改的信息');
+					return false;
+				}else {
+					layer.alert("你确定要修改此员工嘛？",{
+						btn: ['确认','取消'] //按钮
+					}
+					,function () {
+						/!*打开修改员工*!/
+						layer.open({
+							type: 2,
+							content: 'GetUpdateEmployees?sid='+ids,
+							area: ['700px', '500px'],
+							title: '修改员工',
+							success: function(layero, index) { //弹出层弹出后的回调函数
+													/*	var iframe = window['layui-layer-iframe' + index]; // 获取子页面的iframe
+								iframe.child(data.id); // 向子页面的全局函数child传参*!/*/
+							},
+							end: function() { //弹出层销毁后的事件
+								table.reload("StaffTableReload"); //增加成功后刷新表格
+							}
+						})
+					},
+					function () {
+						layer.msg("已取消");
+					})
+				}
+				});
+			//删除员工
+			$("#del").on("click",function () {
+				var checkStatus = table.checkStatus('StaffTableReload');
+				var ids =null;
+				$(checkStatus.data).each(function (i, o) {//o即为表格中一行的数据
+					ids=o.sid;
+				});
+				if (ids==null) {
+					layer.msg('请选择需删除的信息');
+					return false;
+				}else {
+					layer.alert("你确定要删除此员工嘛？",{btn: ['确认','取消'] }
+							,function () {
+								$.ajax({
+									url:"/DelStaff",
+									type:"post",
+									data: {"sid":ids},
+									dataType:"text",
+									success:function(result){
+										if(result=="yes")
+										{
+											layer.msg("已删除",function () {
+												table.reload("StaffTableReload"); //增加成功后刷新表格
+											})
+
+										}else
+											{
+												layer.msg("删除失败",function () {
+													table.reload("StaffTableReload"); //增加成功后刷新表格
+												})
+											}
+									}
+								})
+							},
+							function () {
+								layer.msg("已取消");
+							})
+				}
+			});
+			//冻结/解冻
+			$("#modifystate").on("click",function () {
+				var checkStatus = table.checkStatus('StaffTableReload');
+				var ids =null;
+				var rids=null;
+				$(checkStatus.data).each(function (i, o) {//o即为表格中一行的数据
+					ids=o.sid;
+					rids=o.state;
+				});
+				if (ids==null) {
+					layer.msg('请选择需要更改的信息');
+					return false;
+				}else {
+					if(rids==null)
+					{
+						layer.msg("参数错误");
+					}else
+						{
+							if(rids==1)
+							{
+								layer.alert("你确定要冻结此员工嘛？",{btn: ['确认','取消'] }
+										,function () {
+											$.ajax({
+												url:"/FroZen",
+												type:"post",
+												data: {"sid":ids},
+												dataType:"text",
+												success:function(result){
+													if(result=="To freeze")
+													{
+														layer.msg("已冻结",function () {
+															table.reload("StaffTableReload"); //增加成功后刷新表格
+														})
+
+													}else if(result=="To thaw")
+													{
+														layer.msg("已解冻",function () {
+															table.reload("StaffTableReload"); //增加成功后刷新表格
+														})
+													}else
+														{
+															layer.msg("失败")
+														}
+												}
+											})
+										},
+										function () {
+											layer.msg("已取消");
+										})
+							}else if(rids==2)
+							{
+								layer.alert("你确定要解冻此员工嘛？",{btn: ['确认','取消'] }
+										,function () {
+											$.ajax({
+												url:"/FroZen",
+												type:"post",
+												data: {"sid":ids},
+												dataType:"text",
+												success:function(result){
+													if(result=="To freeze")
+													{
+														layer.msg("已冻结",function () {
+															table.reload("StaffTableReload"); //增加成功后刷新表格
+														})
+													}else if(result=="To thaw")
+													{
+														layer.msg("已解冻",function () {
+															table.reload("StaffTableReload"); //增加成功后刷新表格
+														})
+													}else
+													{
+														layer.msg("失败")
+													}
+
+												}
+											})
+										},
+										function () {
+											layer.msg("已取消");
+										})
+							}
+						}
+				}
+			});
+			});
+	</script>
+	<!--判断是否冻结，显示给后台看-->
+	<script type="text/html" id="status">
+		              {{#  if(d.state === 1){ }}
+		                 <span class="layui-badge layui-bg-green">正常</span>
+		              {{#  } else { }}
+		               <span class="layui-badge">已冻结</span>
+		              {{#  } }}
+	</script>
+	<!--判断男女，显示给后台看-->
+	<script type="text/html" id="sexs">
+		              {{#  if(d.sex === 0){ }}
+		                 <span>男</span>
+		              {{#  } else { }}
+		               <span>女</span>
+		              {{#  } }}
+	</script>
+	<!--转换时间格式-->
+	<script type="text/javascript">
+		function createTime(v){
+			var date = new Date(v);
+			var y = date.getFullYear();
+			var m = date.getMonth()+1;
+			m = m<10?'0'+m:m;
+			var d = date.getDate();
+			d = d<10?("0"+d):d;
+			var h = date.getHours();
+			h = h<10?("0"+h):h;
+			var M = date.getMinutes();
+			M = M<10?("0"+M):M;
+			var str = y+"-"+m+"-"+d;
+			return str;
+		}
+	</script>
+</html>
