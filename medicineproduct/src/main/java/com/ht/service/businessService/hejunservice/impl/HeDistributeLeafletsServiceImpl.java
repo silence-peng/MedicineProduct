@@ -25,4 +25,9 @@ public class HeDistributeLeafletsServiceImpl implements HeDistributeLeafletsServ
         int code=0;
         return new ResultMap<>(msg, list, code, count);
     }
+
+    @Override
+    public int deletes(Integer[] ids) {
+        return heDistributeLeafletsmapper.deletes(ids);
+    }
 }

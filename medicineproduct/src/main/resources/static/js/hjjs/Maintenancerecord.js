@@ -4,17 +4,20 @@ layui.use(['laydate', 'jquery','table'], function() {
         table=layui.table;
 	  table.render({
 	    elem: '#test'
-	    ,url:'/demo/table/user/'
+	    ,url:'/hj/getRecord'
 	    ,cols: [[
-	      {field:'id',title: '序号'}
-	      ,{field:'username',title: '保养人员名称'}
-	      ,{field:'sex',title: '保养地址'}
-	      ,{field:'classify',title: '保养前的图片'}
-		   ,{field:'classify',title: '保养后的图片'}
-		    ,{field:'classify',title: '保养日期'}
-	     ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}
+			  {type: 'checkbox'}
+	      ,{field:'mid',title: '序号'}
+	      ,{field:'sname',title: '保养人员名称', templet: '<span>{{d.staff.sname}}</span>'}
+	      ,{field:'productName',title: '产品', templet: '<span>{{d.product.productName}}</span>'}
+	      ,{field:'customerName',title: '客户', templet: '<span>{{d.customer.customerName}}</span>'}
+	      ,{field:'prePhotos',title: '保养前的图片',templet:'<div><img src="/images/{{d.prePhotos}}" class="layui-table-link"></div>'}
+		   ,{field:'sufPhotos',title: '保养后的图片',templet:'<div><img src="/images/{{d.sufPhotos}}" class="layui-table-link"></div>'}
+		    ,{field:'repairDate',title: '保养日期'}
 	    ]]
-	    ,page: true
+		  , page: true
+		  , limit: 3
+		  , id: 'testReload'
 	  });
 	  table.on('tool(test)', function(obj){
 	      var data = obj.data;

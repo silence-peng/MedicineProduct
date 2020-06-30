@@ -22,8 +22,8 @@
         <result property="oid" column="oid"/>
         <result property="type" column="type"/>
         <result property="status" column="status"/>
-        <result property="createDate" column="createDate"/>
-        <result property="endDate" column="endDate"/>
+        <result property="createDate" column="create_date"/>
+        <result property="endDate" column="end_date"/>
         <association property="customer">
             <id column="cid" property="cid"/>
             <result column="customer_name" property="customerName"/>
@@ -33,4 +33,10 @@
             <result column="sname" property="sname"/>
         </association>
         </resultMap>
+    <delete id="deletes">
+        delete from distribute_leaflets where did in
+        <foreach collection="ids" open="(" close=")" item="ids" separator=",">
+            #{ids}
+        </foreach>
+    </delete>
 </mapper>

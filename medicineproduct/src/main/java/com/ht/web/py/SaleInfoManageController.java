@@ -84,4 +84,5 @@ public class SaleInfoManageController {
         order.setCid(cid);
         return saleInfoManageService.updOrder(order, odid, salePrices,pid);
     }
+
 }
