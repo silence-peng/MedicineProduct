@@ -17,10 +17,10 @@ public class SpecificationsDetail implements Serializable {
     private Integer departmentId;
     private Integer bedNum;
     private Integer roomNum;
-    private int oxygenMaxOutputPower;
-    private int oxygenMinOutputPower;
-    private int vacuumMaxOutputPower;
-    private int vacuumMinOutputPower;
-    private int airMaxOutputPower;
-    private int airMinOutputPower;
+    private Integer oxygenMaxOutputPower;
+    private Integer oxygenMinOutputPower;
+    private Integer vacuumMaxOutputPower;
+    private Integer vacuumMinOutputPower;
+    private Integer airMaxOutputPower;
+    private Integer airMinOutputPower;
 }

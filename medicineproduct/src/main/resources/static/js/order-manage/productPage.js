@@ -48,6 +48,18 @@ layui.use(['jquery','form','table','element','upload'],function () {
 
             })
         }
+    });$(".find").click(function () {
+        $.ajaxSettings.traditional = true;
+        table.reload('productInfo',{
+            where:{
+                "airMaxOutputPower":($("#airMaxOutputPower").val()),
+                "airMinOutputPower":($("#airMinOutputPower").val()),
+                "oxygenMaxOutputPower":($("#oxygenMaxOutputPower").val()),
+                "oxygenMinOutputPower":($("#oxygenMinOutputPower").val()),
+                "vacuumMaxOutputPower":($("#vacuumMaxOutputPower").val()),
+                "vacuumMinOutputPower":($("#vacuumMinOutputPower").val())
+            }
+        });
     });
     upload.render({ //允许上传的文件后缀
         elem: '#templateFile'
@@ -64,15 +76,19 @@ layui.use(['jquery','form','table','element','upload'],function () {
                     data: xslxExportData
                 });
                 initStandard(xslxExportData,nationalStandardData);
-                console.log($("#data").serialize());
+                $.ajaxSettings.traditional = true;
                 table.reload('productInfo',{
-                    page: {
-                        curr: 1 //重新从第 1 页开始
+                    where:{
+                        "airMaxOutputPower":parseInt($("#airMaxOutputPower").val()),
+                        "airMinOutputPower":parseInt($("#airMinOutputPower").val()),
+                        "oxygenMaxOutputPower":parseInt($("#oxygenMaxOutputPower").val()),
+                        "oxygenMinOutputPower":parseInt($("#oxygenMinOutputPower").val()),
+                        "vacuumMaxOutputPower":parseInt($("#vacuumMaxOutputPower").val()),
+                        "vacuumMinOutputPower":parseInt($("#vacuumMinOutputPower").val())
                     }
-                    ,where: {
-                        data:$("#data").serialize()
-                    }
-                })
+                });
+
+
             }else{
                 layer.msg(res.msg);
             }
@@ -87,9 +103,9 @@ layui.use(['jquery','form','table','element','upload'],function () {
     table.render({
         elem: '#xslxExportInfo'
         ,id:"xslxExportInfo"
-        ,cellMinWidth: 100 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        // ,cellMinWidth: 100 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
         ,cols: [[
-            {field:'dname',  title: '科室名'}
+            {field:'dname',width:200,  title: '科室名'}
             ,{field:'rooms',  title: '科室数'}
             ,{field:'deds',  title: '床位数'}
         ]],
@@ -158,12 +174,11 @@ function initStandard(xslxExportData,nationalStaandardData) {
         }
     }
     var data={};
-    data.airMaxOutputPower=airMaxOutPutPower/100;
-    data.airMinOutputPower=airMinOutPutPower/100;
-    data.oxygenMaxOutputPower=oxygenMaxOutPutPower/100;
-    data.oxygenMinOutputPower=oxygenMinOutPutPower/100;
-    data.vacuumMaxOutputPower=vacuumMaxOutputPower/100;
-    data.vacuumMinOutputPower=vacuumMinOutputPower/100;
-    console.log(data);
+    data.airMaxOutputPower=parseInt(airMaxOutPutPower/100);
+    data.airMinOutputPower=parseInt(airMinOutPutPower/100);
+    data.oxygenMaxOutputPower=parseInt(oxygenMaxOutPutPower/100);
+    data.oxygenMinOutputPower=parseInt(oxygenMinOutPutPower/100);
+    data.vacuumMaxOutputPower=parseInt(vacuumMaxOutputPower/100);
+    data.vacuumMinOutputPower=parseInt(vacuumMinOutputPower/100);
     form.val("data",data);
 }

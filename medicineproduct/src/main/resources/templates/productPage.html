@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/common.css" media="all">
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <script src="js/jquery.js"></script>
     <style>
         .layui-colla-title {
             height: 30px;
@@ -30,9 +31,10 @@
 <div class="layui-fluid">
     <form class="layui-form" id="data" lay-filter="data">
         <div class="btnArr layui-row">
-            <button type="button" class="layui-btn layui-btn-normal" lay-filter="templateDownload">模板下载</button>
-            <button type="button" class="layui-btn layui-btn-normal">保存</button>
+            <button type="button" class="layui-btn find">查找</button>
+            <button type="button" class="layui-btn layui-btn-normal" style="background-color: coral" lay-filter="templateDownload">模板下载</button>
             <button type="button" class="layui-btn layui-btn-normal" id="templateFile" lay-filter="export">导入</button>
+
         </div>
         <br>
         <blockquote class="layui-elem-quote">
@@ -71,12 +73,12 @@
             <div class="layui-col-xs2">真空最小输出率</div>
         </div>
         <div class="layui-row layui-col-space5">
-            <div class="layui-col-xs2"><input type="text" name="oxygenMaxOutputPower" class="layui-input"></div>
-            <div class="layui-col-xs2"><input type="text" name="oxygenMinOutputPower" class="layui-input"></div>
-            <div class="layui-col-xs2"><input type="text" name="airMaxOutputPower" class="layui-input"></div>
-            <div class="layui-col-xs2"><input type="text" name="airMinOutputPower" class="layui-input"></div>
-            <div class="layui-col-xs2"><input type="text" name="vacuumMaxOutputPower" class="layui-input"></div>
-            <div class="layui-col-xs2"><input type="text" name="vacuumMinOutputPower" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" name="oxygenMaxOutputPower" id="oxygenMaxOutputPower" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" name="oxygenMinOutputPower" id="oxygenMinOutputPower" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" name="airMaxOutputPower" id="airMaxOutputPower" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" name="airMinOutputPower" id="airMinOutputPower" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" name="vacuumMaxOutputPower" id="vacuumMaxOutputPower" class="layui-input"></div>
+            <div class="layui-col-xs2"><input type="text" name="vacuumMinOutputPower" id="vacuumMinOutputPower" class="layui-input"></div>
         </div>
         <br>
 

@@ -26,10 +26,7 @@ layui.use(['jquery','form','element','layer'],function () {
         });
         form.render("select");
         $.each(data.list,function (o,j) {
-            // 0未使用
-            // 1使用中
-            // 2已维修
-            // 3已损坏
+
             console.log(j.state)
             var stateTxt=handleState(j.state);
             $(".orderBOM").append(
@@ -146,18 +143,19 @@ layui.use(['jquery','form','element','layer'],function () {
     });
 
 
-});
+})
 function handleState(state) {
     var stateTxt="";
-    if (state===1){
+
+    if (state===2){
         stateTxt="已投入使用";
-    }else if(state===0){
+    }else if(state===1){
         stateTxt="未投入使用";
-    }else if(state===2){
-        stateTxt="需要维修";
     }else if(state===3){
-        stateTxt="已损坏";
+        stateTxt="需要维修";
     }else if(state===4){
+        stateTxt="已损坏";
+    }else if(state===5){
         stateTxt="等待安装";
     }
     return stateTxt;
@@ -174,6 +172,7 @@ function initSaleInfo() {
 
 
 }
+var index=0;
 function addOrderInfo(j) {
     var flag=true;
     $.each($(".productId"),function (o,y) {
@@ -182,9 +181,10 @@ function addOrderInfo(j) {
         }
     });
     if (flag){
+        index++;
         var stateTxt=handleState(j.state);
         $(".orderBOM").append("<hr/>"+
-            "<div class=\"layui-card-body\">\n" +
+            "<div class=\"layui-card-body\" id='product"+index+"'>\n" +
             "    <div class=\"layui-form-item\">\n" +
             "        <div class=\"layui-inline\">\n" +
             "            <lable class=\"layui-form-label\">产品编码</lable>\n" +
@@ -236,11 +236,22 @@ function addOrderInfo(j) {
             "   class=\"layui-input layui-disabled\"></div>\n" +
                "            </div>\n" +
     "        </div>\n" +
-    "    </div>\n" +
-    "</div>");
+            "<div class='btnArr'  style='display:inline-block;margin: 0 42%'><button onclick='removeProduct("+index+")' type='button' data-type=\"remove\" class='layui-btn layui-btn-danger'>移除</button></div>"+
+    "    </div>\n");
         initSaleInfo();
 }else {
     layer.alert("您已添加过改产品了，请选取其他产品进行添加！")
 }
 
+}
+function removeProduct(i) {
+    layer.confirm("请问是否确定删除？", {
+        btn: ["确定","取消"] //按钮
+    }, function(ind){
+        $("#product"+i).remove();
+        layer.close(ind);
+    }, function(){
+
+    });
+    initSaleInfo();
 }
