@@ -1,7 +1,5 @@
 package com.ht.pojo;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,5 +35,6 @@ public class Record implements Serializable{
     private Integer faultType;//故障类型
     private Integer type;//1安装，2保养，3，维修
     private Integer pid;//外键 对应产品表
-
+    private Customer customer;
+    private Staff staff;
 }

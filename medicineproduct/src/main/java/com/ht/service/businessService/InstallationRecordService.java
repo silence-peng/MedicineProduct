@@ -5,18 +5,11 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface InstallationDispatchService {
+public interface InstallationRecordService {
     /**
-     * 根据地址查询安装派单
+     * 根据地址查询安装记录
      * @param therealaddress 地址
      * @return
      */
     public List<DistributeLeaflets> findByAddress(@Param("therealaddress") String therealaddress);
-
-    /**
-     * 根据id查询安装派单
-     * @param id
-     * @return
-     */
-    public DistributeLeaflets findByID(@Param("id") Integer id);
 }

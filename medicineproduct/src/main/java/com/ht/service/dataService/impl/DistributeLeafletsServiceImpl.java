@@ -2,7 +2,6 @@ package com.ht.service.dataService.impl;
 
 import com.ht.mapper.dataMapper.DistributeLeafletsMapper;
 import com.ht.pojo.DistributeLeaflets;
-import com.ht.pojo.ReturnVisit;
 import com.ht.service.dataService.DistributeLeafletsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

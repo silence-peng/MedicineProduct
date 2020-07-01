@@ -1,7 +1,5 @@
 package com.ht.pojo;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,12 +30,6 @@ public class ReturnVisit implements Serializable{
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date returnVisitDate;//
     private  Integer returnVisitType;//1安装，2保养，3，维修
-
-    public Integer getReturnVisitType() {
-        return returnVisitType;
-    }
-
-    public void setReturnVisitType(Integer returnVisitType) {
-        this.returnVisitType = returnVisitType;
-    }
+    private Customer customer;
+    private Staff staff;
 }

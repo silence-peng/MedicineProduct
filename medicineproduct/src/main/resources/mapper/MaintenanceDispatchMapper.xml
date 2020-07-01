@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ht.mapper.businessMapper.InstallationDispatchMapper">
+<mapper namespace="com.ht.mapper.businessMapper.MaintenanceDispatchMapper">
 
     <resultMap id="distributeleaflets" type="Distributeleaflets">
         <id column="did" property="did"></id>
@@ -18,18 +18,18 @@
     </resultMap>
 
     <resultMap id="customer" type="Customer">
-    <id column="cid" property="cid"></id>
-    <result column="customer_name" property="customerName"></result>
-    <result column="customer_phone" property="customerPhone"></result>
-    <result column="customer_address" property="customerAddress"></result>
-    <result column="corporate_aame" property="corporateName"></result>
-    <result column="signing_date" property="signingDate"></result>
-    <result column="customer_status" property="customerStatus"></result>
-    <result column="remarks" property="remarks"></result>
-    <result column="payment_accountNo" property="paymentAccountNo"></result>
-    <result column="therealaddress" property="therealaddress"></result>
-    <result column="networkaddress" property="networkaddress"></result>
-</resultMap>
+        <id column="cid" property="cid"></id>
+        <result column="customer_name" property="customerName"></result>
+        <result column="customer_phone" property="customerPhone"></result>
+        <result column="customer_address" property="customerAddress"></result>
+        <result column="corporate_aame" property="corporateName"></result>
+        <result column="signing_date" property="signingDate"></result>
+        <result column="customer_status" property="customerStatus"></result>
+        <result column="remarks" property="remarks"></result>
+        <result column="payment_accountNo" property="paymentAccountNo"></result>
+        <result column="therealaddress" property="therealaddress"></result>
+        <result column="networkaddress" property="networkaddress"></result>
+    </resultMap>
 
     <resultMap id="staff" type="Staff">
         <id column="sid" property="sid"></id>
@@ -47,16 +47,17 @@
 
     </resultMap>
 
-    <!--根据地址查询安装派单-->
+    <!--根据地址查询保养派单-->
     <select id="findByAddress" resultMap="distributeleaflets">
-        SELECT * FROM `distribute_leaflets` d,`customer` c,staff s WHERE d.cid=c.cid and d.sid=s.sid and d.type=1
+        SELECT * FROM `distribute_leaflets` d,`customer` c,staff s WHERE d.cid=c.cid and d.sid=s.sid and d.type=2
         <if test="therealaddress!=null and therealaddress!=''">
             AND c.therealaddress like concat('%',#{therealaddress},'%')
         </if>
     </select>
-    <!--根据id查询派单信息-->
+
+    <!--根据id查询保养信息-->
     <select id="findByID" resultMap="distributeleaflets">
         SELECT * FROM `distribute_leaflets` d,`customer` c,staff s
-        WHERE d.cid=c.cid and d.sid=s.sid and d.type=1 and d.did=#{id}
+        WHERE d.cid=c.cid and d.sid=s.sid and d.type=2 and d.did=#{id}
     </select>
 </mapper>

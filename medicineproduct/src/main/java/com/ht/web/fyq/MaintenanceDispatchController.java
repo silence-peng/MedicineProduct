@@ -3,7 +3,7 @@ package com.ht.web.fyq;
 import com.ht.pojo.Customer;
 import com.ht.pojo.DistributeLeaflets;
 import com.ht.service.businessService.InstallationDispatchService;
-
+import com.ht.service.businessService.MaintenanceDispatchService;
 import com.ht.service.dataService.CustomerService;
 import com.ht.service.dataService.DistributeLeafletsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@RequestMapping("/idc")
+@RequestMapping("/mdc")
 @Controller
-public class InstallationDispatchController {
-
+public class MaintenanceDispatchController {
     @Autowired
-    private InstallationDispatchService service;
+    private MaintenanceDispatchService service;
 
     @Autowired
     private DistributeLeafletsService distributeLeafletsService;
@@ -26,7 +25,7 @@ public class InstallationDispatchController {
 
 
     /**
-     * 根据地址查询安装派单信息
+     * 根据地址查询保养派单信息
      * @return
      */
     @RequestMapping(value = "/findDL",produces = {"application/json;charset=utf-8"})
@@ -42,7 +41,8 @@ public class InstallationDispatchController {
      */
     @RequestMapping(value = "/findCustomerByID",produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    public Object findCustomerByID(Customer customer){
+    public Object findCustomerByID(Customer customer)
+    {
         return customerService.getOne(customer);
     }
 
