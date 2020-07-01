@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>新增员工</title>
+		<link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+		<link rel="stylesheet" href="css/layuimini.css?v=2.0.4" media="all">
+		<link rel="stylesheet" href="css/themes/default.css" media="all">
+		<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+
+		<script src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+		<script src="js/lay-config.js?v=2.0.0" charset="utf-8"></script>
+		<!-- 重要js -->
+		<script src="lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="UTF-8"></script>
+	</head>
+	<style type="text/css">
+		.btn-bgcolor {
+			background-color: #286ED6;
+			width: 80px;
+		}
+	
+		.btn-bgcolor2 {
+			background-color: #ff1c1f;
+			width: 80px;
+		}
+	
+		.btn-bgcolor4 {
+			background-color: #00cc00;
+			width: 80px;
+		}
+		.btn-bgcolor3 {
+			
+			width: 80px;
+		}
+	</style>
+	<body>
+	<form class="layui-form">
+		<div class="layui-form-item">
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">员工姓名</label>
+				<div class="layui-input-inline">
+					<input type="hidden" name="sid" id="sid" th:value="${sid}" />
+					<input class="layui-input" type="text" autocomplete="off" id="sname" name="sname" />
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">账号</label>
+				<div class="layui-input-inline">
+					<input class="layui-input" type="text" autocomplete="off" id="AccounNumber" name="AccounNumber" />
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">密码</label>
+				<div class="layui-input-inline">
+					<input class="layui-input" type="password" autocomplete="off" id="Password" name="Password" />
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">确认密码</label>
+				<div class="layui-input-inline">
+					<input class="layui-input" type="password" autocomplete="off" id="ConfirmPassword" name="ConfirmPassword"/>
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">性别</label>
+				<div class="layui-input-inline">
+					<input name="sex" id="man" title="男" type="radio" value="0" /><input name="sex" id="female" title="女" type="radio" value="1" />
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">出生日期</label>
+				<div class="layui-input-inline">
+					<input class="layui-input" type="text" autocomplete="off" id="DateOfBirth" name="DateOfBirth" />
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">手机号码</label>
+				<div class="layui-input-inline">
+					<input class="layui-input" type="text" autocomplete="off" id="PhoneNumber" name="PhoneNumber" />
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">邮箱号码</label>
+				<div class="layui-input-inline">
+					<input class="layui-input" type="text" autocomplete="off"  id="MailBox" name="MailBox"/>
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">现住地址</label>
+				<div class="layui-input-inline">
+					<input class="layui-input" type="text" autocomplete="off"  id="CurrentAddress" name="CurrentAddress"/>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">角色</label>
+				<div class="layui-input-inline">
+					<select id="roleId" class="layui-select">
+						<option value="0">1</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item" style="text-align: center;">
+			<div class="layui-inline">
+				<div class="layui-form-item">
+					<input type="button" class="layui-btn btn-bgcolor" value="确定">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<div class="layui-form-item">
+
+					<input type="button" class="layui-btn layui-btn-primary btn-bgcolor3" value="清空">
+
+				</div>
+			</div>
+		</div>
+
+	</form>
+	</body>
+	<script>
+
+		layui.use(['element', 'form', 'jquery', 'table', 'laydate'], function() {
+			var $ = layui.jquery,
+				element = layui.element,
+				layer = layui.layer,
+				form = layui.form,
+				table = layui.table,
+				laydate = layui.laydate;
+
+
+				//日期选择器
+				laydate.render({ 
+				  elem: '#DateOfBirth'
+				  //,type: 'date' //默认，可不填
+				});
+
+		})
+
+
+		function selects() {
+			layui.use('form',function () {
+				var form=layui.form;
+				form.render();
+			})
+		}
+
+		$(document).ready(function () {
+
+			$("#roleId").load("/RoleAll",function(result){
+				var role=eval("("+result+")");
+				$("#roleId").append("<option value=''>请选择</option>")
+				$(role).each(function(){
+					$("#roleId").append("<option value="+this.rid+">"+this.rname+"</option>")
+				})
+
+				updetaquery();
+				selects();
+			});
+		})
+
+		
+		function updetaquery() {
+			$.ajax({
+				url:"/UpdateStaffquery",
+				type:"post",
+				data: {"sid":$("#sid").val()},
+				dataType:"json",
+				success:function(result){
+					$("#sname").val(result.sname);
+
+					$("#AccounNumber").val(result.accountNumber);
+
+					if(result.sex==0)
+					{
+						$("#man").prop("checked","true");
+					}else
+					{
+						$("#female").prop("checked","true");
+					}
+
+
+					$("#DateOfBirth").val(result.birthday);
+					$("#PhoneNumber").val(result.phoneNumber);
+					$("#MailBox").val(result.email);
+					$("#CurrentAddress").val(result.residentialAddress);
+
+
+
+					$("#roleId").val(result.role);
+					//重载
+					selects();
+				}
+			})
+		}
+
+	</script>
+</html>

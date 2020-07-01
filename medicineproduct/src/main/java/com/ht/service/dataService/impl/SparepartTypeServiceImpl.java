@@ -1,9 +1,8 @@
 package com.ht.service.dataService.impl;
 
-import com.ht.mapper.dataMapper.SparepartMapper;
 import com.ht.mapper.dataMapper.SparepartTypeMapper;
+import com.ht.pojo.ReturnVisit;
 import com.ht.pojo.SparepartType;
-import com.ht.service.dataService.SparepartService;
 import com.ht.service.dataService.SparepartTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

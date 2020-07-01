@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.mapper.businessMapper.HeRecordmapper">
+    <select id="getrecord" resultMap="record">
+        SELECT r.*,s.`sname`,c.`customer_name`,p.`product_name` FROM record r, staff s, customer c, product p
+        WHERE r.sid=s.`sid` AND r.`cid`=c.`cid` AND r.`pid`=p.`pid` AND r.`type`=1
+        <if test="customer_name!=null and customer_name!=''">
+            AND  c.`customer_name`=#{customer_name}
+        </if>
+        limit #{page} , #{limit}
+    </select>
+    <select id="getrecords" resultType="int">
+        SELECT count(*) FROM record r, staff s, customer c, product p
+        WHERE r.sid=s.`sid` AND r.`cid`=c.`cid` AND r.`pid`=p.`pid` AND r.`type`=2
+        <if test="customer_name!=null and customer_name!=''">
+            AND  c.`customer_name`=#{customer_name}
+        </if>
+    </select>
+    <resultMap id="record" type="HjRecord">
+        <id column="mid" property="mid"></id>
+        <result column="sid" property="sid"/>
+        <result column="cid" property="cid"/>
+        <result column="pre_photos" property="prePhotos"/>
+        <result column="suf_photos" property="sufPhotos"/>
+        <result column="repair_date" property="repairDate"/>
+        <result column="repair_assessment" property="repairAssessment"/>
+        <result column="status" property="status"/>
+        <result column="fault_description" property="faultDescription"/>
+        <result column="region" property="region"/>
+        <result column="fault_type" property="faultType"/>
+        <result column="type" property="type"/>
+        <result column="pid" property="pid"/>
+        <association property="customer">
+            <id column="cid" property="cid"/>
+            <result column="customer_name" property="customerName"/>
+        </association>
+        <association property="staff">
+            <id column="sid" property="sid"/>
+            <result column="sname" property="sname"/>
+        </association>
+        <association property="product">
+            <id column="pid" property="pid"/>
+            <result column="product_name" property="productName"/>
+        </association>
+    </resultMap>
+</mapper>

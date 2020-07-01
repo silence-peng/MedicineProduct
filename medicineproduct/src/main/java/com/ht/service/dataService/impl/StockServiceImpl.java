@@ -1,9 +1,8 @@
 package com.ht.service.dataService.impl;
 
-import com.ht.mapper.dataMapper.OrderDetailMapper;
 import com.ht.mapper.dataMapper.StockMapper;
+import com.ht.pojo.ReturnVisit;
 import com.ht.pojo.Stock;
-import com.ht.service.dataService.OrderDetailService;
 import com.ht.service.dataService.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

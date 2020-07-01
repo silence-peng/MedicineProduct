@@ -1,6 +1,5 @@
 package com.ht.web.fyq;
 
-import com.ht.pojo.Customer;
 import com.ht.pojo.Record;
 import com.ht.pojo.ReturnVisit;
 import com.ht.service.dataService.*;
@@ -8,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 @RequestMapping("/rv")
 @Controller
@@ -86,7 +83,7 @@ public class ReturnVisitController {
      */
     @RequestMapping(value = "/getRecord",produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    public Object getRecord(Record record){
+    public Record getRecord(Record record){
         return recordService.getOne(record);
     }
 }

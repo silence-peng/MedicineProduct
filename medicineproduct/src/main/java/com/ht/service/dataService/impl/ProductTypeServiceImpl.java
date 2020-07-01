@@ -1,9 +1,8 @@
 package com.ht.service.dataService.impl;
 
-import com.ht.mapper.dataMapper.CustomerMapper;
 import com.ht.mapper.dataMapper.ProductTypeMapper;
 import com.ht.pojo.ProductType;
-import com.ht.service.dataService.CustomerService;
+import com.ht.pojo.ReturnVisit;
 import com.ht.service.dataService.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

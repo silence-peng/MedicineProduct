@@ -1,5 +1,7 @@
 package com.ht.util;
 
+import com.ht.pojo.ReturnVisit;
+
 import java.util.List;
 
 
@@ -34,6 +36,8 @@ public interface DataService<T> {
      * @return 影响结果行数
      */
     Integer add(T t);
+
+
 
     /**
      * 删除
