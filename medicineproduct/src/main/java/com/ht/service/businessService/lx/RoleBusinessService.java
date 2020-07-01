@@ -8,10 +8,11 @@ import com.ht.service.dataService.RoleService;
 import com.ht.util.DataService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
-
+@Service
 public class RoleBusinessService  {
     @Autowired
     public RoleMapper roleMapper;

@@ -1,11 +1,11 @@
-package com.ht.service.businessService.impl;
+package com.ht.service.businessService.fyq.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.ht.mapper.businessMapper.HistoricalRecordsMapper;
+import com.ht.mapper.businessMapper.fyq.HistoricalRecordsMapper;
 import com.ht.pojo.Record;
 import com.ht.pojo.ReturnVisit;
-import com.ht.service.businessService.HistoricalRecordsService;
+import com.ht.service.businessService.fyq.HistoricalRecordsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

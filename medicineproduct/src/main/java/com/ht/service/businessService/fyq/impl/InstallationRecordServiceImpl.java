@@ -1,7 +1,7 @@
-package com.ht.service.businessService.impl;
+package com.ht.service.businessService.fyq.impl;
 
-import com.ht.mapper.businessMapper.InstallationRecordMapper;
-import com.ht.service.businessService.InstallationRecordService;
+import com.ht.mapper.businessMapper.fyq.InstallationRecordMapper;
+import com.ht.service.businessService.fyq.InstallationRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,22 +1,20 @@
-package com.ht.mapper.businessMapper;
+package com.ht.service.businessService.fyq;
 
 import com.ht.pojo.DistributeLeaflets;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface MaintenanceDispatchMapper {
+public interface InstallationDispatchService {
     /**
-     * 根据地址查询保养派单
+     * 根据地址查询安装派单
      * @param therealaddress 地址
      * @return
      */
     public List<DistributeLeaflets> findByAddress(@Param("therealaddress") String therealaddress);
 
     /**
-     * 根据id查询保养派单
+     * 根据id查询安装派单
      * @param id
      * @return
      */

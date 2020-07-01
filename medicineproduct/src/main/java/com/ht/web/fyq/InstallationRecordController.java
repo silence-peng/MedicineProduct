@@ -2,7 +2,7 @@ package com.ht.web.fyq;
 
 import com.ht.pojo.Product;
 import com.ht.pojo.Record;
-import com.ht.service.businessService.InstallationRecordService;
+import com.ht.service.businessService.fyq.InstallationRecordService;
 import com.ht.service.dataService.ProductService;
 import com.ht.service.dataService.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;

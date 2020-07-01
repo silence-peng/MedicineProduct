@@ -1,14 +1,11 @@
-package com.ht.mapper.businessMapper;
+package com.ht.service.businessService.fyq;
 
 import com.ht.pojo.DistributeLeaflets;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface InstallationRecordMapper {
-
+public interface InstallationRecordService {
     /**
      * 根据地址查询安装记录
      * @param therealaddress 地址

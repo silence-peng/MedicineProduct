@@ -1,13 +1,15 @@
-package com.ht.service.businessService;
+package com.ht.mapper.businessMapper.fyq;
 
-import com.github.pagehelper.PageInfo;
 import com.ht.pojo.Record;
 import com.ht.pojo.ReturnVisit;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface HistoricalRecordsService {
+@Repository
+public interface HistoricalRecordsMapper {
+
     /**
      * 根据地址和类型查询历史记录
      * @param therealaddress 地址
@@ -15,7 +17,7 @@ public interface HistoricalRecordsService {
      * @param sid 员工id
      * @return
      */
-    public PageInfo<Record> findByAddressAndType(String therealaddress, Integer type, Integer sid,Integer pageNum);
+    public List<Record> findByAddressAndType(@Param("therealaddress")String therealaddress,@Param("type") Integer type,@Param("sid") Integer sid);
 
     /**
      * 根据客户名称查询安装记录
@@ -23,5 +25,5 @@ public interface HistoricalRecordsService {
      * @param sid 员工id
      * @return
      */
-    public PageInfo<ReturnVisit> findByCname(String customerName,Integer sid,Integer pageNum);
+    public List<ReturnVisit> findByCname(@Param("customerName") String customerName,@Param("sid") Integer sid);
 }

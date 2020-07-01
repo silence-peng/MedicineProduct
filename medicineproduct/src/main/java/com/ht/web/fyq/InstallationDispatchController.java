@@ -2,7 +2,7 @@ package com.ht.web.fyq;
 
 import com.ht.pojo.Customer;
 import com.ht.pojo.DistributeLeaflets;
-import com.ht.service.businessService.InstallationDispatchService;
+import com.ht.service.businessService.fyq.InstallationDispatchService;
 
 import com.ht.service.dataService.CustomerService;
 import com.ht.service.dataService.DistributeLeafletsService;
