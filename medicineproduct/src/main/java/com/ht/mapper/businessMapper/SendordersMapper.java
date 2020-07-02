@@ -11,16 +11,15 @@ import java.util.List;
 public interface SendordersMapper {
     /**
      *
-     * @param sid  员工id
-     * @param Type  派单类型
-     * @return 派单信息
+     * @param sid 根据操作员id
+     * @return
      */
-    List<DistributeLeafletss> getDistributeleaflets(@Param("sid") Integer sid,@Param("type") Integer Type);
+    List<DistributeLeafletss> getDistributeleaflets(@Param("sid") Integer sid);
 
     /**
      *
-     * @param did 根据派单id查询下
-     * @return 返回改派单详情
+     * @param did 根据派单id删除派单信息
+     * @return 是否成功
      */
-//    DistributeLeafletss getDistributeleafletsparticulars(@Param("did") Integer did);
+    int delDistributeLeaflets(@Param("did") Integer did);
 }

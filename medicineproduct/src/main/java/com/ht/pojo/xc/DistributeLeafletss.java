@@ -1,9 +1,7 @@
 package com.ht.pojo.xc;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ht.pojo.Staff;
-import com.ht.pojo.Customer;
-import com.ht.pojo.Order;
+import com.ht.pojo.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,7 +35,25 @@ public class DistributeLeafletss implements Serializable{
     private  Date endDate;//截止日期
     private Staff staffs;
     private Customer customers;
-    private Order orders;
+    private OrderDetail OrderDetails;
+    private  Product products;
+    private  Order orders;
+
+    public Order getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Order orders) {
+        this.orders = orders;
+    }
+
+    public Product getProducts() {
+        return products;
+    }
+
+    public void setProducts(Product products) {
+        this.products = products;
+    }
 
     public Integer getDid() {
         return did;
@@ -119,11 +135,11 @@ public class DistributeLeafletss implements Serializable{
         this.customers = customers;
     }
 
-    public Order getOrders() {
-        return orders;
+    public OrderDetail getOrderDetails() {
+        return OrderDetails;
     }
 
-    public void setOrders(Order orders) {
-        this.orders = orders;
+    public void setOrderDetails(OrderDetail orderDetails) {
+        OrderDetails = orderDetails;
     }
 }

@@ -16,19 +16,18 @@ public class SendordersService {
     /**
      *
      * @param sid  员工id
-     * @param Type  派单类型
      * @return 派单信息
      */
-    public List<DistributeLeafletss> getDistributeleaflets(Integer sid,Integer Type){
-        return  sendordersMapper.getDistributeleaflets(sid,Type);
+    public List<DistributeLeafletss> getDistributeleaflets(Integer sid){
+        return  sendordersMapper.getDistributeleaflets(sid);
     }
 
     /**
      *
-     * @param did 根据派单id查询下
-     * @return 返回改派单详情
+     * @param did 根据派单id删除派单信息
+     * @return 是否成功
      */
-//    public DistributeLeafletss getDistributeleafletsparticulars(@Param("did") Integer did){
-//        return  sendordersMapper.getDistributeleafletsparticulars(did);
-//    }
+    public int delDistributeLeaflets(Integer did){
+        return sendordersMapper.delDistributeLeaflets(did);
+    }
 }

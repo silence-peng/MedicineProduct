@@ -27,4 +27,13 @@ public class LoginService {
      return  loginMapper.getstaff(accountnumber,password);
     }
 
+    /**
+     *
+     * @param password 密码
+     * @param sid 员工id
+     * @return 是否成功
+     */
+    public int upstaff(String password,Integer sid){
+       return loginMapper.upstaff(password,sid);
+    }
 }
