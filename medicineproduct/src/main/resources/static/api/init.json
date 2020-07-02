@@ -239,13 +239,13 @@
 			      "child": [
 			        {
 			          "title": "销售单",
-			          "href": "",
-			          "icon": "fa fa-file-o",
-			          "target": ""
+			          "href": "saveSaleInfo",
+			          "icon": "fa fa-file-text",
+			          "target": "_self"
 			        },
 			        {
 			          "title": "单据查询",
-			          "href": "page/error.html",
+			          "href": "saleInfo",
 			          "icon": "fa fa-file-text",
 			          "target": "_self"
 			        }

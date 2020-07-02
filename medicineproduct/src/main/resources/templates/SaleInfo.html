@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/common.css" media="all">
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <script src="js/jquery.js"></script>
 </head>
 <body>
 <div class="layui-fluid" style="padding: 30px">
@@ -28,29 +29,34 @@
     <form class="layui-form" id="data">
         <div class="layui-row layui-col-space10">
             <div class="layui-col-xs4">订单日期</div>
-            <div class="layui-col-xs2">订单编号</div>
-            <div class="layui-col-xs2">产品编号</div>
-            <div class="layui-col-xs2">销售编号</div>
+            <div class="layui-col-xs2">销售员</div>
+            <div class="layui-col-xs2">客户</div>
+            <div class="layui-col-xs2">订单状态</div>
         </div>
         <div class="layui-row layui-col-space10">
             <div class="layui-col-xs4">
                 <div class="layui-form-item">
                     <div class="layui-input-inline" style="width: 40%" >
-                        <input type="text" name="orderDate" id="orderDate" lay-verify="startDate"
+                        <input type="text" name="orderDate" id="startDate" lay-verify="startDate"
                                placeholder="开始日期" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-form-mid">-</div>
                     <div class="layui-input-inline" style="width: 40%">
-                        <input type="text"  name="cretedate" id="cretedate" lay-verify="startDate"
+                        <input type="text"  name="cretedate" id="endDate" lay-verify="startDate"
                                placeholder="结束日期" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
-            <div class="layui-col-xs2"><input type="text" class="layui-input"></div>
-            <div class="layui-col-xs2"><input type="text" class="layui-input"></div>
-            <div class="layui-col-xs2"><input type="text" class="layui-input"></div>
+            <div class="layui-col-xs2"><select name="salesman" class="layui-select" id="staff"></select></div>
+            <div class="layui-col-xs2"><select name="cid" class="layui-select" id="customer"></select></div>
+            <div class="layui-col-xs2"><select name="state" class="layui-select" id="state">
+                <option value="0">请选择</option>
+                <option value="1">代配送</option>
+                <option value="2">待安装</option>
+                <option value="3">已完成</option>
+            </select></div>
             <div>
-                <input type="button" value="查找" style="height: 36px" class="layui-btn layui-btn-normal"/>
+                <input type="button" value="查找" style="height: 36px" class="layui-btn find layui-btn-normal"/>
             </div>
             <div class="layui-row">
                 <table class="layui-table" id="saleInfo"></table>

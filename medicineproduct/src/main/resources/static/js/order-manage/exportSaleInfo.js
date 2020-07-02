@@ -1,9 +1,9 @@
-layui.use(['jquery','form','table','upload'],function () {
+layui.use(['jquery','form','table','upload','element'],function () {
     var $=layui.jquery
         ,form=layui.form
         ,upload = layui.upload
+        ,element = layui.element
         ,table=layui.table;
-
 
     table.render({
         elem: '#exportInfo'
