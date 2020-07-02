@@ -17,11 +17,21 @@ public class HeRecordserviceImpl implements HeRecordservice {
     private HeRecordmapper heRecordmapper;
 
     @Override
-    public ResultMap<List<HjRecord>> getrecord(String customer_name, Integer page, Integer limit) {
-        List<HjRecord> list=heRecordmapper.getrecord(customer_name, (page-1)*limit, limit);
-        Integer count=heRecordmapper.getrecords(customer_name);
+    public ResultMap<List<HjRecord>> getrecord(String customer_name, Integer type, Integer page, Integer limit) {
+        List<HjRecord> list=heRecordmapper.getrecord(customer_name,type, (page-1)*limit, limit);
+        Integer count=heRecordmapper.getrecords(customer_name,type);
         String msg="";
         int code=0;
         return new ResultMap<>(msg, list, code, count);
+    }
+
+    @Override
+    public Integer deletes(Integer[] ids) {
+        return heRecordmapper.deletes(ids);
+    }
+
+    @Override
+    public HjRecord getrecordss(Integer mid) {
+        return heRecordmapper.getrecordss(mid);
     }
 }

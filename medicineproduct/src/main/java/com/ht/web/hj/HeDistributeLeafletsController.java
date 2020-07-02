@@ -41,10 +41,16 @@ public class HeDistributeLeafletsController{
   @ResponseBody
   @RequestMapping("/getdistributeleaflets")
   public ResultMap<List<HjDistributeLeaflets>> loadSaleInfoTable(Integer page, Integer limit, String name ){
-    return  service.getdistributeleaflets(name,page,limit);
+    Integer type=2;
+    return  service.getdistributeleaflets(name,type,page,limit);
   }
 
-
+  @ResponseBody
+  @RequestMapping("/getdistributeleafletss")
+  public ResultMap<List<HjDistributeLeaflets>> loadSaleInfoTables(Integer page, Integer limit, String name ){
+    Integer type=3;
+    return  service.getdistributeleaflets(name,type,page,limit);
+  }
   //查询员工id
   @ResponseBody
   @RequestMapping("/zhi")
@@ -72,7 +78,7 @@ public class HeDistributeLeafletsController{
     distributeLeaflets.setSid(yuangongid);
     distributeLeaflets.setOid(dingdanid);
     distributeLeaflets.setType(2);
-    distributeLeaflets.setStatus(2);
+    distributeLeaflets.setStatus(1);
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     distributeLeaflets.setCreateDate(simpleDateFormat.parse(paidandate));
     distributeLeaflets.setEndDate(simpleDateFormat.parse(jiezdate));
@@ -82,7 +88,29 @@ public class HeDistributeLeafletsController{
     }
     return "no";
   }
-
+  //维修派单
+  @ResponseBody
+  @RequestMapping("/addweixiupaidan")
+  public String addweixiupaidan( DistributeLeaflets  distributeLeaflets,Integer yuangongid,Integer dingdanid,String paidandate,String jiezdate) throws Exception {
+    Order orders=new Order();
+    orders.setOid(dingdanid);
+    Order order = orderService.getOne(orders);
+    //客户id
+    Integer kehuid = order.getCid();
+    distributeLeaflets.setCid(kehuid);
+    distributeLeaflets.setSid(yuangongid);
+    distributeLeaflets.setOid(dingdanid);
+    distributeLeaflets.setType(3);
+    distributeLeaflets.setStatus(1);
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    distributeLeaflets.setCreateDate(simpleDateFormat.parse(paidandate));
+    distributeLeaflets.setEndDate(simpleDateFormat.parse(jiezdate));
+    Integer list = distributeLeafletsService.add(distributeLeaflets);
+    if (list > 0) {
+      return "yes";
+    }
+    return "no";
+  }
   //修改派单
   @ResponseBody
   @RequestMapping("/updatepaidan")
@@ -95,8 +123,6 @@ public class HeDistributeLeafletsController{
     distributeLeaflets.setCid(kehuid);
     distributeLeaflets.setSid(yuangongid);
     distributeLeaflets.setOid(dingdanid);
-    distributeLeaflets.setType(2);
-    distributeLeaflets.setStatus(2);
     distributeLeaflets.setStatus(sex);
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     distributeLeaflets.setCreateDate(simpleDateFormat.parse(paidandate));
@@ -124,5 +150,13 @@ public class HeDistributeLeafletsController{
     DistributeLeaflets list=distributeLeafletsService.getOne(distributeLeaflets);
     model.addAttribute("list",list);
     return "updateMaintainsendsingle";
+  }
+  @RequestMapping("/updates")
+  public String updates(Integer id, Model model){
+    DistributeLeaflets distributeLeaflets=new DistributeLeaflets();
+    distributeLeaflets.setDid(id);
+    DistributeLeaflets list=distributeLeafletsService.getOne(distributeLeaflets);
+    model.addAttribute("list",list);
+    return "updateSendasinglemaintenance";
   }
 }

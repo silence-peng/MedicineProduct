@@ -22,7 +22,7 @@
 <body>
 <div style="margin-left: 20px;">
 	<br />
-	<form class="layui-form layui-form-pane" action="">
+	<form class="layui-form layui-form-pane"lay-filter="cun" id="form">
 		<div class="layui-inline" style="!important;">
 			<div class="layui-inline">
 				<div class="layui-form-item">
@@ -69,49 +69,42 @@
 			<input type="hidden" th:value="${list.did}" id="id">
 			<span class="layui-form-label" style="width: 15%; background-color: #FFFFFF; border: solid #FFFFFF;">状态</span>
 			<div class="layui-input-block">
-				<input type="radio" name="a" id="a1"  value="1" title="待接收">
-				<input type="radio" name="a"  id="a2" value="2" title="已接收">
-				<input type="radio" name="a" id="a3" value="3" title="已完成">
-				<input type="hidden" th:value="${list.status}" id="sit">
+				<input type="radio" name="a" th:checked="${#strings.contains(list.status,'1')}"  value="1" title="待接收">
+				<input type="radio" name="a"  th:checked="${#strings.contains(list.status,'2')}" value="2" title="已接收">
+				<input type="radio" name="a" th:checked="${#strings.contains(list.status,'3')}" value="3" title="已完成">
 			</div>
 		</div>
 		<br/>
 		<br/>
 		<div class="layui-form-item">
 			<button type="button" id="xiugai" class="layui-btn layui-btn-sm  btn-bgcolor">修改</button>
-			<button type="button" id="chongz" class="layui-btn layui-btn-sm btn-bgcolor1">重置</button>
-		</div>
+		 </div>
 	</form>
 </div>
 </body>
 <script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
 <script>
-	layui.use(['form', 'layedit', 'laydate','jquery'], function() {
+	layui.use(['form', 'layedit', 'laydate','jquery','form'], function() {
 		var form = layui.form,
 				layer = layui.layer,
 				layedit = layui.layedit,
 				$=layui.jquery,
-				laydate = layui.laydate;
+				laydate = layui.laydate,
+		form=layui.form;
 
 		//日期
 		layui.laydate.render({
 			elem: '#paidandate',
 			type: 'date',
 			trigger: 'click' ,
-			max: -1,
-			done: function (value, date, endDate) {
 
-			}
 		});
 		layui.laydate.render({
 			elem: '#jiezdate',
 			type: 'date',
 			trigger: 'click' ,
-			max: -1,
-			done: function (value, date, endDate) {
 
-			}
 		});
 		//查询员工id
 		$.post("/hj/zhi", function (result) {
@@ -213,18 +206,7 @@
 				"desc": "我爱 layui"
 			});
 		});
-		//选择状态
-		$(function(){
-			//状态id
-			var sit = $("#sit").val();
-			if (sit=="1") {
-				$("#a1").prop("checked", "checked");
-			}else if(sit=="2"){
-				$("#a2").prop("checked", "checked");
-			}else{
-				$("#a3").prop("checked", "checked");
-			}
-		})
+
 	});
 </script>
 </html>
