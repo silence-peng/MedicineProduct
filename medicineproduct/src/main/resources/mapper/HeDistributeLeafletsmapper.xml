@@ -3,14 +3,14 @@
 <mapper namespace="com.ht.mapper.businessMapper.HeDistributeLeafletsmapper">
     <!--根据客户查询保养信息-->
     <select id="getdistributeleaflets" resultMap="hjdistributeLeaflets">
-        SELECT d.*,c.customer_name,s.sname FROM distribute_leaflets d, customer c,staff s WHERE d.`cid`=c.`cid` AND d.`type`=2 AND s.`sid`=d.`sid`
+        SELECT d.*,c.customer_name,s.sname,c.customer_address FROM distribute_leaflets d, customer c,staff s WHERE d.`cid`=c.`cid` AND s.`sid`=d.`sid` AND d.`type`=#{type}
         <if test="customer_name!=null and customer_name!=''">
           AND  c.`customer_name`=#{customer_name}
         </if>
         limit #{page} , #{limit}
     </select>
     <select id="getdistributeleafletss" resultType="int">
-        SELECT count(*) FROM distribute_leaflets d, customer c,staff s WHERE d.`cid`=c.`cid` AND d.`type`=2 AND s.`sid`=d.`sid`
+        SELECT count(*) FROM distribute_leaflets d, customer c,staff s WHERE d.`cid`=c.`cid` AND s.`sid`=d.`sid` AND d.`type`=#{type}
         <if test="customer_name!=null and customer_name!=''">
             AND  c.`customer_name`=#{customer_name}
         </if>
@@ -27,6 +27,7 @@
         <association property="customer">
             <id column="cid" property="cid"/>
             <result column="customer_name" property="customerName"/>
+            <result column="customer_address" property="customerAddress"></result>
         </association>
         <association property="staff">
             <id column="sid" property="sid"/>

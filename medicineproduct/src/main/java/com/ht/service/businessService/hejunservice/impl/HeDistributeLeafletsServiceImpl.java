@@ -18,9 +18,9 @@ public class HeDistributeLeafletsServiceImpl implements HeDistributeLeafletsServ
     private HeDistributeLeafletsmapper heDistributeLeafletsmapper;
 
     @Override
-    public ResultMap<List<HjDistributeLeaflets>> getdistributeleaflets(String customer_name, Integer page, Integer limit) {
-        List<HjDistributeLeaflets> list=heDistributeLeafletsmapper.getdistributeleaflets(customer_name, (page-1)*limit, limit);
-        Integer count=heDistributeLeafletsmapper.getdistributeleafletss(customer_name);
+    public ResultMap<List<HjDistributeLeaflets>> getdistributeleaflets(String customer_name, Integer type,Integer page, Integer limit) {
+        List<HjDistributeLeaflets> list=heDistributeLeafletsmapper.getdistributeleaflets(customer_name,type, (page-1)*limit, limit);
+        Integer count=heDistributeLeafletsmapper.getdistributeleafletss(customer_name,type);
         String msg="";
         int code=0;
         return new ResultMap<>(msg, list, code, count);

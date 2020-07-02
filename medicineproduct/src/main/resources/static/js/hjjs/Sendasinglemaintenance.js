@@ -5,13 +5,13 @@ layui.use(['laydate', 'jquery', 'table'], function () {
 
     table.render({
         elem: '#test'
-        , url: '/hj/getdistributeleaflets'
+        , url: '/hj/getdistributeleafletss'
         , cols: [[
             {type: 'checkbox'}
             , {field: 'did', title: '派单序号'}
             , {field: 'sname', title: '员工', templet: '<span>{{d.staff.sname}}</span>'}
             , {field: 'customerName', title: '客户', templet: '<span>{{d.customer.customerName}}</span>'}
-            , {field: 'customerAddress', title: '保养地址', templet: '<span>{{d.customer.customerAddress}}</span>'}
+            , {field: 'customerAddress', title: '维修地址', templet: '<span>{{d.customer.customerAddress}}</span>'}
             , {field: 'endDate', title: '截止完成日期'}
         ]]
         , page: true
@@ -35,8 +35,8 @@ layui.use(['laydate', 'jquery', 'table'], function () {
     $("#dianji").click(function () {
         layer.open({
             type: 2,
-            content: 'addMaintainsendsingle.html', //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
-            title: "新增保养派单",
+            content: 'addSendasinglemaintenance.html', //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+            title: "新增维修派单",
             area: ['700', '600px']
         });
     });
@@ -50,8 +50,8 @@ layui.use(['laydate', 'jquery', 'table'], function () {
             });
             layer.open({
                 type: 2,
-                content: '/hj/update?id='+ids, //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
-                title: "修改保养派单",
+                content: '/hj/updates?id='+ids, //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                title: "修改维修派单",
                 area: ['700px', '600px']
             });
         }else if(data.length>=2){

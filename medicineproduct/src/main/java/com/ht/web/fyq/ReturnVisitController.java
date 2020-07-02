@@ -2,6 +2,7 @@ package com.ht.web.fyq;
 
 import com.ht.pojo.Record;
 import com.ht.pojo.ReturnVisit;
+import com.ht.service.businessService.fyq.ReturnVisitRecordService;
 import com.ht.service.dataService.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class ReturnVisitController {
 
     @Autowired
     private RecordService recordService;
+
+    @Autowired
+    private ReturnVisitRecordService returnVisitRecordService;
 
     /**
      * 查询所有客户
@@ -73,7 +77,7 @@ public class ReturnVisitController {
      */
     @RequestMapping(value = "/getRVById",produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    public ReturnVisit getRVById(ReturnVisit returnVisit){
+    public Object getRVById(ReturnVisit returnVisit){
         return returnVisitService.getOne(returnVisit);
     }
 
@@ -85,5 +89,27 @@ public class ReturnVisitController {
     @ResponseBody
     public Record getRecord(Record record){
         return recordService.getOne(record);
+    }
+
+    /**
+     * 根据客户姓名查询安装记录
+     * @param customerName
+     * @return
+     */
+    @RequestMapping(value = "/findRVByName",produces = {"application/json;charset=utf-8"})
+    @ResponseBody
+    public Object findRVByName(String customerName){
+        return returnVisitRecordService.findByCname(customerName);
+    }
+
+    /**
+     * 根据id删除回访记录
+     * @param returnVisit
+     * @return
+     */
+    @RequestMapping(value = "/delRV",produces = {"application/json;charset=utf-8"})
+    @ResponseBody
+    public Integer delRV(ReturnVisit returnVisit){
+        return  returnVisitService.del(returnVisit);
     }
 }

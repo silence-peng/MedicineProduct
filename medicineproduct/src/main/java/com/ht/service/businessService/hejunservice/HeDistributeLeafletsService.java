@@ -15,7 +15,7 @@ public interface HeDistributeLeafletsService {
      * @param customer_name 地址
      * @return
      */
-    ResultMap<List<HjDistributeLeaflets>> getdistributeleaflets(String customer_name, Integer page , Integer limit);
+    ResultMap<List<HjDistributeLeaflets>> getdistributeleaflets(String customer_name,Integer type, Integer page , Integer limit);
     /**
      * 删除
      * @param ids id

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/layuimini.css" media="all">
+    <style type="text/css">
+        .btn-bgcolor {
+            background-color: #286ED6;
+            width: 70px;
+            margin-left: 20px;
+        }
+        .btn-bgcolor1 {
+            background-color: #b0b0b0;
+            color: #000000;
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+<input type="hidden" id="id" th:value="${id}">
+<div style="margin-left: 20px;">
+    <br />
+    <form class="layui-form layui-form-pane" id="form" lay-filter="cun">
+        <input type="hidden" name="mid">
+        <div class="layui-inline" style="!important;">
+            <div class="layui-inline">
+                <div class="layui-form-item">
+                    安装人员名称
+                </div>
+                <div class="layui-inline">
+                    <input type="tel" id="sname" disabled  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline" style="margin-left: 10px;">
+                <div class="layui-form-item">
+                    产品
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <input type="tel" id="productName" disabled  autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <br />
+        <br />
+        <div class="layui-upload">
+            <button type="button" class="layui-btn" id="test1">安装前拍照</button>
+            <div class="layui-upload-list">
+                <img width="120px" height="120px"  id="prePhotos">
+                <p id="demoText"></p>
+            </div>
+        </div>
+        <div class="layui-upload">
+            <button type="button" class="layui-btn" id="test2">安装后拍照</button>
+            <div class="layui-upload-list">
+                <img  width="120px" height="120px" id="sufPhotos">
+                <p id="demoTexts"></p>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">安装日期</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="repairDate" class="layui-input" id="test3" placeholder="yyyy-MM-dd">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+
+            <label class="layui-form-label" style="width: 25%">是否安装成功</label>
+            <div class="layui-input-block">
+                <input type="radio"  name="status" value="0" title="是">
+                <input type="radio"  name="status" value="1" title="否">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">安装评估	</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" name="repairAssessment" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button type="button" lay-submit
+                    lay-filter="baocun" class="layui-btn layui-btn-sm  btn-bgcolor">保存</button>
+        </div>
+    </form>
+</div>
+</div>
+</body>
+<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use(['upload','laydate','layedit','form'], function(){
+        var $ = layui.jquery
+            ,laydate = layui.laydate
+            ,layedit = layui.layedit
+            ,upload = layui.upload
+            ,form=layui.form;
+        layui.laydate.render({
+            elem: '#test3',
+            type: 'date',
+            trigger: 'click' ,
+
+        });
+        //显示修改值
+        var id=$("#id").val();
+        $.post("/hj/Maintenancee", {id:id}, function (result) {
+            form.val("cun",result);
+            $("#sname").val(result.staff.sname);
+            $("#productName").val(result.product.productName);
+            $('#prePhotos').attr('src', "/images/"+result.prePhotos);
+            $('#sufPhotos').attr('src', "/images/"+result.sufPhotos);
+
+        });
+        form.on('submit(baocun)', function (data) {
+            $.ajax({
+                url: '/hj/updaterecord',
+                type: 'post',
+                data: $("#form").serialize(),
+                dataType: 'text',
+                success: function (e) {
+                    if (e == 'yes') {
+                        layer.msg("评估成功！", {time: 1000, icon: 6}, function () {
+
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            window.parent.location.reload();
+                            parent.layer.close(index);
+                            layer.open({
+                                oend: function () {
+                                    table.reload('testReload');
+                                }
+                            })
+                        });
+                    }
+                }
+            })
+            return false;
+        })
+
+        var uploadInst = upload.render({
+            elem: '#test2'
+            ,url: 'https://httpbin.org/post' //改成您自己的上传接口
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#sufPhotos').attr('src', "/images/"+result);
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            },
+        });
+        var uploadInst = upload.render({
+            elem: '#test2'
+            ,url: 'https://httpbin.org/post' //改成您自己的上传接口
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo2').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoTexts');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            },
+        });
+    });
+</script>
+</html>
