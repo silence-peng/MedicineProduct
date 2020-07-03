@@ -98,6 +98,17 @@ public class HistoricalRecordsController {
     }
 
     /**
+     * 查询2条历史记录
+     * @return
+     */
+    @RequestMapping(value = "/findTop2",produces = {"application/json;charset=utf-8"})
+    @ResponseBody
+    public Object findTop2(){
+
+        return service.findTop2(1);
+    }
+
+    /**
      * 查询所有客户
      * @return
      */
