@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.mapper.businessMapper.fyq.HistoricalRecordsMapper">
+
+    <resultMap id="record" type="Record">
+        <id column="mid" property="mid"></id>
+        <result column="sid" property="sid"></result>
+        <result column="cid" property="cid"></result>
+        <result column="pre_photos" property="prePhotos"></result>
+        <result column="suf_photos" property="sufPhotos"></result>
+        <result column="repair_date" property="repairDate"></result>
+        <result column="repair_assessment" property="repairAssessment"></result>
+        <result column="status" property="status"></result>
+        <result column="fault_description" property="faultDescription"></result>
+        <result column="region" property="region"></result>
+        <result column="fault_type" property="faultType"></result>
+        <result column="type" property="type"></result>
+        <result column="pid" property="pid"></result>
+        <association property="customer" javaType="Customer" resultMap="customer"></association>
+        <association property="staff" javaType="Staff" resultMap="staff"></association>
+    </resultMap>
+
+    <resultMap id="returnVisit" type="ReturnVisit">
+        <id column="rid" property="rid"></id>
+        <result column="cid" property="cid"></result>
+        <result column="record_id" property="recordId"></result>
+        <result column="way_of_return_visit" property="wayOfReturnVisit"></result>
+        <result column="describes" property="describes"></result>
+        <result column="return_visit_personnel" property="returnVisitPersonnel"></result>
+        <result column="return_visit_date" property="returnVisitDate"></result>
+        <result column="return_visit_type" property="returnVisitType"></result>
+        <association property="customer" javaType="Customer" resultMap="customer"></association>
+        <association property="staff" javaType="Staff" resultMap="staff"></association>
+    </resultMap>
+
+
+    <resultMap id="customer" type="Customer">
+        <id column="cid" property="cid"></id>
+        <result column="customer_name" property="customerName"></result>
+        <result column="customer_phone" property="customerPhone"></result>
+        <result column="customer_address" property="customerAddress"></result>
+        <result column="corporate_aame" property="corporateName"></result>
+        <result column="signing_date" property="signingDate"></result>
+        <result column="customer_status" property="customerStatus"></result>
+        <result column="remarks" property="remarks"></result>
+        <result column="payment_accountNo" property="paymentAccountNo"></result>
+        <result column="therealaddress" property="therealaddress"></result>
+        <result column="networkaddress" property="networkaddress"></result>
+    </resultMap>
+
+    <resultMap id="staff" type="Staff">
+        <id column="sid" property="sid"></id>
+        <result column="sname" property="sname"></result>
+        <result column="account_number" property="accountNumber"></result>
+        <result column="password" property="password"></result>
+        <result column="phone_number" property="phoneNumber"></result>
+        <result column="sex" property="sex"></result>
+        <result column="email" property="email"></result>
+        <result column="birthday" property="birthday"></result>
+        <result column="residential_address" property="residentialAddress"></result>
+        <result column="role" property="role"></result>
+        <result column="state" property="state"></result>
+        <result column="creation_time" property="creationTime"></result>
+
+    </resultMap>
+
+    <!--根据地址和类型历史记录-->
+    <select id="findByAddressAndType" resultMap="record">
+        SELECT * FROM record r ,customer c,staff s WHERE r.cid=c.cid AND r.sid=s.sid and r.sid=#{sid}
+        <if test="type!=null and type!=''">
+            AND r.type=#{type}
+        </if>
+        <if test="therealaddress!=null and therealaddress!=''">
+            AND c.therealaddress like concat('%',#{therealaddress},'%')
+        </if>
+        order by r.repair_date desc
+    </select>
+
+    <!--根据客户名称查询回访记录-->
+    <select id="findByCname" resultMap="returnVisit">
+        SELECT * FROM `return_visit` r,customer c,staff s WHERE r.cid=c.cid AND r.return_visit_personnel=s.sid and r.return_visit_personnel=#{sid}
+        <if test="customerName!=null and customerName!=''">
+            AND c.customer_name like concat('%',#{customerName},'%')
+        </if>
+        order by r.return_visit_date desc
+    </select>
+</mapper>

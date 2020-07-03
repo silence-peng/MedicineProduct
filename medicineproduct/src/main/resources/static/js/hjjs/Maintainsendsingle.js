@@ -83,9 +83,18 @@ layui.use(['laydate', 'jquery', 'table'], function () {
                         success : function(e) {
                             if (e == "yes") {
                                 layer.alert("删除成功");
-
                                 layer.close(index);
-                                table.reload('testReload');
+                                table.reload('testReload', {
+                                    where: { // 设定异步数据接口的额外参数，任意设
+
+
+                                        // …
+                                    },
+                                    page: {
+                                        curr: 0
+                                        // 重新从第 1 页开始
+                                    }
+                                });
                             }else{
                                 layer.alert("删除失败");
                             }

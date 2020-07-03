@@ -118,28 +118,33 @@
 				if(yuangongid=='' || dingdanid=='' || paidandate=='' || jiezdate==''){
 					layer.alert("输入框不能有空");
 				}else {
-					//新增保养派单
-					$.post("/hj/addpaidan", {
-						yuangongid: yuangongid,
-						dingdanid: dingdanid,
-						paidandate: paidandate,
-						jiezdate: jiezdate
-					}, function (e) {
-						if (e == "yes") {
-							layer.msg("新增成功！", {time: 1000, icon: 6}, function () {
-								var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-								window.parent.location.reload();
-								parent.layer.close(index);
-								layer.open({
-									oend: function () {
-										table.reload('testReload');
-									}
+					if(paidandate>jiezdate){
+						layer.alert("截止时间不能比派送时间小");
+					}else{
+						//新增保养派单
+						$.post("/hj/addpaidan", {
+							yuangongid: yuangongid,
+							dingdanid: dingdanid,
+							paidandate: paidandate,
+							jiezdate: jiezdate
+						}, function (e) {
+							if (e == "yes") {
+								layer.msg("新增成功！", {time: 1000, icon: 6}, function () {
+									var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+									window.parent.location.reload();
+									parent.layer.close(index);
+									layer.open({
+										oend: function () {
+											table.reload('testReload');
+										}
+									})
 								})
-							})
-						} else {
-							layer.alert("新增失败");
-						}
-					})
+							} else {
+								layer.alert("新增失败");
+							}
+						})
+					}
+
 				}
 			})
 			//自定义验证规则

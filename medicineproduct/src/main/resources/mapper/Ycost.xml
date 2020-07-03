@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.mapper.businessMapper.YcostMapper">
+    <!--分页 -->
+    <select id="getCost" resultMap="getCosts">
+        select * from cost a,staff b,customer d where a.sid=b.sid  and a.cid=d.cid and a.cost_type=#{costType}
+        <if test="sname!=null and sname!=''">
+            and b.sname=#{sname}
+        </if>
+        <if test="customerAddress!=null and customerAddress!=''">
+            and d.customer_address=#{customerAddress}
+        </if>
+        limit #{limit},#{page}
+    </select>
+    <!--查询分页个数-->
+    <select id="getCostes" resultType="Integer">
+        select count(*) from cost a,staff b,customer d where a.sid=b.sid and a.cid=d.cid and a.cost_type=#{costType}
+        <if test="sname!=null and sname!=''">
+            and b.sname=#{sname}
+        </if>
+        <if test="customerAddress!=null and customerAddress!=''">
+            and d.customer_address=#{customerAddress}
+        </if>
+    </select>
+    <!--column指向数据库列名 property指向pojo对象中字段名 -->
+    <resultMap type="Costs" id="getCosts">
+        <id property="costId" column="cost_id"/>
+        <result property="sid" column="sid"/>
+        <result property="cid" column="cid"/>
+        <result property="cost" column="cost"/>
+        <result property="enteredBy" column="entered_by"/>
+        <result property="enteredDate" column="entered_date"/>
+        <result property="costType" column="cost_type"/>
+        <result property="oid" column="oid"/>
+        <association property="staff">
+            <id column="sid" property="sid"/>
+            <result column="sname" property="sname"/>
+        </association>
+        <association property="customer">
+            <id column="cid" property="cid"/>
+            <result column="customer_address" property="customerAddress"/>
+        </association>
+    </resultMap>
+    <!--批量删除-->
+    <delete id="deleCost">
+        delete from cost where cost_id in
+        <foreach collection="costId" item="costId" open="(" close=")" separator=",">
+            #{costId}
+        </foreach>
+    </delete>
+    <!--下拉框加载-->
+    <select id="getstaff" resultType="Staff">
+select * from staff
+    </select>
+    <!--新增-->
+    <insert id="insert" parameterType="Costs">
+    insert into cost(sid,cid,cost,entered_by,entered_date,cost_type,oid) values(#{sid},#{cid},#{cost},#{enteredBy},#{enteredDate},#{costType},#{oid})
+    </insert>
+    <!--修改-->
+    <update id="updaCost" parameterType="Costs">
+        update cost set sid=#{sid},cost=#{cost},entered_date=#{enteredDate}
+         where cost_id=#{costId}
+    </update>
+</mapper>

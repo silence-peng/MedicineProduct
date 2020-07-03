@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+    <title>新增维修回访记录</title>
+    <style type="text/css">
+        .btn-bgcolor {
+            background-color: #286ED6;
+            width: 70px;
+            margin-left: 160px;
+        }
+
+        .btn-bgcolor3 {
+
+            width: 70px;
+        }
+
+        .btn-bgcolor4 {
+            margin-left: 220px;
+        }
+
+        .btn-bgcolor2 {
+            margin-left: 26px;
+        }
+
+        .btn-bgcolor5 {
+            margin-left: 205px;
+        }
+
+        .btn-bgcolor6 {
+            margin-left: 50px;
+        }
+        .btn-bgcolor7{
+            margin-left: 80px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" action="" id="form">
+    <br/>
+    <br/>
+    <span class="btn-bgcolor2">维修录入人员</span><span class="btn-bgcolor5">维修回访客户名称</span>
+    <br/>
+    <br/>
+    <div class="layui-input-inline btn-bgcolor2">
+        <select id="returnVisitPersonnel" name=returnVisitPersonnel lay-verify="required" lay-search="">
+            <option value="">直接选择或搜索选择</option>
+        </select>
+    </div>
+
+    <div class="layui-input-inline  btn-bgcolor6">
+        <select id="cid" name=cid lay-verify="required" lay-search="">
+            <option value="">直接选择或搜索选择</option>
+        </select>
+    </div>
+
+    <br/>
+    <br/>
+    <span class="btn-bgcolor2">维修描述</span><span class="btn-bgcolor4">维修录入时间</span>
+    <br/>
+    <br/>
+
+
+    <div class="layui-input-inline btn-bgcolor2 ">
+        <input type="tel" name="describes" id="describes" lay-verify="required" autocomplete="off" class="layui-input">
+    </div>
+    <div class="layui-input-inline">
+        <input type="text" name="returnVisitDate" id="returnVisitDate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
+               class="layui-input btn-bgcolor7 ">
+    </div>
+    <br/>
+    <br/>
+    <button type="button"  class="layui-btn layui-btn-sm  btn-bgcolor" lay-event="getCheckData"
+            lay-submit
+            lay-filter="tij">保存</button>
+    <button type="reset" class="layui-btn layui-btn-sm  layui-btn-primary btn-bgcolor3">重置</button>
+</form>
+</body>
+<script type="text/javascript" src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript" src="js/yuzhijie/YNewMaintenanceVisits.js"></script>
+</html>
