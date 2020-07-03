@@ -1,0 +1,11 @@
+2020-07-03 17:21:42,844 DEBUG (BaseJdbcLogger.java:137)- ==>  Executing: SELECT LAST_INSERT_ID()
+2020-07-03 17:21:42,848 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 1
+2020-07-03 17:21:42,876 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: delete from distribute_leaflets where did=?
+2020-07-03 17:21:42,877 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 30(Integer)
+2020-07-03 17:21:42,883 DEBUG (BaseJdbcLogger.java:137)- <==    Updates: 1
+2020-07-03 17:21:43,731 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM distribute_leaflets d,staff s,customer c,order_detail o,product p,`order` oo WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND o.`pid`=p.`pid` AND o.`oid`=oo.`oid` AND d.`sid`=?
+2020-07-03 17:21:43,771 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer)
+2020-07-03 17:21:43,774 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 4
+2020-07-03 17:21:49,415 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT fid,fault_type FROM fault_type
+2020-07-03 17:21:49,416 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 
+2020-07-03 17:21:49,417 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 3

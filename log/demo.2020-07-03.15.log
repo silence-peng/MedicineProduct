@@ -1,0 +1,8 @@
+2020-07-03 17:22:33,755 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 3
+2020-07-03 17:22:53,368 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: INSERT INTO record ( mid,sid,cid,pre_photos,suf_photos,repair_date,repair_assessment,status,fault_description,region,fault_type,type,pid ) VALUES( ?,?,?,?,?,?,?,?,?,?,?,?,? )
+2020-07-03 17:22:53,369 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: null, 1(Integer), 1(Integer), 88ab41fa-19f6-41fb-863b-bc7f6047db6e.jpg(String), b5df5f51-502d-4ed1-99ee-410e2f0305c8.jpg(String), 2019-12-31 00:00:00.0(Timestamp), null, 1(Integer), 111(String), null, 3(Integer), 2(Integer), 2(Integer)
+2020-07-03 17:22:53,372 DEBUG (BaseJdbcLogger.java:137)- <==    Updates: 1
+2020-07-03 17:22:53,372 DEBUG (BaseJdbcLogger.java:137)- ==>  Executing: SELECT LAST_INSERT_ID()
+2020-07-03 17:22:53,374 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 1
+2020-07-03 17:22:53,422 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: delete from distribute_leaflets where did=?
+2020-07-03 17:22:53,422 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer)

@@ -1,0 +1,8 @@
+2020-07-03 17:23:06,227 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer)
+2020-07-03 17:23:06,231 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 3
+2020-07-03 17:23:46,821 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM distribute_leaflets d,staff s,customer c,order_detail o,product p,`order` oo WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND o.`pid`=p.`pid` AND o.`oid`=oo.`oid` AND d.`sid`=?
+2020-07-03 17:23:46,822 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: null
+2020-07-03 17:23:46,823 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 0
+2020-07-03 17:24:30,912 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM distribute_leaflets d,staff s,customer c,order_detail o,product p,`order` oo WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND o.`pid`=p.`pid` AND o.`oid`=oo.`oid` AND d.`sid`=?
+2020-07-03 17:24:30,913 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: null
+2020-07-03 17:24:30,913 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 0

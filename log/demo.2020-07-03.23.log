@@ -1,0 +1,12 @@
+2020-07-03 17:27:38,598 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: update staff set password=? where sid=?
+2020-07-03 17:27:38,601 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 333(String), 1(Integer)
+2020-07-03 17:27:38,611 DEBUG (BaseJdbcLogger.java:137)- <==    Updates: 1
+2020-07-03 17:28:01,536 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM staff WHERE account_number=? AND `PASSWORD`=?
+2020-07-03 17:28:01,536 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 111(String), 333(String)
+2020-07-03 17:28:01,537 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 1
+2020-07-03 17:28:02,875 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT count(0) FROM record r, customer c, staff s WHERE r.cid = c.cid AND r.sid = s.sid AND r.sid = ?
+2020-07-03 17:28:02,877 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer)
+2020-07-03 17:28:02,878 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 1
+2020-07-03 17:28:02,879 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM record r ,customer c,staff s WHERE r.cid=c.cid AND r.sid=s.sid and r.sid=? order by r.repair_date desc LIMIT ?
+2020-07-03 17:28:02,880 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer), 10(Integer)
+2020-07-03 17:28:02,884 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 10

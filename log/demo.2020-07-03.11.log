@@ -1,0 +1,9 @@
+2020-07-03 17:21:00,267 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM distribute_leaflets d,staff s,customer c,order_detail o,product p,`order` oo WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND o.`pid`=p.`pid` AND o.`oid`=oo.`oid` AND d.`sid`=?
+2020-07-03 17:21:00,269 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer)
+2020-07-03 17:21:00,272 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 5
+2020-07-03 17:21:07,943 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT fid,fault_type FROM fault_type
+2020-07-03 17:21:07,944 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 
+2020-07-03 17:21:07,945 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 3
+2020-07-03 17:21:42,831 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: INSERT INTO record ( mid,sid,cid,pre_photos,suf_photos,repair_date,repair_assessment,status,fault_description,region,fault_type,type,pid ) VALUES( ?,?,?,?,?,?,?,?,?,?,?,?,? )
+2020-07-03 17:21:42,833 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: null, 1(Integer), 1(Integer), a837d207-587c-463b-af4c-17f0d3f4ff94.jpg(String), 53ead4a6-fafd-4d60-aef7-6fbaa68023d4.jpg(String), 2019-12-31 00:00:00.0(Timestamp), null, 1(Integer), 1111(String), null, 2(Integer), 1(Integer), 2(Integer)
+2020-07-03 17:21:42,840 DEBUG (BaseJdbcLogger.java:137)- <==    Updates: 1

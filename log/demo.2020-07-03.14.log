@@ -1,0 +1,8 @@
+2020-07-03 17:21:55,973 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM record r ,customer c,staff s WHERE r.cid=c.cid AND r.sid=s.sid and r.sid=? AND r.type=? order by r.repair_date desc LIMIT ?
+2020-07-03 17:21:55,976 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer), 1(Integer), 15(Integer)
+2020-07-03 17:21:55,981 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 15
+2020-07-03 17:22:08,463 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM distribute_leaflets d,staff s,customer c,order_detail o,product p,`order` oo WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND o.`pid`=p.`pid` AND o.`oid`=oo.`oid` AND d.`sid`=?
+2020-07-03 17:22:08,464 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer)
+2020-07-03 17:22:08,466 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 4
+2020-07-03 17:22:33,754 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT fid,fault_type FROM fault_type
+2020-07-03 17:22:33,754 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 

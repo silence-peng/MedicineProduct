@@ -1,0 +1,9 @@
+2020-07-03 17:24:34,428 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM distribute_leaflets d,staff s,customer c,order_detail o,product p,`order` oo WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND o.`pid`=p.`pid` AND o.`oid`=oo.`oid` AND d.`sid`=?
+2020-07-03 17:24:34,430 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer)
+2020-07-03 17:24:34,432 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 3
+2020-07-03 17:24:35,672 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM distribute_leaflets d,staff s,customer c,order_detail o,product p,`order` oo WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND o.`pid`=p.`pid` AND o.`oid`=oo.`oid` AND d.`sid`=?
+2020-07-03 17:24:35,673 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer)
+2020-07-03 17:24:35,675 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 3
+2020-07-03 17:25:36,601 INFO (StartupInfoLogger.java:55)- Starting MedicineproductApplication on LAPTOP-AJI0RPAF with PID 15052 (E:\zuoye\MedicineProduct\medicineproduct\target\classes started by FYQ in E:\zuoye\MedicineProduct)
+2020-07-03 17:25:36,604 DEBUG (StartupInfoLogger.java:56)- Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2020-07-03 17:25:36,605 INFO (SpringApplication.java:651)- No active profile set, falling back to default profiles: default

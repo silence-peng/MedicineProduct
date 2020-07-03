@@ -1,0 +1,8 @@
+2020-07-03 17:22:53,424 DEBUG (BaseJdbcLogger.java:137)- <==    Updates: 1
+2020-07-03 17:22:54,336 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM distribute_leaflets d,staff s,customer c,order_detail o,product p,`order` oo WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND o.`pid`=p.`pid` AND o.`oid`=oo.`oid` AND d.`sid`=?
+2020-07-03 17:22:54,337 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer)
+2020-07-03 17:22:54,340 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 3
+2020-07-03 17:23:00,480 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT fid,fault_type FROM fault_type
+2020-07-03 17:23:00,481 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 
+2020-07-03 17:23:00,481 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 3
+2020-07-03 17:23:06,226 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM distribute_leaflets d,staff s,customer c,order_detail o,product p,`order` oo WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND o.`pid`=p.`pid` AND o.`oid`=oo.`oid` AND d.`sid`=?
