@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ht.mapper.businessMapper.SendordersMapper">
     <select id="getDistributeleaflets" resultMap="Distributeleafletsd">
-        SELECT * FROM distribute_leaflets d,staff s,customer c,`order` o
-        WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND d.`sid`=#{sid}
+       SELECT * FROM distribute_leaflets d,staff s,customer c,order_detail o,product p,`order` oo
+        WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND o.`pid`=p.`pid`  AND o.`oid`=oo.`oid` AND d.`sid`=#{sid}
     </select>
     <resultMap type="DistributeLeafletss" id="Distributeleafletsd">
         <id property="did" column="did"/>
@@ -23,6 +23,15 @@
         <association property="customers" javaType="Customer">
             <id property="cid" column="cid"/>
             <result property="customerName" column="customer_name"/>
+            <result property="customerAddress" column="customer_address"/>
+        </association>
+        <association property="orderDetails" javaType="OrderDetail">
+            <id property="odid" column="odid"/>
+            <result property="pid" column="pid"/>
+        </association>
+        <association property="products" javaType="Product">
+            <id property="pid" column="pid"/>
+            <result property="productName" column="product_name"/>
         </association>
         <association property="orders" javaType="Order">
             <id property="oid" column="oid"/>
@@ -30,30 +39,7 @@
         </association>
     </resultMap>
 
-    <select id="getDistributeleafletsparticulars" resultMap="Distributeleafletsdd">
-          SELECT * FROM distribute_leaflets d,staff s,customer c,`order` o
-        WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND d.`did`=#{did}
-    </select>
-    <resultMap type="DistributeLeafletss" id="Distributeleafletsdd">
-        <id property="did" column="did"/>
-        <result property="sid" column="sid"/>
-        <result property="cid" column="cid"/>
-        <result property="oid" column="oid"/>
-        <result property="type" column="type"/>
-        <result property="status" column="status"/>
-        <result property="createDate" column="createDate"/>
-        <result property="endDate" column="endDate"/>
-        <association property="staffs" javaType="Staff">
-            <id property="sid" column="sid"/>
-            <result property="sname" column="sname"/>
-        </association>
-        <association property="customers" javaType="Customer">
-            <id property="cid" column="cid"/>
-            <result property="customerName" column="customer_name"/>
-        </association>
-        <association property="orders" javaType="Order">
-            <id property="oid" column="oid"/>
-            <result property="orderStatus" column="order_status"/>
-        </association>
-    </resultMap>
+    <delete id="delDistributeLeaflets" parameterType="int">
+        delete from distribute_leaflets where did=#{did}
+    </delete>
 </mapper>
