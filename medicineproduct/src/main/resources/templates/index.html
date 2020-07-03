@@ -60,17 +60,9 @@
                     <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
                 </li>
                 <li class="layui-nav-item layuimini-setting">
-                    <a href="javascript:;">admin</a>
+                    <a href="javascript:;" id="loginInfo">admin</a>
                     <dl class="layui-nav-child">
-                        <dd>
-                            <a href="javascript:;" layuimini-content-href="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料<span class="layui-badge-dot"></span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" layuimini-content-href="page/user-password.html" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
-                        </dd>
-                        <dd>
-                            <hr>
-                        </dd>
+
                         <dd>
                             <a href="javascript:;" class="login-out">退出登录</a>
                         </dd>
@@ -135,7 +127,9 @@
             layer = layui.layer,
             miniAdmin = layui.miniAdmin,
             miniTongji = layui.miniTongji;
-
+        $.post('getLoginInfo',function (res) {
+            $("#loginInfo").html(res.sname);
+        });
         var options = {
             iniUrl: "api/init.json",    // 初始化接口
             clearUrl: "api/clear.json", // 缓存清理接口
@@ -160,9 +154,12 @@
         });
 
         $('.login-out').on("click", function () {
-            layer.msg('退出登录成功', function () {
-                window.location = 'login';
+            $.post("loginOut",function () {
+                layer.msg('退出登录成功', function () {
+                    window.location = 'login';
+                });
             });
+
         });
     });
 </script>

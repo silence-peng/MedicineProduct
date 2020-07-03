@@ -47,16 +47,7 @@
                     <label class="layui-icon layui-icon-password" ></label>
                     <input type="password" name="password" lay-verify="required|password" placeholder="密码" autocomplete="off" class="layui-input" value="123456">
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-icon layui-icon-vercode" ></label>
-                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" value="xszg">
-                    <div class="captcha-img">
-                        <img id="captchaPic" src="../images/captcha.jpg">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
-                </div>
+
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="login">登 入</button>
                 </div>
@@ -94,13 +85,16 @@
                 layer.msg('密码不能为空');
                 return false;
             }
-            if (data.captcha == '') {
-                layer.msg('验证码不能为空');
-                return false;
-            }
-            layer.msg('登录成功', function () {
-                window.location = '../index.html';
+            $.post('checkLogin',{accountNumber:data.username,password:data.password},function (res) {
+                if (res){
+                    layer.msg('登录成功', function () {
+                        window.location = '../index.html';
+                    });
+                }else{
+                    layer.msg("登录失败,请检查您的账号或密码是否正确")
+                }
             });
+
             return false;
         });
     });

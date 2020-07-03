@@ -131,9 +131,8 @@ layui.use(['jquery','form','table','laydate'],function () {
                     $.ajaxSettings.traditional = true;
                     $.post("delOrder",{delOrder:delOrder},function (res) {
                         if (res){
-                            layer.alert("删除成功！",function () {
-                                table.render("saleInfo")
-                            })
+                            layer.alert("删除成功！");
+                            table.reload("saleInfo")
                         }
                     })
                 }
