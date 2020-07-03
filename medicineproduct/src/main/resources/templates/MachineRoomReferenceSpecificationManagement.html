@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>机房参照规格管理</title>
+    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/layuimini.css?v=2.0.4" media="all">
+    <link rel="stylesheet" href="css/themes/default.css" media="all">
+    <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+
+    <script src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+    <script src="js/lay-config.js?v=2.0.0" charset="utf-8"></script>
+    <!-- 重要js -->
+    <script src="lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="UTF-8"></script>
+    <!-- <script src="js/YlhtRoleManagement.js" charset="UTF-8"></script> -->
+</head>
+
+<style type="text/css">
+    .btn-bgcolor {
+        background-color: #286ED6;
+        width: 100%;
+    }
+
+    .btn-bgcolor1 {
+        background-color: #286ED6;
+        width: 80px;
+    }
+
+    .btn-bgcolor2 {
+        background-color: #ff1c1f;
+        width: 100px;
+    }
+
+    .btn-bgcolor4 {
+        background-color: #00cc00;
+        width: 80px;
+    }
+
+    .btn-bgcolor3 {
+
+        width: 80px;
+    }
+</style>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <div class="layui-row">
+                <div class="layui-col-xs12">
+
+                    <div class="layui-inline">
+
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <button type="button" class="layui-btn layui-btn-sm  btn-bgcolor" id="add">新增机房参照规格档案信息</button>
+                        </div>
+                        <div class="layui-inline">
+                            <button type="button" class="layui-btn layui-btn-sm  btn-bgcolor" id="update">修改机房参照规格档案信息
+                            </button>
+                        </div>
+                        <div class="layui-inline">
+                            <button type="button" class="layui-btn layui-btn-sm  btn-bgcolor" id="del">删除机房参照规格档案信息</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12">
+                <form class="layui-form">
+                    <div class="layui-col-xs12">
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label">档案名称</label>
+                                <div class="layui-input-inline">
+                                    <input name="Filename" id="Filename" type="text" class="layui-input"/>
+                                </div>
+                            </div>
+                            <div class="layui-inline" style="margin-top: -5px;">
+                                <button type="button" class="layui-btn layui-btn-sm  btn-bgcolor1" id="but_yes">查询
+                                </button>
+                                <button type="button" class="layui-btn layui-btn-sm  layui-btn-primary btn-bgcolor3 " id="but_res">
+                                    重置
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs12">
+        <table class="layui-table" id="machineRoomist" lay-filter="machineRoomist"></table>
+    </div>
+</div>
+</div>
+</body>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    layui.use(['element', 'form', 'jquery', 'table', 'laydate'], function () {
+        var $ = layui.jquery,
+            element = layui.element,
+            layer = layui.layer,
+            form = layui.form,
+            table = layui.table,
+            laydate = layui.laydate;
+
+        // 显示列表数据
+        table.render({
+            elem: '#machineRoomist',
+            url: 'QuymachineRoomPage',
+            method: 'post',
+            parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.count, //解析数据长度
+                    "data": res.data //解析数据列表
+                }
+            },
+            cols: [
+                [{
+                    type: 'radio'
+                }, {
+                    field: 'mid',
+                    title: '机房参照规格档案编号',
+                    sort: true
+                }, {
+                    field: 'fileName',
+                    title: '机房参照规格档案名称'
+                }, {
+                    field: 'oxygenMaxOutputPower',
+                    title: '氧气最大输出功率',
+                    sort: true
+                }, {
+                    field: 'oxygenMinOutputPower',
+                    title: '氧气最小输出功率',
+                    sort: true
+                }, {
+                    field: 'vacuumMaxOutputPower',
+                    title: '真空最大输出功率',
+                    sort: true
+                }, {
+                    field: 'vacuumMinOutputPower',
+                    title: '真空最小输出功率',
+                    sort: true
+                }, {
+                    field: 'airMaxOutputPower',
+                    title: '空气最大输出功率',
+                    sort: true
+                }, {
+                    field: 'airMinOutputPower',
+                    title: '空气最小输出功率',
+                    sort: true
+                }]
+            ],
+            limit: 3,
+            limits: [3, 5, 7, 9],
+            page: true,
+            id: 'machineRoomTableReload'
+        });
+
+
+        //点击搜索按钮根据用户名称查询
+        $('#but_yes').on('click',
+            function () {
+                //执行重载
+                table.reload('machineRoomTableReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    //根据条件查询
+                    ,
+                    where: {
+                        Filename: $("#Filename").val()
+                    }
+                });
+            });
+    });
+</script>
+<script>
+    layui.use(["table", "jquery", "layer", "form", "laypage"], function () {
+        var table = layui.table,
+            $ = layui.jquery,
+            layer = layui.layer,
+            form = layui.form,
+            util = layui.util;
+        //打开机房参考建设档案新增弹出层
+        $("#add").on("click", function () {
+            layer.open({
+                type: 2,
+                content: 'NewMachineRoomReferenceSpecification',
+                area: ['700px', '500px'],
+                title: '机房参考建设档案新增',
+                success: function (layero, index) { //弹出层弹出后的回调函数
+                    /*						var iframe = window['layui-layer-iframe' + index]; // 获取子页面的iframe
+                                                            iframe.child(data.id); // 向子页面的全局函数child传参*/
+                },
+                end: function () { //弹出层销毁后的事件
+                    table.reload("machineRoomTableReload"); //增加成功后刷新表格
+                }
+            })
+        });
+        //打开修改机房参考建设档案新增弹出层
+        $("#update").on("click", function () {
+            var checkStatus = table.checkStatus('machineRoomTableReload');
+            var ids = null;
+            $(checkStatus.data).each(function (i, o) {//o即为表格中一行的数据
+                ids = o.mid;
+            });
+            if (ids == null) {
+                layer.msg('请选择需要更改的档案');
+                return false;
+            } else {
+                layer.alert("你确定要修改此档案嘛？", {
+                        btn: ['确认', '取消'] //按钮
+                    }
+                    , function () {
+
+                        layer.open({
+                            type: 2,
+                            content: 'GetMachineRoom?mid=' + ids,
+                            area: ['700px', '500px'],
+                            title: '修改机房参考建设档案',
+                            success: function (layero, index) { //弹出层弹出后的回调函数
+                                /*						var iframe = window['layui-layer-iframe' + index]; // 获取子页面的iframe
+                                                                        iframe.child(data.id); // 向子页面的全局函数child传参*/
+                            },
+                            end: function () { //弹出层销毁后的事件
+                                table.reload("machineRoomTableReload"); //增加成功后刷新表格
+                            }
+                        })
+                    });
+            }
+        });
+
+        $("#del").on("click", function () {
+            var checkStatus = table.checkStatus('machineRoomTableReload');
+            var ids = null;
+            $(checkStatus.data).each(function (i, o) {//o即为表格中一行的数据
+                ids = o.mid;
+            });
+            if (ids == null) {
+                layer.msg('请选择需要删除的档案');
+                return false;
+            } else {
+                layer.alert("你确定要修改此档案嘛？", {
+                        btn: ['确认', '取消'] //按钮
+                    }
+                    , function () {
+                        $.ajax({
+                            url: "/DelMachineRoom",
+                            data: {
+                                "mid": ids
+                            },
+                            type: "post",
+                            dataType: "text",
+                            success: function (result) {
+                                if (result == "yes") {
+                                    layer.msg("档案删除成功", function () {
+                                        table.reload("machineRoomTableReload"); //增加成功后刷新表格
+                                    })
+                                } else {
+                                    layer.alert("档案删除失败", function () {
+                                        table.reload("machineRoomTableReload"); //增加成功后刷新表格
+                                    });
+                                }
+                            }
+                        })
+                    });
+            }
+        });
+        $("#but_res").on("click",function () {
+            $("#Filename").val("");
+        });
+    });
+</script>
+</html>

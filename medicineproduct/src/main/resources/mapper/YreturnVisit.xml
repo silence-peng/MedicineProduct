@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.mapper.businessMapper.YreturnVisitMapper">
+    <!--分页 -->
+    <select id="getreturnVisit" resultMap="getreturnVisits">
+        select * from return_visit a,staff b,customer d where a.return_visit_personnel=b.sid  and a.cid=d.cid and a.return_visit_type=#{returnVisitType}
+        <if test="sname!=null and sname!=''">
+            and b.sname=#{sname}
+        </if>
+        <if test="customerName!=null and customerName!=''">
+            and d.customer_name=#{customerName}
+        </if>
+        limit #{limit},#{page}
+    </select>
+    <!--查询分页个数-->
+    <select id="getreturnVisitse" resultType="Integer">
+        select count(*) from return_visit a,staff b,customer d where a.return_visit_personnel=b.sid and a.cid=d.cid and a.return_visit_type=#{returnVisitType}
+        <if test="sname!=null and sname!=''">
+            and b.sname=#{sname}
+        </if>
+        <if test="customerName!=null and customerName!=''">
+            and d.customer_name=#{customerName}
+        </if>
+    </select>
+    <!--column指向数据库列名 property指向pojo对象中字段名 -->
+    <resultMap type="ReturnVisits" id="getreturnVisits">
+        <id property="rid" column="rid"/>
+        <result property="cid" column="cid"/>
+        <result property="recordId" column="record_id"/>
+        <result property="wayOfReturnVisit" column="way_of_return_visit"/>
+        <result property="describes" column="describes"/>
+        <result property="returnVisitPersonnel" column="return_visit_personnel"/>
+        <result property="returnVisitDate" column="return_visit_date"/>
+        <result property="returnVisitType" column="return_visit_type"/>
+        <association property="staff">
+            <id column="sid" property="sid"/>
+            <result column="sname" property="sname"/>
+        </association>
+        <association property="customer">
+            <id column="cid" property="cid"/>
+            <result column="customer_name" property="customerName"/>
+        </association>
+    </resultMap>
+    <!--批量删除-->
+    <delete id="deleReturn">
+        delete from return_visit where rid in
+        <foreach collection="rid" item="rid" open="(" close=")" separator=",">
+            #{rid}
+        </foreach>
+    </delete>
+    <!--下拉框加载-->
+    <select id="getstaff" resultType="Staff">
+select * from staff
+    </select>
+    <!--新增-->
+    <insert id="insertReturn" parameterType="ReturnVisits">
+    insert into return_visit(cid,record_id,way_of_return_visit,describes,return_visit_personnel,return_visit_date,return_visit_type)
+     values(#{cid},#{recordId},#{wayOfReturnVisit},#{describes},#{returnVisitPersonnel},#{returnVisitDate},#{returnVisitType})
+    </insert>
+    <!--修改-->
+    <update id="updaReturn" parameterType="ReturnVisits">
+        update return_visit set return_visit_personnel=#{returnVisitPersonnel},cid=#{cid},describes=#{describes},return_visit_date=#{returnVisitDate}
+        where rid=#{rid}
+    </update>
+
+</mapper>

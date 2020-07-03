@@ -13,4 +13,5 @@ public interface StaffBusinessMapper {
      * @return
      */
     List<StaffAndRole> EmployeeConditionQuery(StaffAndRole staffAndRole);
+
 }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+    <title>维修回访</title>
+    <style type="text/css">
+        .btn-bgcolor {
+            background-color: #286ED6;
+            width: 100px;
+        }
+
+        .btn-bgcolor2 {
+            margin-top: 14.4%;
+            background-color: #286ED6;
+            width: 70px;
+        }
+
+        .btn-bgcolor3 {
+            margin-top: 14.4%;
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+<div style="margin-left: 20px;">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <!-- 新增 -->
+                <button type="button" id="insetDis" class="layui-btn layui-btn-sm  btn-bgcolor" lay-event="getCheckData">
+                    录入回访记录
+                </button>
+                <button type="button" id="ModifyInstallation" class="layui-btn layui-btn-sm  btn-bgcolor"
+                        lay-event="getCheckData">修改
+                </button>
+                <button type="button" id="deleInstallationDispatchs" class="layui-btn layui-btn-sm  btn-bgcolor"
+                        lay-event="getCheckData">删除
+                </button>
+            </div>
+            <br/>
+            <br/>
+            <div class="layui-inline" style="!important;">
+                <div class="layui-inline">
+                    <div class="layui-form-item">
+                        维修回访客户名称
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <input type="tel" name="customerName" id ="customerName" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 10px;">
+                    <div class="layui-form-item">
+                        维修记录人员
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <input type="tel" name="sname" id="sname" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button type="button" id="dianji" style="margin-left: -15px; margin-top:27px;"
+                            class="layui-btn layui-btn-sm  btn-bgcolor2"
+                            lay-event="getCheckData">搜索
+                    </button>
+                </div>
+            </div>
+    </form>
+</div>
+<table class="layui-hide" id="test"></table>
+</body>
+<script type="text/javascript" src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/yuzhijie/YMaintenanceVisits.js"></script>
+
+</html>
