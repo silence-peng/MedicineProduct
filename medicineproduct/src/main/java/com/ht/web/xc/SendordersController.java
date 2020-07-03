@@ -1,16 +1,13 @@
 package com.ht.web.xc;
 
-import com.github.pagehelper.PageInfo;
 import com.ht.pojo.*;
 import com.ht.pojo.xc.DistributeLeafletss;
 import com.ht.service.dataService.*;
-import com.ht.service.businessService.SendordersService;
-import org.apache.ibatis.annotations.Param;
+import com.ht.service.businessService.xc.SendordersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,7 +1,7 @@
 package com.ht.web.xc;
 
 import com.ht.pojo.Staff;
-import com.ht.service.businessService.LoginService;
+import com.ht.service.businessService.xc.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
