@@ -213,18 +213,18 @@
                 $.ajax({
                     url: "/AddMachineRoom",
                     data: {
-                            "fileName":$("#filename").val(),
+                        "fileName": $("#filename").val(),
 
-                            "oxygenMaxOutputPower":$("#oxygenMaxOutputPower").val(),
-                            "oxygenMinOutputPower":$("#oxygenMinOutputPower").val(),
+                        "oxygenMaxOutputPower": $("#oxygenMaxOutputPower").val(),
+                        "oxygenMinOutputPower": $("#oxygenMinOutputPower").val(),
 
-                            "vacuumMaxOutputPower":$("#vacuumMaxOutputPower").val(),
-                            "vacuumMinOutputPower":$("#vacuumMinOutputPower").val(),
+                        "vacuumMaxOutputPower": $("#vacuumMaxOutputPower").val(),
+                        "vacuumMinOutputPower": $("#vacuumMinOutputPower").val(),
 
-                            "airMaxOutputPower":$("#airMaxOutputPower").val(),
-                            "airMinOutputPower":$("#airMinOutputPower").val()
+                        "airMaxOutputPower": $("#airMaxOutputPower").val(),
+                        "airMinOutputPower": $("#airMinOutputPower").val()
 
-                            },
+                    },
                     type: "post",
                     dataType: "text",
                     success: function (result) {

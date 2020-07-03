@@ -16,11 +16,13 @@ import java.util.Map;
 @Controller
 public class RoleController {
     @Autowired
-   private RoleBusinessService roleBusinessService;
+    private RoleBusinessService roleBusinessService;
     @Autowired
     private RoleService roleService;
+
     /**
      * 查询role角色按条件模糊查询，分页
+     *
      * @param rname
      * @param page
      * @param limit
@@ -28,88 +30,85 @@ public class RoleController {
      */
     @RequestMapping("QueryRole")
     @ResponseBody
-    public Map<String,Object> QueryRole(String rname,Integer page,Integer limit)
-    {
-        if(page==null || page==0)
-        {
-            page=1;
+    public Map<String, Object> QueryRole(String rname, Integer page, Integer limit) {
+        if (page == null || page == 0) {
+            page = 1;
         }
-        PageInfo<Role> rolePageInfo=roleBusinessService.QueryRole(rname,page,limit);
-        Map<String,Object> map=new HashMap<>();
+        PageInfo<Role> rolePageInfo = roleBusinessService.QueryRole(rname, page, limit);
+        Map<String, Object> map = new HashMap<>();
         map.put("code", 0);
         map.put("msg", "");
         map.put("count", rolePageInfo.getTotal());
         map.put("data", rolePageInfo.getList());
         return map;
-    };
+    }
+
+    ;
 
     /**
      * 添加角色
+     *
      * @param rname
      * @param rstate
      * @return
      */
     @RequestMapping("AddRole")
     @ResponseBody
-    public String AddRole(String rname,String rstate)
-    {
+    public String AddRole(String rname, String rstate) {
         //将传过来的值添加到角色实体类中
-        Role role=new Role();
+        Role role = new Role();
         role.setRname(rname);
         role.setRstate(rstate);
 
-        int end=roleBusinessService.AddRole(role);
+        int end = roleBusinessService.AddRole(role);
 
-        if(end>=1)
-        {
+        if (end >= 1) {
             return "yes";
         }
 
         return "no";
     }
 
-
     @RequestMapping("updeteRolehtml")
-    public String updeteRolehtml(Model model,Integer rid)
-    {
-        model.addAttribute("rid",rid);
+    public String updeteRolehtml(Model model, Integer rid) {
+        model.addAttribute("rid", rid);
 
         return "UpdeteYlhtRoleManagement";
     }
 
     /**
      * 加载修改数据
+     *
      * @param rid
      * @return
      */
     @RequestMapping("updeteRoleready")
     @ResponseBody
-    public Role updeteRoleready(Integer rid)
-    {
-        Role role=new Role();
+    public Role updeteRoleready(Integer rid) {
+        Role role = new Role();
         role.setRid(rid);
         return roleService.getOne(role);
     }
+
     /**
      * 修改角色
+     *
      * @param rname
      * @param rstate
      * @return
      */
     @RequestMapping("UpdeteRole")
     @ResponseBody
-    public String UpdeteRole(Integer rid,String rname,String rstate)
-    {
+    public String UpdeteRole(Integer rid, String rname, String rstate) {
         //将传过来的值添加到角色实体类中
-        Role role=new Role();
+        Role role = new Role();
         role.setRid(rid);
         role.setRname(rname);
         role.setRstate(rstate);
 
-        int end=roleBusinessService.UpdeteRole(role);
+        int end = roleBusinessService.UpdeteRole(role);
 
-        if(end>=1)
-        {
+        if (end >= 1) {
             return "yes";
         }
 
@@ -118,17 +117,16 @@ public class RoleController {
 
     /**
      * 删除角色
+     *
      * @param rid
      * @return
      */
     @RequestMapping("DelRole")
     @ResponseBody
-    public String DelRole(Integer rid)
-    {
-        int end=roleBusinessService.DelRole(rid);
+    public String DelRole(Integer rid) {
+        int end = roleBusinessService.DelRole(rid);
 
-        if(end>=1)
-        {
+        if (end >= 1) {
             return "yes";
         }
 

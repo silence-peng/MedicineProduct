@@ -37,4 +37,5 @@ public class StaffAndRole implements Serializable{
     private Date creationTime;//创建时间
 
     private Role roledata;//角色
+
 }
