@@ -33,4 +33,12 @@ public class HistoricalRecordsServiceImpl implements HistoricalRecordsService {
         PageInfo<ReturnVisit> pageInfo=new PageInfo<>(list);
         return pageInfo;
     }
+
+    @Override
+    public PageInfo<Record> findTop2(Integer sid) {
+        PageHelper.startPage(1,10);
+        List<Record> list=mapper.findByAddressAndType(null,null,sid);
+        PageInfo<Record> pageInfo=new PageInfo<>(list);
+        return pageInfo;
+    }
 }

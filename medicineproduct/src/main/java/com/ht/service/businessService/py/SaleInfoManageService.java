@@ -35,7 +35,7 @@ public class SaleInfoManageService {
     @Autowired
     private DistributeLeafletsService distributeLeafletsService;
 
-    public List<XslxHelpPojo> readFile(MultipartFile file){
+    public List<XslxHelpPojo> readFile(MultipartFile file) throws Exception{
         String str="";
         List<Department> departments=departmentService.getAll();
         List<XslxHelpPojo> list=XlsxImporTexportTemplate.importData(file, 1, XslxHelpPojo.class);

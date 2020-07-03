@@ -69,8 +69,9 @@ layui.use(['jquery','form','table','element','upload'],function () {
         ,before: function(obj) {  }
         ,data: {}
         ,done: function(res){
+            // if (res.data.)
             if (res.code===0){
-                layer.msg('上传成功!');
+                layer.msg('导入成功!');
                 xslxExportData=res.data;
                 table.reload('xslxExportInfo', {
                     data: xslxExportData
@@ -147,7 +148,7 @@ layui.use(['jquery','form','table','element','upload'],function () {
         page:true
     });
     table.on('rowDouble(productInfo)', function(obj){
-        parent.addOrderInfo(obj.data);
+            parent.addOrderInfo(obj.data);
         var index=parent.layer.getFrameIndex(window.name);
         parent.layer.close(index);
     });

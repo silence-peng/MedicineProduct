@@ -48,9 +48,16 @@ public class SaleInfoManageController {
         String msg="";
         List list=null;
         if (file.isEmpty()) {
+            code=2;
             msg= "上传失败，请选择文件";
         }else{
-           list=saleInfoManageService.readFile(file);
+            try {
+                list=saleInfoManageService.readFile(file);
+            } catch (Exception e) {
+                e.printStackTrace();
+                code=1;
+                msg="请使用正确的模板进行导入！";
+            }
         }
         Map<String,Object> map=new HashMap<String, Object>();
         map.put("code", code);
@@ -58,11 +65,6 @@ public class SaleInfoManageController {
         map.put("data", list);
         return map;
     }
-//     "startDate":$("#startDate").val(),
-//                "endDate":($("#endDate").val()),
-//                "cid":($("#customer").val()),
-//                "sid":parseInt($("#staff").val()),
-//                "state":parseInt($("#state").val())
     @RequestMapping("/loadSaleInfoTable")
     public ResultMap<List<SaleInfo>> loadSaleInfoTable(Integer page, Integer limit, String startDate, String endDate, Order order) throws ParseException {
 

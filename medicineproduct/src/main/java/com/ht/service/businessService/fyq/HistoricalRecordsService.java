@@ -24,4 +24,11 @@ public interface HistoricalRecordsService {
      * @return
      */
     public PageInfo<ReturnVisit> findByCname(String customerName,Integer sid,Integer pageNum);
+
+    /**
+     * 查询两条历史记录
+     * @param sid
+     * @return
+     */
+    public PageInfo<Record> findTop2(Integer sid);
 }
