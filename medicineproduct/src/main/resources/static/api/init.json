@@ -44,25 +44,25 @@
 						"target": "",
 						"child": [{
 								"title": "安装派单",
-								"href": "",
+								"href": "yInstallationDispatch",
 								"icon": "fa fa-tachometer",
 								"target": "_self"
 							},
 							{
 								"title": "安装记录",
-								"href": "",
+								"href": "Theinstallationrecords",
 								"icon": "fa fa-tachometer",
 								"target": "_self"
 							},
 							{
 								"title": "安装费用",
-								"href": "",
+								"href": "yInstallationCost",
 								"icon": "fa fa-tachometer",
 								"target": "_self"
 							},
 							{
 								"title": "安装回访",
-								"href": "",
+								"href": "yInstallationReturnVisit",
 								"icon": "fa fa-tachometer",
 								"target": "_self"
 							}
@@ -76,25 +76,25 @@
 						"target": "_self",
 						"child": [{
 								"title": "保养派单",
-								"href": "",
+								"href": "Maintainsendsingle",
 								"icon": "fa fa-tachometer",
 								"target": "_self"
 							},
 							{
 								"title": "保养记录",
-								"href": "",
+								"href": "Maintenancerecord",
 								"icon": "fa fa-tachometer",
 								"target": "_self"
 							},
 							{
 								"title": "保养费用",
-								"href": "",
+								"href": "YMaintenanceCost",
 								"icon": "fa fa-tachometer",
 								"target": "_self"
 							},
 							{
 								"title": "保养回访",
-								"href": "",
+								"href": "YMaintenanceVisit",
 								"icon": "fa fa-tachometer",
 								"target": "_self"
 							}
@@ -107,25 +107,25 @@
 						"target": "_self",
 						"child": [{
 								"title": "维修派单",
-								"href": "",
+								"href": "Sendasinglemaintenance",
 								"icon": "fa fa-tachometer",
 								"target": "_self"
 							},
 							{
 								"title": "维修记录",
-								"href": "",
+								"href": "Theinstallationrecords",
 								"icon": "fa fa-tachometer",
 								"target": "_self"
 							},
 							{
 								"title": "维修费用",
-								"href": "",
+								"href": "YmaintenanceCosts",
 								"icon": "fa fa-tachometer",
 								"target": "_self"
 							},
 							{
 								"title": "维修回访",
-								"href": "",
+								"href": "YMaintenanceVisits",
 								"icon": "fa fa-tachometer",
 								"target": "_self"
 							}

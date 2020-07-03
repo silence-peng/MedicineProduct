@@ -21,7 +21,7 @@ import java.io.Serializable;
 public class Cost implements  Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer costid; //费用ID
+    private Integer costId; //费用ID
     private String sid; //外键 对应员工表
     private String cid; //外键 对应客户表
     private Float cost; //费用

@@ -15,13 +15,13 @@ layui.use(['table', 'form', 'layer', 'jquery'], function () {
             {type: 'checkbox'}
             , {field: 'costId', title: '序号', sort: true}
             , {
-                field: 'cid', title: '安装地址'
+                field: 'cid', title: '维修地址'
                 , templet: function (d) {
                     return d.customer.customerAddress;
                 }
             }
             , {
-                field: 'sid', title: '安装人/录入人', templet: function (d) {
+                field: 'sid', title: '维修人/录入人', templet: function (d) {
                     return d.staff.sname;
                 }
             }
@@ -47,9 +47,9 @@ layui.use(['table', 'form', 'layer', 'jquery'], function () {
         //新增
         layer.open({
             type: 2,
-            content: 'yNewInstallation.html',
+            content: 'YNewMaintenanceCosts.html',
             area: ['700px', '600px'],
-            title: '安装费用录入',
+            title: '维修费用录入',
             end: function () {
                 table.reload('idTest');
             }
@@ -68,9 +68,9 @@ layui.use(['table', 'form', 'layer', 'jquery'], function () {
             });
             layer.open({
                 type: 2,
-                content: '/yzjs/getid',
+                content: '/yzjs/getidse',
                 area: ['700px', '600px'],
-                title: '修改安装费用',
+                title: '修改维修费用',
                 success: function (layero, index) {
                     var iframe = window['layui-layer-iframe' + index];
                     iframe.getid(costId);
