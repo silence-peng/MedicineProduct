@@ -14,8 +14,8 @@
         <result property="oid" column="oid"/>
         <result property="type" column="type"/>
         <result property="status" column="status"/>
-        <result property="createDate" column="createDate"/>
-        <result property="endDate" column="endDate"/>
+        <result property="createDate" column="create_date"/>
+        <result property="endDate" column="end_date"/>
         <association property="staffs" javaType="Staff">
             <id property="sid" column="sid"/>
             <result property="sname" column="sname"/>

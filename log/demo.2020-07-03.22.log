@@ -1,0 +1,12 @@
+2020-07-03 17:27:01,022 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM record r ,customer c,staff s WHERE r.cid=c.cid AND r.sid=s.sid and r.sid=? order by r.repair_date desc LIMIT ?
+2020-07-03 17:27:01,024 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer), 10(Integer)
+2020-07-03 17:27:01,029 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 10
+2020-07-03 17:27:25,083 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM staff WHERE account_number=? AND `PASSWORD`=?
+2020-07-03 17:27:25,084 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 111(String), 222(String)
+2020-07-03 17:27:25,085 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 1
+2020-07-03 17:27:26,375 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT count(0) FROM record r, customer c, staff s WHERE r.cid = c.cid AND r.sid = s.sid AND r.sid = ?
+2020-07-03 17:27:26,377 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer)
+2020-07-03 17:27:26,378 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 1
+2020-07-03 17:27:26,379 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM record r ,customer c,staff s WHERE r.cid=c.cid AND r.sid=s.sid and r.sid=? order by r.repair_date desc LIMIT ?
+2020-07-03 17:27:26,379 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer), 10(Integer)
+2020-07-03 17:27:26,384 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 10

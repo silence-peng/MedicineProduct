@@ -1,0 +1,9 @@
+2020-07-03 17:21:51,877 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT count(0) FROM record r, customer c, staff s WHERE r.cid = c.cid AND r.sid = s.sid AND r.sid = ?
+2020-07-03 17:21:51,880 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer)
+2020-07-03 17:21:51,881 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 1
+2020-07-03 17:21:51,882 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM record r ,customer c,staff s WHERE r.cid=c.cid AND r.sid=s.sid and r.sid=? order by r.repair_date desc LIMIT ?
+2020-07-03 17:21:51,882 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer), 10(Integer)
+2020-07-03 17:21:51,885 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 10
+2020-07-03 17:21:55,971 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT count(0) FROM record r, customer c, staff s WHERE r.cid = c.cid AND r.sid = s.sid AND r.sid = ? AND r.type = ?
+2020-07-03 17:21:55,972 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer), 1(Integer)
+2020-07-03 17:21:55,973 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 1

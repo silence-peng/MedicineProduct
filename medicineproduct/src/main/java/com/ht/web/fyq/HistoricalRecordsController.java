@@ -61,7 +61,7 @@ public class HistoricalRecordsController {
     /**
      * 根据客户姓名查询
      * @param customerName 地址
-     * @param pageNum 页码
+     * @param pageNum 页码1
      * @return
      */
     @RequestMapping(value = "/findRVByCname",produces = {"application/json;charset=utf-8"})

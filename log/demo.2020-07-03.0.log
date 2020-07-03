@@ -1,0 +1,10 @@
+2020-07-03 17:13:33,323 INFO (StartupInfoLogger.java:55)- Starting MedicineproductApplication on LAPTOP-AJI0RPAF with PID 23512 (E:\zuoye\MedicineProduct\medicineproduct\target\classes started by FYQ in E:\zuoye\MedicineProduct)
+2020-07-03 17:13:33,331 DEBUG (StartupInfoLogger.java:56)- Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2020-07-03 17:13:33,332 INFO (SpringApplication.java:651)- No active profile set, falling back to default profiles: default
+2020-07-03 17:14:57,975 INFO (StartupInfoLogger.java:55)- Starting MedicineproductApplication on LAPTOP-AJI0RPAF with PID 18260 (E:\zuoye\MedicineProduct\medicineproduct\target\classes started by FYQ in E:\zuoye\MedicineProduct)
+2020-07-03 17:14:57,983 DEBUG (StartupInfoLogger.java:56)- Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2020-07-03 17:14:57,985 INFO (SpringApplication.java:651)- No active profile set, falling back to default profiles: default
+2020-07-03 17:15:04,091 INFO (StartupInfoLogger.java:61)- Started MedicineproductApplication in 6.812 seconds (JVM running for 9.08)
+2020-07-03 17:16:54,875 INFO (StartupInfoLogger.java:55)- Starting MedicineproductApplication on LAPTOP-AJI0RPAF with PID 11652 (E:\zuoye\MedicineProduct\medicineproduct\target\classes started by FYQ in E:\zuoye\MedicineProduct)
+2020-07-03 17:16:54,879 DEBUG (StartupInfoLogger.java:56)- Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2020-07-03 17:16:54,881 INFO (SpringApplication.java:651)- No active profile set, falling back to default profiles: default

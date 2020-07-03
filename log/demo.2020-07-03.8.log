@@ -1,0 +1,7 @@
+2020-07-03 17:19:00,665 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM `return_visit` r,customer c,staff s WHERE r.cid=c.cid AND r.return_visit_personnel=s.sid and r.return_visit_personnel=? order by r.return_visit_date desc LIMIT ?
+2020-07-03 17:19:00,667 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: 1(Integer), 15(Integer)
+2020-07-03 17:19:00,668 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 3
+2020-07-03 17:19:10,762 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT * FROM distribute_leaflets d,staff s,customer c,order_detail o,product p,`order` oo WHERE d.`sid`=s.`sid` AND d.`cid`=c.`cid` AND d.`oid`=o.`oid` AND o.`pid`=p.`pid` AND o.`oid`=oo.`oid` AND d.`sid`=?
+2020-07-03 17:19:10,763 DEBUG (BaseJdbcLogger.java:137)- ==> Parameters: null
+2020-07-03 17:19:10,787 DEBUG (BaseJdbcLogger.java:137)- <==      Total: 0
+2020-07-03 17:19:13,892 DEBUG (BaseJdbcLogger.java:137)- ==>  Preparing: SELECT count(0) FROM `return_visit` r, customer c, staff s WHERE r.cid = c.cid AND r.return_visit_personnel = s.sid AND r.return_visit_personnel = ?
