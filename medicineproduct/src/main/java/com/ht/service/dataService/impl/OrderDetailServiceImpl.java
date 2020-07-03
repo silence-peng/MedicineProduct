@@ -1,9 +1,8 @@
 package com.ht.service.dataService.impl;
 
-import com.ht.mapper.dataMapper.FaultTypeMapper;
 import com.ht.mapper.dataMapper.OrderDetailMapper;
 import com.ht.pojo.OrderDetail;
-import com.ht.service.dataService.FaultTypeService;
+import com.ht.pojo.ReturnVisit;
 import com.ht.service.dataService.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

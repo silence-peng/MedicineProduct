@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css"  media="all">
+		<title>安装派单</title>
+		<style type="text/css">
+					.btn-bgcolor {
+						background-color: #286ED6;
+						width: 90px;
+			
+					}
+					.btn-bgcolor2 {
+						background-color: #286ED6;
+						margin-left:26px;
+						width: 70px;
+								
+					}
+					.btn-bgcolor3 {
+					
+						width: 70px;
+					}
+					.btn-bgcolor5{
+						margin-left: 200px;
+					}
+					.btn-bgcolor4{
+						margin-left: 50px;
+					}
+				
+				</style>
+	</head>
+	<body>
+		<button type="button" id="insetDis" class="layui-btn layui-btn-sm  btn-bgcolor"  lay-event="getCheckData">新增安装派单</button>
+				<button type="button" id="ModifyInstallation" class="layui-btn layui-btn-sm  btn-bgcolor"  lay-event="getCheckData">修改</button>
+				<button type="button" id="deleInstallationDispatchs" class="layui-btn layui-btn-sm  btn-bgcolor"  lay-event="getCheckData">删除</button>
+				<br/>
+				<br/>
+				安装人<span class="btn-bgcolor5">安装地址</span>
+				<br/>
+				<br/>
+				<form class="layui-form" action="">
+					
+			      <div class="layui-input-inline">
+			        <input type="tel" name="sname" id="sname" lay-verify="required|phone" autocomplete="off" class="layui-input">
+			    </div>
+	
+				<div class="layui-input-inline btn-bgcolor4">
+				    <input type="tel" name="customerAddress" id="customerAddress" lay-verify="required|phone" autocomplete="off" class="layui-input">
+				</div>
+  
+		<button type="button" id="dianji" class="layui-btn layui-btn-sm  btn-bgcolor2"  lay-event="getCheckData">搜索</button>
+			<button type="reset"   class="layui-btn layui-btn-sm  layui-btn-primary btn-bgcolor3">重置</button>
+			</form>
+		 <table class="layui-hide" id="test" lay-filter="test"></table>
+	</body>
+	<script type="text/javascript" src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="js/yuzhijie/InstallationDispatch.js"></script>
+</html>

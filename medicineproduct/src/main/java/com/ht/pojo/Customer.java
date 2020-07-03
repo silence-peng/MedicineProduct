@@ -32,6 +32,6 @@ public class Customer implements Serializable{
     private Integer customerStatus;//客户状态
     private String remarks;//备注
     private String paymentAccountNo;//付款账号
-    private Integer rid;//地区
+    private String therealaddress;//地区
     private String networkaddress;//网络地址
 }

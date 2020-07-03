@@ -53,7 +53,6 @@ public class StaffController {
     public Map<String,Object>  getstafftoto(HttpSession session){
         String sname= (String) session.getAttribute("sname");
         String phone= (String) session.getAttribute("phone");
-        System.out.println(phone);
         Map<String,Object> map=new HashMap<>();
         map.put("sname",sname);
         return map;
