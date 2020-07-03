@@ -29,7 +29,13 @@
 							"href": "YlhtEmployeeManagement",
 							"icon": "fa fa-users",
 							"target": "_self"
-						}
+						},
+					{
+						"title": "机房参照规格管理",
+						"href": "MachineRoomReferenceSpecificationManagement",
+						"icon": "fa fa-sliders",
+						"target": "_self"
+					}
 				]
 			},
 			{
