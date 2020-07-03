@@ -16,7 +16,7 @@ layui.use(['table', 'form', 'layer', 'jquery'], function () {
             , {
                 field: 'cid', title: '安装地址'
                 , templet: function (d) {
-                    return d.customer.customerName;
+                    return d.customer.customerAddress;
                 }
             }
             , {
